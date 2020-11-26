@@ -6,10 +6,12 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderCardComponent } from './order-summary/order-card/order-card.component';
 import { CheckoutViewRoutingModule } from './checkout-view-routing.module';
+import { CheckoutViewComponent } from './checkout-view.component';
 
 
 @NgModule({
   declarations: [
+    CheckoutViewComponent,
     BillingInfoComponent,
     AdditionalInfoComponent,
     ConfirmationComponent,

@@ -10,9 +10,11 @@ import { ProductsComponent } from './products/products.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MainViewRoutingModule } from './main-view-routing.module';
+import { MainViewComponent } from './main-view.component';
 
 @NgModule({
   declarations: [
+    MainViewComponent,
     SortingComponent,
     SidebarComponent,
     FilterCategoriesComponent,
