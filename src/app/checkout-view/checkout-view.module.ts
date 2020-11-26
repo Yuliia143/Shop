@@ -8,7 +8,6 @@ import { OrderCardComponent } from './order-summary/order-card/order-card.compon
 import { CheckoutViewRoutingModule } from './checkout-view-routing.module';
 import { CheckoutViewComponent } from './checkout-view.component';
 
-
 @NgModule({
   declarations: [
     CheckoutViewComponent,
