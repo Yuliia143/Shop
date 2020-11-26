@@ -1,0 +1,18 @@
+.header {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__center {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__bottom {
+    & ul {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}

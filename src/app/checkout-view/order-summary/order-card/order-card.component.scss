@@ -1,0 +1,10 @@
+.order__card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  &__amount {
+    align-self: flex-end;
+  }
+}

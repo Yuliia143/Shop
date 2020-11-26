@@ -146,5 +146,8 @@
       }
     }
   },
-  "defaultProject": "Shop"
+  "defaultProject": "Shop",
+  "cli": {
+    "analytics": false
+  }
 }
