@@ -1,0 +1,65 @@
+@import 'normalize';
+@import 'variables';
+@import 'mixins.scss';
+
+body {
+  background: $base-white;
+  font-family: $base-font-primary;
+  font-weight: $font-weight-regular;
+  color: $base-black;
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+input {
+  border: none;
+  outline: none;
+}
+.container {
+  display: block;
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  //display: flex;
+
+  &__link {
+    color: $base-black;
+
+    &--green {
+      color: $base-light-green;
+    }
+  }
+}
+
