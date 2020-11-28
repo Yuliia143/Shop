@@ -5,9 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { MainViewModule } from './main-view/main-view.module';
-import { ProductViewModule } from './product-view/product-view.module';
-import { CheckoutViewModule } from './checkout-view/checkout-view.module';
 
 @NgModule({
   declarations: [
@@ -18,9 +15,6 @@ import { CheckoutViewModule } from './checkout-view/checkout-view.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainViewModule,
-    ProductViewModule,
-    CheckoutViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,28 +13,28 @@ import { MainViewRoutingModule } from './main-view-routing.module';
 import { MainViewComponent } from './main-view.component';
 
 @NgModule({
-  declarations: [
-    MainViewComponent,
-    SortingComponent,
-    SidebarComponent,
-    FilterCategoriesComponent,
-    FilterBrandsComponent,
-    FilterRatingComponent,
-    FilterPriceComponent,
-    ProductsComponent,
-    ProductCardComponent,
-    FooterComponent
-  ],
-  exports: [
-    SortingComponent,
-    SidebarComponent,
-    ProductsComponent,
-    FooterComponent
-  ],
-  imports: [
-    CommonModule,
-    MainViewRoutingModule
-  ]
+    declarations: [
+        MainViewComponent,
+        SortingComponent,
+        SidebarComponent,
+        FilterCategoriesComponent,
+        FilterBrandsComponent,
+        FilterRatingComponent,
+        FilterPriceComponent,
+        ProductsComponent,
+        ProductCardComponent,
+        FooterComponent
+    ],
+    exports: [
+        SortingComponent,
+        SidebarComponent,
+        ProductsComponent,
+        FooterComponent
+    ],
+    imports: [
+        CommonModule,
+        MainViewRoutingModule
+    ]
 })
 export class MainViewModule {
 }
