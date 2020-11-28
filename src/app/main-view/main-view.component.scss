@@ -1,3 +1,32 @@
-.main__content {
-  display: flex;
+@import 'src/styles/styles';
+
+.main-content {
+  &__header {
+    @include flex-between;
+  }
+
+  &__title {
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    font-size: 32px;
+    margin: 8px 0;
+  }
+
+  &__amount {
+    display: flex;
+
+    & span:first-of-type {
+      font-family: $base-font-secondary;
+      font-weight: $font-weight-medium;
+      color: $base-light-green;
+      background: $base-saltpan;
+      padding: 0 8px;
+      margin-right: 5px;
+      border-radius: $base-radius;
+    }
+  }
+
+  &__body {
+    display: flex;
+  }
 }
