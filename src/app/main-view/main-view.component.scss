@@ -14,16 +14,6 @@
 
   &__amount {
     display: flex;
-
-    & span:first-of-type {
-      font-family: $base-font-secondary;
-      font-weight: $font-weight-medium;
-      color: $base-light-green;
-      background: $base-saltpan;
-      padding: 0 8px;
-      margin-right: 5px;
-      border-radius: $base-radius;
-    }
   }
 
   &__body {

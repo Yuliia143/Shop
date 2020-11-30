@@ -34,10 +34,12 @@ img {
   width: 100%;
   height: auto;
 }
+
 input {
   border: none;
   outline: none;
 }
+
 .container {
   display: block;
   width: 100%;
@@ -52,8 +54,6 @@ input {
 }
 
 .list {
-  //display: flex;
-
   &__link {
     color: $base-black;
 
@@ -63,3 +63,56 @@ input {
   }
 }
 
+.amount {
+  font-family: $base-font-secondary;
+  font-weight: $font-weight-medium;
+  color: $base-light-green;
+  background: $base-saltpan;
+  padding: 0 8px;
+  margin-right: 5px;
+  border-radius: $base-radius;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 1px solid $base-border-grey;
+    border-radius: 4px;
+  }
+
+  &:hover + label:before {
+    background: $base-light-green;
+  }
+
+  &:checked + label:before {
+    background: $base-light-green;
+    border: 1px solid $base-border-green;
+  }
+
+  &:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    background: $base-white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+}

@@ -11,6 +11,8 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { FooterComponent } from '../footer/footer.component';
 import { MainViewRoutingModule } from './main-view-routing.module';
 import { MainViewComponent } from './main-view.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
 
 @NgModule({
     declarations: [
@@ -33,7 +35,10 @@ import { MainViewComponent } from './main-view.component';
     ],
     imports: [
         CommonModule,
-        MainViewRoutingModule
+        MainViewRoutingModule,
+        ReactiveFormsModule,
+        NgxSliderModule,
+        FormsModule
     ]
 })
 export class MainViewModule {

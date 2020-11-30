@@ -1,1 +1,20 @@
-<p>filter-price works!</p>
+<div class="filter categories">
+    <h2 class="filter__label">Price</h2>
+    <div class="filter__slider">
+        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+        <div class="filter__range-form">
+            <div class="filter__range-item">
+                <label>Min</label>
+                <div class="filter__range-input">
+                    <input type="number" [(ngModel)]="minValue">
+                </div>
+            </div>
+            <div class="filter__range-item">
+                <label>Max</label>
+                <div class="filter__range-input">
+                    <input type="number" [(ngModel)]="maxValue">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
