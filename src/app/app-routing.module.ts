@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductsResolver } from './resolvers/products.resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     {
         path: 'home', loadChildren: () => import('./main-view/main-view.module').then(m => m.MainViewModule),
+        resolve: {
+            products: ProductsResolver
+        },
         data: {
             breadcrumb: [
                 { label: 'Home', url: '' },

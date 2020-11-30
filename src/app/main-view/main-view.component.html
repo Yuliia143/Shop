@@ -3,14 +3,14 @@
         <div class="main-content__header">
             <h1 class="main-content__title">All products</h1>
             <div class="main-content__amount">
-                <span class="amount">117</span>
+                <span class="amount">{{products.length}}</span>
                 <span>Products</span>
             </div>
         </div>
         <app-sorting></app-sorting>
         <div class="main-content__body">
             <app-sidebar></app-sidebar>
-            <app-products></app-products>
+            <app-products [products]="products"></app-products>
         </div>
     </div>
 </div>
