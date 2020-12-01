@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RoutesRecognized } from '@angular/router';
-
-interface BreadCrumbInterface {
-    label: string;
-    url: string;
-}
+import { BreadcrumbInterface } from '../interfaces/breadcrumb-interface';
 
 @Component({
     selector: 'app-breadcrumbs',
@@ -13,12 +9,16 @@ interface BreadCrumbInterface {
 })
 export class BreadcrumbsComponent implements OnInit {
 
-    public breadcrumbs: BreadCrumbInterface[];
+    public breadcrumbs: BreadcrumbInterface[];
 
     constructor(private route: Router) {
     }
 
     ngOnInit(): void {
+        this.subscribeToRouteChanges();
+    }
+
+    public subscribeToRouteChanges(): void {
         this.route.events.subscribe((data) => {
             if (data instanceof RoutesRecognized) {
                 this.breadcrumbs = data.state.root.firstChild.data.breadcrumb;

@@ -15,4 +15,8 @@ export class ProductsService {
         return this.db.database.ref('products').once('value').then(snapshot => snapshot.val());
     }
 
+    getById(id): Promise<ProductInterface> {
+        return this.db.database.ref(`products/${id}`).once('value').then(snapshot => snapshot.val());
+    }
+
 }

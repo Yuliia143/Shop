@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsResolver } from './resolvers/products.resolver';
+import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,8 +18,11 @@ const routes: Routes = [
         },
     },
     {
-        path: 'product/:id',
+        path: 'products/:id',
         loadChildren: () => import('./product-view/product-view.module').then(m => m.ProductViewModule),
+        resolve: {
+            product: ProductResolver
+        },
         data: {
             breadcrumb: [
                 { label: 'Home', url: '' },

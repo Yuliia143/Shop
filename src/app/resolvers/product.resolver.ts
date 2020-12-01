@@ -1,18 +1,18 @@
-import { Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { ProductInterface } from '../interfaces/product-interface';
 import { ProductsService } from '../services/products.service';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class ProductsResolver implements Resolve<ProductInterface[]> {
+export class ProductResolver implements Resolve<ProductInterface> {
 
     constructor(private productsService: ProductsService) {
     }
 
-    resolve(): Observable<ProductInterface[]> {
+    resolve(route: ActivatedRouteSnapshot): Observable<ProductInterface> {
         return new Observable((observer) => {
-            this.productsService.initProducts()
+            this.productsService.getById(route.params.id)
                 .then(data => {
                     if (!data) {
                         alert('Oops, Something Went Wrong');

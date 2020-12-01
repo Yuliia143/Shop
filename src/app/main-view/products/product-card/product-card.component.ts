@@ -7,6 +7,7 @@ import { ProductInterface } from '../../../interfaces/product-interface';
     styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
+    public stars: number[] = [1, 2, 3, 4, 5];
 
     @Input() product: ProductInterface;
 

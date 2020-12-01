@@ -24,16 +24,13 @@
                 </a>
             </div>
             <div class="header__categories">
-                <div class="header__categories__dropdown dropdown">
-                    <button class="dropdown__label">
-                        <span>All categories</span>
-                        <img src="assets/images/svg/ic-arrow-down.svg" alt="arrow-down">
-                    </button>
-                    <ul class="dropdown__list">
-                        <li class="dropdown__item" *ngFor="let category of categories">
-                            <a class="dropdown__link">{{category.name}}</a>
-                        </li>
-                    </ul>
+                <div class="header__categories__dropdown">
+                    <select class="dropdown">
+                        <option selected hidden disabled>All categories</option>
+                        <option *ngFor="let category of categories" [value]="category">
+                            {{ category.name }}
+                        </option>
+                    </select>
                 </div>
                 <hr>
                 <div class="header__search">

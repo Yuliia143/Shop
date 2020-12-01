@@ -1,3 +1,15 @@
+interface DescriptionInterface {
+    small: string;
+    main: string;
+    origins?: string;
+    howToCook?: string;
+}
+interface ReviewQuestionInterface {
+    author: string;
+    date: string;
+    body: string;
+}
+
 export interface ProductInterface {
     id: number;
     imgUrl?: string;
@@ -16,7 +28,7 @@ export interface ProductInterface {
     deliveryArea?: string;
     color?: string;
     sizes?: string;
-    description: [];
-    reviews?: [];
-    questions?: [];
+    description: DescriptionInterface;
+    reviews?: ReviewQuestionInterface[];
+    questions?: ReviewQuestionInterface[];
 }

@@ -35,16 +35,22 @@ img {
   height: auto;
 }
 
-input {
+input, select {
   border: none;
   outline: none;
+}
+
+select {
+  cursor: pointer;
 }
 
 .container {
   display: block;
   width: 100%;
-  max-width: 95%;
+  max-width: 1260px;
   margin: 0 auto;
+  padding: 0 45px;
+  box-sizing: border-box;
 }
 
 .flex-between {
