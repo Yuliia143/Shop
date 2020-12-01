@@ -4,9 +4,9 @@ import { ProductsResolver } from './resolvers/products.resolver';
 import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/products', pathMatch: 'full' },
     {
-        path: 'home', loadChildren: () => import('./main-view/main-view.module').then(m => m.MainViewModule),
+        path: 'products', loadChildren: () => import('./main-view/main-view.module').then(m => m.MainViewModule),
         resolve: {
             products: ProductsResolver
         },
@@ -26,7 +26,7 @@ const routes: Routes = [
         data: {
             breadcrumb: [
                 { label: 'Home', url: '' },
-                { label: 'All products', url: 'home' },
+                { label: 'All products', url: 'products' },
                 { label: 'Product name' }
             ]
         }
