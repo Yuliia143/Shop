@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 export class MainViewComponent implements OnInit {
     public products: ProductInterface[] = [];
 
+    public productsForPage: ProductInterface[] = [];
+
     constructor(private route: ActivatedRoute) {
     }
 
@@ -17,5 +19,9 @@ export class MainViewComponent implements OnInit {
         this.route.data.subscribe(data => {
             this.products = data.products;
         });
+    }
+
+    handleProductsForPage(items): ProductInterface[] {
+        return this.productsForPage = items;
     }
 }

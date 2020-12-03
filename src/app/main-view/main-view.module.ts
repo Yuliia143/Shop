@@ -13,6 +13,7 @@ import { MainViewRoutingModule } from './main-view-routing.module';
 import { MainViewComponent } from './main-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
         FilterPriceComponent,
         ProductsComponent,
         ProductCardComponent,
-        FooterComponent
+        FooterComponent,
+        PaginationComponent
     ],
     exports: [
         SortingComponent,

@@ -125,12 +125,7 @@
   }
 }
 
-.details-button {
-  background: $base-light-green;
-  padding: 12px 16px;
-  border: 2px solid $base-border-green;
-  margin-bottom: 12px;
-
+.green-button {
   & a {
     color: $base-white;
   }
