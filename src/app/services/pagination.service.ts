@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class PaginationService {
 
     constructor() {
@@ -40,6 +38,7 @@ export class PaginationService {
             totalItems,
             currentPages,
             currentPage,
+            startRangePage,
             pageSize,
             totalPages,
             startPage,

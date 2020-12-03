@@ -6,7 +6,7 @@
                 <a (click)="setPage(1)">First</a>
             </li>
             <li [class]="pager.currentPage === 1 ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
-                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                <a (click)="setPage(pager.startRangePage - 1)">Previous</a>
             </li>
             <li *ngFor="let page of pager.pages"
                 [class]="pager.currentPages.includes(page) ? 'pagination__item pagination__item--active' : 'pagination__item'">

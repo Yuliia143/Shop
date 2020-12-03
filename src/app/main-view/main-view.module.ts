@@ -14,6 +14,7 @@ import { MainViewComponent } from './main-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PaginationComponent } from './pagination/pagination.component';
+import { PaginationService } from '../services/pagination.service';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { PaginationComponent } from './pagination/pagination.component';
         ReactiveFormsModule,
         NgxSliderModule,
         FormsModule
-    ]
+    ],
+    providers: [PaginationService],
 })
 export class MainViewModule {
 }
