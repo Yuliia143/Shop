@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductInterface } from '../../interfaces/product-interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+    selector: 'app-product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+    public product: ProductInterface;
 
-  ngOnInit(): void {
-  }
+    constructor(private route: ActivatedRoute) {
+    }
+
+    ngOnInit(): void {
+        this.route.data.subscribe(data => {
+            this.product = data.product;
+        });
+    }
 
 }

@@ -11,30 +11,35 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { FooterComponent } from '../footer/footer.component';
 import { MainViewRoutingModule } from './main-view-routing.module';
 import { MainViewComponent } from './main-view.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
-  declarations: [
-    MainViewComponent,
-    SortingComponent,
-    SidebarComponent,
-    FilterCategoriesComponent,
-    FilterBrandsComponent,
-    FilterRatingComponent,
-    FilterPriceComponent,
-    ProductsComponent,
-    ProductCardComponent,
-    FooterComponent
-  ],
-  exports: [
-    SortingComponent,
-    SidebarComponent,
-    ProductsComponent,
-    FooterComponent
-  ],
-  imports: [
-    CommonModule,
-    MainViewRoutingModule
-  ]
+    declarations: [
+        MainViewComponent,
+        SortingComponent,
+        SidebarComponent,
+        FilterCategoriesComponent,
+        FilterBrandsComponent,
+        FilterRatingComponent,
+        FilterPriceComponent,
+        ProductsComponent,
+        ProductCardComponent,
+        FooterComponent
+    ],
+    exports: [
+        SortingComponent,
+        SidebarComponent,
+        ProductsComponent,
+        FooterComponent
+    ],
+    imports: [
+        CommonModule,
+        MainViewRoutingModule,
+        ReactiveFormsModule,
+        NgxSliderModule,
+        FormsModule
+    ]
 })
 export class MainViewModule {
 }

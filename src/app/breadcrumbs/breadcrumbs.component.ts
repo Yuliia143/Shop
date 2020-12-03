@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RoutesRecognized } from '@angular/router';
+import { BreadcrumbInterface } from '../interfaces/breadcrumb-interface';
 
 @Component({
-  selector: 'app-breadcrumbs',
-  templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.scss']
+    selector: 'app-breadcrumbs',
+    templateUrl: './breadcrumbs.component.html',
+    styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  constructor() { }
+    public breadcrumbs: BreadcrumbInterface[];
 
-  ngOnInit(): void {
-  }
+    constructor(private route: Router) {
+    }
 
+    ngOnInit(): void {
+        this.subscribeToRouteChanges();
+    }
+
+    public subscribeToRouteChanges(): void {
+        this.route.events.subscribe((data) => {
+            if (data instanceof RoutesRecognized) {
+                this.breadcrumbs = data.state.root.firstChild.data.breadcrumb;
+            }
+        });
+    }
 }

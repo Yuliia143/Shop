@@ -1,0 +1,124 @@
+@import 'normalize';
+@import 'variables';
+@import 'mixins.scss';
+
+body {
+  background: $base-white;
+  font-family: $base-font-primary;
+  font-weight: $font-weight-regular;
+  color: $base-black;
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+input, select {
+  border: none;
+  outline: none;
+}
+
+select {
+  cursor: pointer;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 45px;
+  box-sizing: border-box;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  &__link {
+    color: $base-black;
+
+    &--green {
+      color: $base-light-green;
+    }
+  }
+}
+
+.amount {
+  font-family: $base-font-secondary;
+  font-weight: $font-weight-medium;
+  color: $base-light-green;
+  background: $base-saltpan;
+  padding: 0 8px;
+  margin-right: 5px;
+  border-radius: $base-radius;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 1px solid $base-border-grey;
+    border-radius: 4px;
+  }
+
+  &:hover + label:before {
+    background: $base-light-green;
+  }
+
+  &:checked + label:before {
+    background: $base-light-green;
+    border: 1px solid $base-border-green;
+  }
+
+  &:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    background: $base-white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+}

@@ -1,0 +1,21 @@
+@import 'src/styles/styles';
+
+.filter {
+  &__item {
+    width: 100%;
+    @include flex-between;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    & span:first-of-type {
+      font-size: 14px;
+    }
+  }
+
+  &__label {
+    font-family: $base-font-secondary;
+    margin-bottom: 16px;
+  }
+}
