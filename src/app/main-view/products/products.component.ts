@@ -8,7 +8,7 @@ import { ProductInterface } from '../../interfaces/product-interface';
 })
 export class ProductsComponent implements OnInit {
 
-    @Input() products: ProductInterface[];
+    @Input() productsForPage: ProductInterface[];
 
     constructor() {
     }
