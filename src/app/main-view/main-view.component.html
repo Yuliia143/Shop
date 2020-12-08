@@ -3,16 +3,16 @@
         <div class="main-content__header">
             <h1 class="main-content__title">All products</h1>
             <div class="main-content__amount">
-                <span class="amount">{{productsForPage.length}}</span>
+                <span class="amount">{{filteredAndPaginatedProducts.length}}</span>
                 <span>Products</span>
             </div>
         </div>
         <app-sorting></app-sorting>
         <div class="main-content__body">
-            <app-sidebar></app-sidebar>
-            <app-products [productsForPage]="productsForPage"></app-products>
+            <app-sidebar [products]="products" (onChangeFilter)="generateRange()"></app-sidebar>
+            <app-products [productsForPage]="filteredAndPaginatedProducts"></app-products>
         </div>
-        <app-pagination [products]="products" (items)="handleProductsForPage($event)"></app-pagination>
+        <app-pagination [products]="filteredProducts" (range)="handleRange($event)"></app-pagination>
     </div>
 </div>
 <app-footer></app-footer>

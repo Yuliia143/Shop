@@ -1,5 +1,44 @@
 @import 'src/styles/styles';
 
+::ng-deep {
+  .filter__slider {
+    .ngx-slider {
+      width: 250px;
+
+      .ngx-slider-selection {
+        background: $base-light-green;
+      }
+
+      .ngx-slider-pointer {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        top: -25px;
+        background-color: $base-white;
+        z-index: 3;
+        border: 1px solid $base-border-grey;
+        border-radius: 16px;
+
+        &:after {
+          display: none;
+        }
+      }
+
+      .ngx-slider-bubble {
+        display: none;
+      }
+
+      .ngx-slider-bar-wrapper {
+        padding-top: 0;
+      }
+
+      .ngx-slider-bar {
+        height: 6px;
+      }
+    }
+  }
+}
+
 .sidebar {
   width: 270px;
   margin-right: 30px;
@@ -15,3 +54,92 @@
     margin-top: 38px;
   }
 }
+
+.filter {
+  &__item {
+    width: 100%;
+    @include flex-between;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    & span:first-of-type {
+      font-size: 14px;
+    }
+
+    & input {
+      margin-right: 10px;
+    }
+
+    & input[type='radio'] {
+      display: none;
+    }
+
+    & input[type='radio']:checked {
+      & + label {
+        color: $base-light-green;
+        font-weight: $font-weight-bold;
+      }
+    }
+
+    & label {
+      display: flex;
+      width: 100%;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+
+  &__stars {
+    display: flex;
+  }
+
+  &__label {
+    font-family: $base-font-secondary;
+    margin-bottom: 16px;
+  }
+
+  &__range-form {
+    width: 250px;
+    @include flex-between;
+
+    & input {
+      width: 110px;
+      border: 1px solid $base-border-grey;
+      border-radius: $base-radius;
+      padding: 11px 16px 12px 21px;
+      box-sizing: border-box;
+    }
+
+  }
+
+  &__range-item {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      font-family: $base-font-secondary;
+    }
+
+    &:first-child {
+      .filter__range-input {
+        &::after {
+          content: '-';
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: -15px;
+        }
+      }
+    }
+  }
+
+  &__range-input {
+    position: relative;
+  }
+}
+
+
+

@@ -22,7 +22,7 @@
     </div>
     <div>
         <button class="green-button" (click)="showMoreItems(pager.currentPage)"
-                [disabled]="pager.currentPage === pager.totalPages">
+                [disabled]="pager.currentPage >= pager.totalPages">
             <span class="green-button__text">Show more products</span>
             <img src="assets/images/svg/ic-arrow-down-white.svg" alt="arrow">
         </button>

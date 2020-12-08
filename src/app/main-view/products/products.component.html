@@ -1,3 +1,4 @@
 <div class="products">
+    <h2 class="products__no-results" *ngIf="productsForPage.length === 0">No results match.</h2>
     <app-product-card *ngFor="let product of productsForPage" [product]="product"></app-product-card>
 </div>
