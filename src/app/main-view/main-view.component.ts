@@ -37,7 +37,7 @@ export class MainViewComponent implements OnInit {
     }
 
     public generateRange(): void {
-        this.range = this.paginationService.setPage(1, this.filteredProducts);
+        this.range = this.paginationService.getRange(this.filteredProducts.length, [1]);
     }
 
     get filteredProducts(): ProductInterface[] {

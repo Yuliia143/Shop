@@ -1,22 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { FiltersInterface } from '../interfaces/filters-interface';
 import { ProductInterface } from '../interfaces/product-interface';
 
 @Injectable()
 export class FiltersService {
     private filters: FiltersInterface;
-    private handleFiltersSubject = new Subject<FiltersInterface>();
 
     constructor() {
     }
 
     public handleFilters(data): void {
-        this.handleFiltersSubject.next(data);
-        this.handleFiltersSubject.subscribe((filters: FiltersInterface) => {
-            this.filters = filters;
-            }
-        );
+        this.filters = data;
     }
 
     public filterProducts(products: ProductInterface[]): ProductInterface[] {
@@ -34,18 +28,18 @@ export class FiltersService {
     }
 
     private isExistProductInBrands(product: ProductInterface): boolean {
-        return this.filters.brands && this.filters.brands.length !== 0 ?
+        return this.filters.brands?.length ?
             this.filters.brands.includes(product.farm.toLowerCase()) : !!product;
     }
 
     private isExistProductInRating(product: ProductInterface): boolean {
-        return this.filters.rating && this.filters.rating.length !== 0 ?
+        return this.filters.rating?.length ?
             this.filters.rating.includes(product.rating) : !!product;
     }
 
     private isExistProductInPrice(product: ProductInterface): boolean {
         const [min, max] = this.filters.price;
-        return this.filters.price && this.filters.price.length !== 0 ?
+        return this.filters.price?.length ?
             product.price >= min && product.price <= max : !!product;
     }
 

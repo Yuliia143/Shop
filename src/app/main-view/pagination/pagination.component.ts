@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductInterface } from '../../interfaces/product-interface';
 import { PaginationService } from '../../services/pagination.service';
-import { PagerInterface } from '../../interfaces/pagination-interfaces';
+import { PagerInterface, RangeInterface } from '../../interfaces/pagination-interfaces';
 
 @Component({
     selector: 'app-pagination',
@@ -11,8 +11,7 @@ import { PagerInterface } from '../../interfaces/pagination-interfaces';
 export class PaginationComponent implements OnInit {
 
     @Input() products: ProductInterface[];
-
-    @Output() range: EventEmitter<{}> = new EventEmitter<{}>(true);
+    @Output() range: EventEmitter<RangeInterface> = new EventEmitter<RangeInterface>(true);
 
     constructor(private paginationService: PaginationService) {
     }
@@ -23,7 +22,7 @@ export class PaginationComponent implements OnInit {
 
     public setPage(page: number, products: ProductInterface[] = this.products): void {
         window.scrollTo(0, 0);
-        const range = this.paginationService.setPage(page, products);
+        const range = this.paginationService.getRange(products.length, [page]);
         this.range.emit(range);
     }
 

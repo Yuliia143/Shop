@@ -11,7 +11,7 @@ export class PaginationService {
     public pager;
     private pageSize = 10;
 
-    public getPager(totalItems, currentPages, pageSize): {} {
+    public getPager(totalItems: number, currentPages: number[], pageSize: number): {} {
         const totalPages = Math.ceil(totalItems / pageSize);
         const currentPage = currentPages[currentPages.length - 1];
         const startRangePage = currentPages[0];
@@ -54,16 +54,12 @@ export class PaginationService {
         };
     }
 
-    public setPage(page: number, products: ProductInterface[]): RangeInterface {
-        return this.getRange(products.length, [page]);
-    }
-
     public showMoreItems(page: number, products: ProductInterface[]): RangeInterface {
         const pages = [...this.pager.currentPages, ++page];
         return this.getRange(products.length, pages);
     }
 
-    private getRange(count: number, pages: number[]): RangeInterface {
+    public getRange(count: number, pages: number[]): RangeInterface {
         this.pager = this.getPager(count, pages, this.pageSize);
         return ({ start: this.pager.startIndex, end: this.pager.endIndex });
     }

@@ -29,7 +29,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     public filtersForm: FormGroup;
 
     constructor(private filtersService: FiltersService) {
-        this.filtersService.handleFilters(this.filtersForm);
     }
 
     ngOnInit(): void {
@@ -40,12 +39,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.filtersForm = this.initializeForm();
         this.onChanges();
     }
-
-    ngOnDestroy(): void {
-        this.unsubscribeAll.next();
-        this.unsubscribeAll.complete();
-    }
-
 
     private initializeForm(): FormGroup {
         return new FormGroup({
@@ -69,25 +62,37 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.filtersForm.valueChanges.pipe(
             distinctUntilChanged()
         ).subscribe(val => {
-            const selectedBrands = [];
-            const selectedRating = [];
-            if (val.brands.includes(true)) {
-                val.brands.map((item, index) => {
-                    if (item === true) {
-                        selectedBrands.push(this.brands[index]);
-                    }
-                });
-            }
-            if (val.rating.includes(true)) {
-                val.rating.map((item, index) => {
-                    if (item === true) {
-                        selectedRating.push(this.stars[index]);
-                    }
-                });
-            }
-            this.filtersService.handleFilters({ ...val, brands: selectedBrands, rating: selectedRating });
+            this.filtersService.handleFilters({
+                ...val,
+                brands: this.getSelectedBrands(val.brands),
+                rating: this.getSelectedRating(val.rating)
+            });
             this.changeFilter.emit();
         });
+    }
+
+    private getSelectedBrands(brands: boolean[]): string[] {
+        const selectedBrands: string[] = [];
+        if (brands.includes(true)) {
+            brands.map((item, index) => {
+                if (item) {
+                    selectedBrands.push(this.brands[index]);
+                }
+            });
+        }
+        return selectedBrands;
+    }
+
+    private getSelectedRating(rating: boolean[]): number[] {
+        const selectedRating: number[] = [];
+        if (rating.includes(true)) {
+            rating.map((item, index) => {
+                if (item) {
+                    selectedRating.push(this.stars[index]);
+                }
+            });
+        }
+        return selectedRating;
     }
 
     private getUniqueCategories(): {} {
@@ -108,23 +113,33 @@ export class SidebarComponent implements OnInit, OnDestroy {
         return Math.ceil(Math.max(...allPrices));
     }
 
-    public handleMinValue(event: { target: HTMLInputElement }): void {
+    public handleMinValue(event: Event): void {
         const max = this.filtersForm.controls.price.value[1];
-        if (event.target.value) {
-            this.filtersForm.controls.price.setValue([event.target.value, max]);
+        const target = event.target as HTMLInputElement;
+        if (target.value) {
+            this.filtersForm.controls.price.setValue([target.value, max]);
         }
     }
 
-    public handleMaxValue(event: { target: HTMLInputElement }): void {
+    public handleMaxValue(event: Event): void {
         const min = this.filtersForm.controls.price.value[0];
-        if (event.target.value) {
-            this.filtersForm.controls.price.setValue([min, event.target.value]);
+        const target = event.target as HTMLInputElement;
+        if (target.value) {
+            this.filtersForm.controls.price.setValue([min, target.value]);
         }
     }
 
     public resetForm(): void {
         window.scrollTo(0, 0);
-        this.filtersForm.reset();
+        this.filtersForm.reset({
+            category: '',
+            price: [0, this.maxPrice]
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
     }
 
 }
