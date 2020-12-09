@@ -19,7 +19,7 @@ export class FiltersService {
         );
     }
 
-    public filterProducts(products): ProductInterface[] {
+    public filterProducts(products: ProductInterface[]): ProductInterface[] {
         if (!this.filters) {
             return products;
         }

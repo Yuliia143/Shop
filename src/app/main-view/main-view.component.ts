@@ -32,7 +32,7 @@ export class MainViewComponent implements OnInit {
         });
     }
 
-    public handleRange(range): RangeInterface {
+    public handleRange(range: RangeInterface): RangeInterface {
         return this.range = range;
     }
 

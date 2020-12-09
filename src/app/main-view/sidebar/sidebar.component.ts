@@ -108,14 +108,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
         return Math.ceil(Math.max(...allPrices));
     }
 
-    public handleMinValue(event): void {
+    public handleMinValue(event: { target: HTMLInputElement }): void {
         const max = this.filtersForm.controls.price.value[1];
         if (event.target.value) {
             this.filtersForm.controls.price.setValue([event.target.value, max]);
         }
     }
 
-    public handleMaxValue(event): void {
+    public handleMaxValue(event: { target: HTMLInputElement }): void {
         const min = this.filtersForm.controls.price.value[0];
         if (event.target.value) {
             this.filtersForm.controls.price.setValue([min, event.target.value]);

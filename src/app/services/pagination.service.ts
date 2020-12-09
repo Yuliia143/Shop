@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RangeInterface } from '../interfaces/pagination-interfaces';
+import { ProductInterface } from '../interfaces/product-interface';
 
 @Injectable()
 export class PaginationService {
@@ -53,16 +54,16 @@ export class PaginationService {
         };
     }
 
-    public setPage(page, products): RangeInterface {
+    public setPage(page: number, products: ProductInterface[]): RangeInterface {
         return this.getRange(products.length, [page]);
     }
 
-    public showMoreItems(page, products): RangeInterface {
+    public showMoreItems(page: number, products: ProductInterface[]): RangeInterface {
         const pages = [...this.pager.currentPages, ++page];
         return this.getRange(products.length, pages);
     }
 
-    private getRange(count, pages): RangeInterface{
+    private getRange(count: number, pages: number[]): RangeInterface {
         this.pager = this.getPager(count, pages, this.pageSize);
         return ({ start: this.pager.startIndex, end: this.pager.endIndex });
     }
