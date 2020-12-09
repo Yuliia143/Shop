@@ -9,7 +9,7 @@
         </div>
         <app-sorting></app-sorting>
         <div class="main-content__body">
-            <app-sidebar [products]="products" (onChangeFilter)="generateRange()"></app-sidebar>
+            <app-sidebar [products]="products" (changeFilter)="generateRange()"></app-sidebar>
             <app-products [productsForPage]="filteredAndPaginatedProducts"></app-products>
         </div>
         <app-pagination [products]="filteredProducts" (range)="handleRange($event)"></app-pagination>

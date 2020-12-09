@@ -1,20 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ProductInterface } from '../../interfaces/product-interface';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
 import { FiltersService } from '../../services/filters.service';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { FiltersInterface } from '../../interfaces/filters-interface';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
     @Input() products: ProductInterface[];
-    @Output() onChangeFilter: EventEmitter<any> = new EventEmitter();
+    @Output() changeFilter: EventEmitter<FiltersInterface> = new EventEmitter();
 
-    @ViewChild('formElement') formElement;
     public objectKeys = Object.keys;
+    private unsubscribeAll = new Subject();
 
     private maxPrice: number;
     public stars: number[] = [5, 4, 3, 2, 1];
@@ -22,18 +25,11 @@ export class SidebarComponent implements OnInit {
 
     public categories: {};
     public brands: string[];
-    public filtersForm: FormGroup = new FormGroup({
-        category: new FormControl(''),
-        brands: new FormArray([]),
-        rating: new FormArray([]),
-        price: new FormControl([0, 0])
-    });
+
+    public filtersForm: FormGroup;
 
     constructor(private filtersService: FiltersService) {
-        this.filtersForm.valueChanges.subscribe(filters => {
-            this.filtersService.handleFilters(filters);
-            this.onChangeFilter.emit();
-        });
+        this.filtersService.handleFilters(this.filtersForm);
     }
 
     ngOnInit(): void {
@@ -41,8 +37,25 @@ export class SidebarComponent implements OnInit {
         this.brands = this.getUniqueBrands();
         this.maxPrice = this.getMaxPrice();
         this.options = this.initializeOptions();
-        this.filtersForm.controls.price.setValue([0, this.maxPrice]);
+        this.filtersForm = this.initializeForm();
+        this.onChanges();
     }
+
+    ngOnDestroy(): void {
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
+    }
+
+
+    private initializeForm(): FormGroup {
+        return new FormGroup({
+            category: new FormControl(''),
+            brands: new FormArray(this.brands.map(() => new FormControl(false))),
+            rating: new FormArray(this.stars.map(() => new FormControl(false))),
+            price: new FormControl([0, this.maxPrice])
+        });
+    }
+
 
     private initializeOptions(): Options {
         return {
@@ -50,6 +63,31 @@ export class SidebarComponent implements OnInit {
             ceil: this.maxPrice,
             step: 1
         };
+    }
+
+    private onChanges(): void {
+        this.filtersForm.valueChanges.pipe(
+            distinctUntilChanged()
+        ).subscribe(val => {
+            const selectedBrands = [];
+            const selectedRating = [];
+            if (val.brands.includes(true)) {
+                val.brands.map((item, index) => {
+                    if (item === true) {
+                        selectedBrands.push(this.brands[index]);
+                    }
+                });
+            }
+            if (val.rating.includes(true)) {
+                val.rating.map((item, index) => {
+                    if (item === true) {
+                        selectedRating.push(this.stars[index]);
+                    }
+                });
+            }
+            this.filtersService.handleFilters({ ...val, brands: selectedBrands, rating: selectedRating });
+            this.changeFilter.emit();
+        });
     }
 
     private getUniqueCategories(): {} {
@@ -70,16 +108,6 @@ export class SidebarComponent implements OnInit {
         return Math.ceil(Math.max(...allPrices));
     }
 
-    public handleChange(event, arrayName: string): void {
-        const array = this.filtersForm.controls[arrayName] as FormArray;
-        if (event.target.checked) {
-            array.push(new FormControl(event.target.value));
-        } else {
-            const index = array.controls.findIndex(idx => idx.value === event.target.value);
-            array.removeAt(index);
-        }
-    }
-
     public handleMinValue(event): void {
         const max = this.filtersForm.controls.price.value[1];
         if (event.target.value) {
@@ -94,16 +122,9 @@ export class SidebarComponent implements OnInit {
         }
     }
 
-    public resetForm(): void { // TODO
-        // window.scrollTo(0, 0);
-        // this.formElement.nativeElement.querySelectorAll('input').forEach(input => input.checked = false);
-
-        this.filtersForm.reset({
-            category: '',
-            brands: (this.filtersForm.controls.brands as FormArray).clear(),
-            rating: (this.filtersForm.controls.rating as FormArray).clear(),
-            price: [0, this.maxPrice]
-        });
+    public resetForm(): void {
+        window.scrollTo(0, 0);
+        this.filtersForm.reset();
     }
 
 }

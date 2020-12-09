@@ -1,35 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { FiltersInterface } from '../interfaces/filters-interface';
 import { ProductInterface } from '../interfaces/product-interface';
-import { PaginationService } from './pagination.service';
 
 @Injectable()
 export class FiltersService {
-    // public filters: Observable<FiltersInterface>;
-    // private handleFiltersSubject = new Subject<FiltersInterface>();
-    //
-    // constructor() {
-    //     this.filters = this.handleFiltersSubject.asObservable();
-    // }
-    //
-    // public handleFilters(data): void {
-    //     this.handleFiltersSubject.next(data); // передача даних
-    // }
-
     private filters: FiltersInterface;
     private handleFiltersSubject = new Subject<FiltersInterface>();
 
-    constructor(private paginationService: PaginationService) {
+    constructor() {
     }
 
     public handleFilters(data): void {
         this.handleFiltersSubject.next(data);
         this.handleFiltersSubject.subscribe((filters: FiltersInterface) => {
-                this.filters = filters;
+            this.filters = filters;
             }
         );
-        console.log(this.filters, 'this filters');
     }
 
     public filterProducts(products): ProductInterface[] {
@@ -53,7 +40,7 @@ export class FiltersService {
 
     private isExistProductInRating(product: ProductInterface): boolean {
         return this.filters.rating && this.filters.rating.length !== 0 ?
-            this.filters.rating.map(elem => +elem).includes(product.rating) : !!product;
+            this.filters.rating.includes(product.rating) : !!product;
     }
 
     private isExistProductInPrice(product: ProductInterface): boolean {

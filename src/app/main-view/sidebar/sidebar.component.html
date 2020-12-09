@@ -1,5 +1,5 @@
 <aside class="sidebar">
-    <form [formGroup]="filtersForm" class="filters" (keydown.enter)="$event.preventDefault()" #formElement>
+    <form [formGroup]="filtersForm" class="filters" (keydown.enter)="$event.preventDefault()">
         <div class="filter categories">
             <h2 class="filter__label">Categories</h2>
             <ul class="filter__list">
@@ -11,23 +11,21 @@
             </ul>
         </div>
 
-        <div class="filter brands">
+        <div class="filter brands" formArrayName="brands">
             <h2 class="filter__label">Brands</h2>
             <ul class="filter__list">
-                <li class="filter__item" *ngFor="let brand of brands">
-                    <input class="checkbox" type="checkbox" [id]="brand" [value]="brand"
-                           (change)="handleChange($event, 'brands')"/>
+                <li class="filter__item" *ngFor="let brand of brands; let i = index">
+                    <input class="checkbox" type="checkbox" [id]="brand" [value]="brand" [formControlName]="i"/>
                     <label [for]="brand">{{brand | titlecase}}</label>
                 </li>
             </ul>
         </div>
 
-        <div class="filter rating" >
+        <div class="filter rating" formArrayName="rating">
             <h2 class="filter__label">Rating</h2>
             <ul class="filter__list">
-                <li class="filter__item" *ngFor="let star of stars">
-                    <input class="checkbox" type="checkbox" [id]="star" [value]="star"
-                           (change)="handleChange($event, 'rating')"/>
+                <li class="filter__item" *ngFor="let star of stars; let i = index">
+                    <input class="checkbox" type="checkbox" [id]="star" [value]="star" [formControlName]="i"/>
                     <label [for]="star">
                         <div class="filter__stars">
                             <img *ngFor="let j of [].constructor(star)" src="assets/images/svg/star.svg" alt="star">
@@ -59,5 +57,4 @@
         </div>
         <button class="sidebar__btn" (click)="resetForm()" >Reset</button>
     </form>
-    <p>Form value: {{ filtersForm.value | json }}</p>
 </aside>

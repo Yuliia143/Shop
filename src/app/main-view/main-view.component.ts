@@ -13,19 +13,10 @@ import { RangeInterface } from '../interfaces/pagination-interfaces';
 export class MainViewComponent implements OnInit {
 
     constructor(private route: ActivatedRoute, private filtersService: FiltersService, private paginationService: PaginationService) {
-        // this.filtersService.filters.subscribe((data) => {
-        //         this.filters = data;
-        //         this.range = this.paginationService.setPage(1, this.filteredProducts);
-        //         console.log(this.filters, 'in main view');
-        //     }
-        // );
     }
 
     public products: ProductInterface[] = [];
-
     public productsForPage: ProductInterface[] = [];
-
-    public filters;
     private range: RangeInterface = {
         start: 0,
         end: 9
@@ -48,37 +39,6 @@ export class MainViewComponent implements OnInit {
     public generateRange(): void {
         this.range = this.paginationService.setPage(1, this.filteredProducts);
     }
-
-
-    // get filteredProducts(): ProductInterface[] {
-    //     if (!this.filters) {
-    //         return this.products;
-    //     }
-    //     return this.filterByCategory(this.products).filter(product => {
-    //         return this.isExistProductInBrands(product) && this.isExistProductInRating(product) && this.isExistProductInPrice(product);
-    //     });
-    // }
-    //
-    // private filterByCategory(products: ProductInterface[]): ProductInterface[] {
-    //     return products.filter(product => this.filters.category ?
-    //         this.filters.category === product.category.toLowerCase() : !!product);
-    // }
-    //
-    // private isExistProductInBrands(product: ProductInterface): boolean {
-    //     return this.filters.brands && this.filters.brands.length !== 0 ?
-    //         this.filters.brands.includes(product.farm.toLowerCase()) : !!product;
-    // }
-    //
-    // private isExistProductInRating(product: ProductInterface): boolean {
-    //     return this.filters.rating && this.filters.rating.length !== 0 ?
-    //         this.filters.rating.includes(product.rating) : !!product;
-    // }
-    //
-    // private isExistProductInPrice(product: ProductInterface): boolean {
-    //     const [min, max] = this.filters.price;
-    //     return this.filters.price && this.filters.price.length !== 0 ?
-    //         product.price >= min && product.price <= max : !!product;
-    // }
 
     get filteredProducts(): ProductInterface[] {
         return this.filtersService.filterProducts(this.products);
