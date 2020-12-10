@@ -22,26 +22,11 @@
       border-left: 1px solid $base-border-grey;
       height: 20px;
       width: 1px;
-      margin: 0 24px;
+      margin: 0 10px;
     }
 
-    .dropdown {
-      position: relative;
-
-      &__label {
-        display: flex;
-        align-items: center;
-        color: $base-black;
-
-        & span {
-          font-family: $base-font-secondary;
-        }
-
-        & img {
-          width: 6px;
-          margin: 3px 0 0 5px;
-        }
-      }
+    .select {
+      font-weight: $font-weight-bold;
     }
   }
 }

@@ -2,11 +2,11 @@
     <div class="sort__item">
         <div class="sort__label">Sort by</div>
         <hr>
-        <div class="dropdown">
-            <button class="dropdown__label">
-                <span>Select</span>
-                <img src="assets/images/svg/ic-arrow-down.svg" alt="arrow-down">
-            </button>
-        </div>
+        <form [formGroup]="sortingForm">
+            <select class="select" formControlName="sortBy">
+                <option selected hidden>Default</option>
+                <option *ngFor="let option of sortOptions" [ngValue]="option">{{option.label}}</option>
+            </select>
+        </form>
     </div>
 </div>

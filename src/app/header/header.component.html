@@ -24,8 +24,8 @@
                 </a>
             </div>
             <div class="header__categories">
-                <div class="header__categories__dropdown">
-                    <select class="dropdown">
+                <div class="header__categories__select">
+                    <select class="select">
                         <option selected hidden disabled>All categories</option>
                         <option *ngFor="let category of categories" [value]="category">
                             {{ category.name }}

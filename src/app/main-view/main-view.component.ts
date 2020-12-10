@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FiltersService } from '../services/filters.service';
 import { PaginationService } from '../services/pagination.service';
 import { RangeInterface } from '../interfaces/pagination-interfaces';
+import { SortingService } from '../services/sorting.service';
 
 @Component({
     selector: 'app-main-view',
@@ -12,7 +13,8 @@ import { RangeInterface } from '../interfaces/pagination-interfaces';
 })
 export class MainViewComponent implements OnInit {
 
-    constructor(private route: ActivatedRoute, private filtersService: FiltersService, private paginationService: PaginationService) {
+    constructor(private route: ActivatedRoute, private filtersService: FiltersService,
+                private paginationService: PaginationService, private sortingService: SortingService) {
     }
 
     public products: ProductInterface[] = [];
@@ -44,7 +46,12 @@ export class MainViewComponent implements OnInit {
         return this.filtersService.filterProducts(this.products);
     }
 
-    get filteredAndPaginatedProducts(): ProductInterface[] {
-        return this.filteredProducts.slice(this.range.start, this.range.end + 1);
+    get filteredAndSortedProducts(): ProductInterface[] {
+        return this.sortingService.sortProducts(this.filteredProducts);
     }
+
+    get paginatedProducts(): ProductInterface[] {
+        return this.filteredAndSortedProducts.slice(this.range.start, this.range.end + 1);
+    }
+
 }

@@ -12,6 +12,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from '../services/pagination.service';
 import { FiltersService } from '../services/filters.service';
+import { SortingService } from '../services/sorting.service';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,7 @@ import { FiltersService } from '../services/filters.service';
         NgxSliderModule,
         FormsModule
     ],
-    providers: [PaginationService, FiltersService],
+    providers: [PaginationService, FiltersService, SortingService],
 })
 export class MainViewModule {
 }
