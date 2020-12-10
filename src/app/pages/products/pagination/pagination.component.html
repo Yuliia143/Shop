@@ -1,0 +1,34 @@
+<div class="pagination">
+    <div class="pagination__pages">
+        <span class="pagination__label">Page: </span>
+        <ul class="pagination__list">
+            <li [class]="pager.currentPage === 1 ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
+                <a (click)="setPage(1)">First</a>
+            </li>
+            <li [class]="pager.currentPage === 1 ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
+                <a (click)="setPage(pager.startRangePage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages"
+                [class]="pager.currentPages.includes(page) ? 'pagination__item pagination__item--active' : 'pagination__item'">
+                <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [class]="pager.currentPage === pager.totalPages || pager.currentPage > pager.totalPages ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
+                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li [class]="pager.currentPage === pager.totalPages || pager.currentPage > pager.totalPages ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
+                <a (click)="setPage(pager.totalPages)">Last</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <button class="green-button" (click)="showMoreItems(pager.currentPage)"
+                [disabled]="pager.currentPage >= pager.totalPages">
+            <span class="green-button__text">Show more products</span>
+            <img src="assets/images/svg/ic-arrow-down-white.svg" alt="arrow">
+        </button>
+    </div>
+    <div class="pagination__amount">
+        <span class="amount">{{products.length}}</span>
+        <span>Products</span>
+    </div>
+</div>

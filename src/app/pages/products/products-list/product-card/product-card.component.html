@@ -1,0 +1,52 @@
+<div class="product__card card">
+    <div class="card__image">
+        <img [src]="product.imgUrl ? product.imgUrl : 'assets/images/Rectangle%2026.png'" alt="Product">
+    </div>
+    <div class="card__wrapper">
+        <div class="card__description description">
+            <h2 class="description__title">{{product.title | titlecase}}</h2>
+            <p class="description__small">{{product.description.small}}</p>
+            <div class="description__rating">
+                <img *ngFor="let i of stars"
+                     [src]="i <= product.rating? 'assets/images/svg/ic-star-black.svg' : 'assets/images/svg/ic-star-empty.svg'"
+                     alt="star">
+            </div>
+            <ul class="description__list list">
+                <li class="list__item">
+                    <span class="list__label">Freshness</span>
+                    <span class="list__value list__value--green">{{product.freshness | titlecase}}</span>
+                </li>
+                <li class="list__item">
+                    <span class="list__label">Farm</span>
+                    <span class="list__value">{{product.farm | titlecase}}</span>
+                </li>
+                <li class="list__item">
+                    <span class="list__label">Delivery</span>
+                    <span class="list__value">{{product.deliveryArea | titlecase}}</span>
+                </li>
+                <li class="list__item">
+                    <span class="list__label">Stock</span>
+                    <span class="list__value list__value--green">{{product.stock}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="card__info info">
+            <div class="info__price">
+                <span class="info__price-current">{{product.price}} USD</span>
+                <span class="info__price-previous">{{product.previousPrice}}</span>
+            </div>
+            <div class="info__delivery">
+                <span class="info__delivery-shipping">Free Shipping</span>
+                <span class="info__delivery-day">Delivery in {{product.deliveryTime}} day</span>
+            </div>
+            <button class="card__button green-button">
+                <a routerLink="/products/{{product.id}}">Product Details</a>
+                <img src="assets/images/svg/ic-arrow-right.svg" alt="arrow">
+            </button>
+            <button class="card__button wish-button">
+                <img src="assets/images/svg/ic-heart.svg" alt="heart">
+                <a>Add to wish list</a>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="main-content">
+    <div class="container">
+        <div class="main-content__header">
+            <h1 class="main-content__title">All products</h1>
+            <div class="main-content__amount">
+                <span class="amount">{{paginatedProducts.length}}</span>
+                <span>Products</span>
+            </div>
+        </div>
+        <app-sorting (changeSortValue)="generateRange()"></app-sorting>
+        <div class="main-content__body">
+            <app-sidebar [products]="products" (changeFilter)="generateRange()"></app-sidebar>
+            <app-products-list [productsForPage]="paginatedProducts"></app-products-list>
+        </div>
+        <app-pagination [products]="filteredAndSortedProducts" (range)="handleRange($event)"></app-pagination>
+    </div>
+</div>
+<app-footer></app-footer>

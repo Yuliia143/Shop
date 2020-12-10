@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RoutesRecognized } from '@angular/router';
-import { BreadcrumbInterface } from '../../shared/interfaces/breadcrumb-interface';
+import { BreadcrumbInterface } from '@shared/interfaces/breadcrumb-interface';
 
 @Component({
     selector: 'app-breadcrumbs',

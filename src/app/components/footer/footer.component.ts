@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TAGS } from '../../../mockups/mock-tags';
+import { TAGS } from '@mocks/mock-tags';
 
 @Component({
   selector: 'app-footer',
