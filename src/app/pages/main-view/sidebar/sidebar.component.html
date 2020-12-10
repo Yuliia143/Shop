@@ -1,0 +1,60 @@
+<aside class="sidebar">
+    <form [formGroup]="filtersForm" class="filters" (keydown.enter)="$event.preventDefault()">
+        <div class="filter categories">
+            <h2 class="filter__label">Categories</h2>
+            <ul class="filter__list">
+                <li class="filter__item" *ngFor="let key of objectKeys(categories)">
+                    <input class="radio" type="radio" [id]="key" [value]="key" formControlName="category"/>
+                    <label [for]="key">{{key | titlecase}}</label>
+                    <span class="amount">{{categories[key]}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="filter brands" formArrayName="brands">
+            <h2 class="filter__label">Brands</h2>
+            <ul class="filter__list">
+                <li class="filter__item" *ngFor="let brand of brands; let i = index">
+                    <input class="checkbox" type="checkbox" [id]="brand" [value]="brand" [formControlName]="i"/>
+                    <label [for]="brand">{{brand | titlecase}}</label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="filter rating" formArrayName="rating">
+            <h2 class="filter__label">Rating</h2>
+            <ul class="filter__list">
+                <li class="filter__item" *ngFor="let star of stars; let i = index">
+                    <input class="checkbox" type="checkbox" [id]="star" [value]="star" [formControlName]="i"/>
+                    <label [for]="star">
+                        <div class="filter__stars">
+                            <img *ngFor="let j of [].constructor(star)" src="../../../../assets/images/svg/star.svg" alt="star">
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="filter price">
+            <h2 class="filter__label">Price</h2>
+            <div class="filter__slider">
+                <ngx-slider formControlName="price" [options]="options"></ngx-slider>
+                <div class="filter__range-form">
+                    <div class="filter__range-item">
+                        <label>Min</label>
+                        <div class="filter__range-input">
+                            <input type="number" [value]="filtersForm.value.price[0]" (change)="handleMinValue($event)">
+                        </div>
+                    </div>
+                    <div class="filter__range-item">
+                        <label>Max</label>
+                        <div class="filter__range-input">
+                            <input type="number" [value]="filtersForm.value.price[1]" (change)="handleMaxValue($event)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="sidebar__btn" (click)="resetForm()" >Reset</button>
+    </form>
+</aside>

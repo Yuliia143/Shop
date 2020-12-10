@@ -1,0 +1,15 @@
+@import '../../../../styles/styles';
+
+:host {
+  flex-grow: 1;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+
+  &__no-results {
+    text-align: center;
+    font-family: $base-font-secondary;
+  }
+}
