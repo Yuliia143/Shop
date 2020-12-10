@@ -15,6 +15,10 @@ export class ProductComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.initializeProduct();
+    }
+
+    private initializeProduct(): void {
         this.route.data.subscribe(data => {
             this.product = data.product;
         });

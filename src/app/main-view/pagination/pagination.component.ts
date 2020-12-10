@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductInterface } from '../../interfaces/product-interface';
 import { PaginationService } from '../../services/pagination.service';
+import { PagerInterface, RangeInterface } from '../../interfaces/pagination-interfaces';
 
 @Component({
     selector: 'app-pagination',
@@ -10,11 +11,7 @@ import { PaginationService } from '../../services/pagination.service';
 export class PaginationComponent implements OnInit {
 
     @Input() products: ProductInterface[];
-
-    @Output() items: EventEmitter<ProductInterface[]> = new EventEmitter<ProductInterface[]>(true);
-
-    public pager;
-    private pageSize = 10;
+    @Output() range: EventEmitter<RangeInterface> = new EventEmitter<RangeInterface>(true);
 
     constructor(private paginationService: PaginationService) {
     }
@@ -23,16 +20,19 @@ export class PaginationComponent implements OnInit {
         this.setPage(1);
     }
 
-    setPage(page): void {
+    public setPage(page: number, products: ProductInterface[] = this.products): void {
         window.scrollTo(0, 0);
-        this.pager = this.paginationService.getPager(this.products.length, [page], this.pageSize);
-        this.items.emit(this.products.slice(this.pager.startIndex, this.pager.endIndex + 1));
+        const range = this.paginationService.getRange(products.length, [page]);
+        this.range.emit(range);
     }
 
-    showMoreItems(page): void {
-        const pages = [...this.pager.currentPages, ++page];
-        this.pager = this.paginationService.getPager(this.products.length, pages, this.pageSize);
-        this.items.emit(this.products.slice(this.pager.startIndex, this.pager.endIndex + 1));
+    public showMoreItems(page: number): void {
+        const range = this.paginationService.showMoreItems(page, this.products);
+        this.range.emit(range);
+    }
+
+    get pager(): PagerInterface {
+        return this.paginationService.pager;
     }
 
 }
