@@ -1,14 +1,11 @@
+import { SortTypeEnum, ValueTypeEnum } from '@mocks/mock-sortOptions';
+
 export interface SortValueInterface {
-    sortBy: {
-        label: string,
-        direction: string,
-        value: string,
-    };
+    sortBy: SortOptionInterface;
 }
 
 export interface SortOptionInterface {
     label: string;
-    direction: string;
-    value: string;
-
+    direction: SortTypeEnum;
+    value: ValueTypeEnum;
 }

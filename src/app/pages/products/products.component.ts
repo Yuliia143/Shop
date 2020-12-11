@@ -12,17 +12,16 @@ import { SortingService } from '@shared/services/sorting.service';
     styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-
-    constructor(private route: ActivatedRoute, private filtersService: FiltersService,
-                private paginationService: PaginationService, private sortingService: SortingService) {
-    }
-
     public products: ProductInterface[] = [];
     public productsForPage: ProductInterface[] = [];
     private range: RangeInterface = {
         start: 0,
         end: 9
     };
+
+    constructor(private route: ActivatedRoute, private filtersService: FiltersService,
+                private paginationService: PaginationService, private sortingService: SortingService) {
+    }
 
     ngOnInit(): void {
         this.initializeProducts();

@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { FormControl, FormGroup } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { SortingService } from '@shared/services/sorting.service';
-import { SORTOPTIONS } from '@mocks/mock-sortOptions';
+import { SORT_OPTIONS } from '@mocks/mock-sortOptions';
 import { SortOptionInterface, SortValueInterface } from '@shared/interfaces/sorting-interfaces';
 import { Subject } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class SortingComponent implements OnInit, OnDestroy {
     @Output() changeSortValue: EventEmitter<SortValueInterface> = new EventEmitter<SortValueInterface>();
 
     private unsubscribeAll = new Subject();
-    public sortOptions: SortOptionInterface[] = SORTOPTIONS;
+    public sortOptions: SortOptionInterface[] = SORT_OPTIONS;
     public sortingForm: FormGroup = new FormGroup({
         sortBy: new FormControl({})
     });

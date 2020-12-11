@@ -12,10 +12,10 @@
                 [class]="pager.currentPages.includes(page) ? 'pagination__item pagination__item--active' : 'pagination__item'">
                 <a (click)="setPage(page)">{{page}}</a>
             </li>
-            <li [class]="pager.currentPage === pager.totalPages || pager.currentPage > pager.totalPages ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
+            <li [class]="pager.currentPage >= pager.totalPages ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
                 <a (click)="setPage(pager.currentPage + 1)">Next</a>
             </li>
-            <li [class]="pager.currentPage === pager.totalPages || pager.currentPage > pager.totalPages ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
+            <li [class]="pager.currentPage >= pager.totalPages ? 'pagination__item pagination__item--disabled' : 'pagination__item'">
                 <a (click)="setPage(pager.totalPages)">Last</a>
             </li>
         </ul>

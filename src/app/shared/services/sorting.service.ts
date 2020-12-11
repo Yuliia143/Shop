@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductInterface } from '../interfaces/product-interface';
 import { SortValueInterface } from '../interfaces/sorting-interfaces';
+import { SortTypeEnum, ValueTypeEnum } from '@mocks/mock-sortOptions';
 
 @Injectable()
 export class SortingService {
@@ -9,26 +10,29 @@ export class SortingService {
     constructor() {
     }
 
-    public handleSortValue(data): void {
-        this.sortValue = data;
+    public handleSortValue(sortValue: SortValueInterface): void {
+        this.sortValue = sortValue;
     }
 
     public sortProducts(products: ProductInterface[]): ProductInterface[] {
         if (!this.sortValue) {
             return products;
         }
-        const value = this.sortValue.sortBy.value;
-        if (this.sortValue.sortBy.direction === 'asc') {
-            return this.sortByAsc(products, value);
+        const value: ValueTypeEnum = this.sortValue.sortBy.value;
+        if (value in ValueTypeEnum) {
+            if (this.sortValue.sortBy.direction === SortTypeEnum.asc) {
+                return this.sortByAsc(products, value);
+            }
+            return this.sortByDesc(products, value);
         }
-        return this.sortByDesc(products, value);
+        return products;
     }
 
-    private sortByAsc(products: ProductInterface[], value: string): ProductInterface[] {
+    private sortByAsc(products: ProductInterface[], value: ValueTypeEnum): ProductInterface[] {
         return products.sort((a, b) => a[value] - b[value]);
     }
 
-    private sortByDesc(products: ProductInterface[], value: string): ProductInterface[] {
+    private sortByDesc(products: ProductInterface[], value: ValueTypeEnum): ProductInterface[] {
         return products.sort((a, b) => b[value] - a[value]);
     }
 }
