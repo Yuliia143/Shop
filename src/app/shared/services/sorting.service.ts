@@ -19,13 +19,10 @@ export class SortingService {
             return products;
         }
         const value: ValueTypeEnum = this.sortValue.sortBy.value;
-        if (value in ValueTypeEnum) {
-            if (this.sortValue.sortBy.direction === SortTypeEnum.asc) {
-                return this.sortByAsc(products, value);
-            }
-            return this.sortByDesc(products, value);
+        if (this.sortValue.sortBy.direction === SortTypeEnum.asc) {
+            return this.sortByAsc(products, value);
         }
-        return products;
+        return this.sortByDesc(products, value);
     }
 
     private sortByAsc(products: ProductInterface[], value: ValueTypeEnum): ProductInterface[] {
