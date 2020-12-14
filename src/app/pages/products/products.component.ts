@@ -19,8 +19,11 @@ export class ProductsComponent implements OnInit {
         end: 9
     };
 
-    constructor(private route: ActivatedRoute, private filtersService: FiltersService,
-                private paginationService: PaginationService, private sortingService: SortingService) {
+    constructor(
+        private route: ActivatedRoute,
+        private filtersService: FiltersService,
+        private paginationService: PaginationService,
+        private sortingService: SortingService) {
     }
 
     ngOnInit(): void {

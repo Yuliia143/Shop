@@ -24,10 +24,10 @@ export class SortingComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.onChanges();
+        this.subscribeToTheFormValueChanges();
     }
 
-    private onChanges(): void {
+    private subscribeToTheFormValueChanges(): void {
         this.sortingForm.valueChanges.pipe(
             distinctUntilChanged()
         ).subscribe(val => {
