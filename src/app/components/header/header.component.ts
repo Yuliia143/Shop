@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     }
 
     get totalNumberOfGoods(): number {
-        return this.cartService.totalNumberOfGoods();
+        return this.cartService.getTotalNumberOfGoods();
     }
 
 }

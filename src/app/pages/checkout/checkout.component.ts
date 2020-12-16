@@ -118,7 +118,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             });
             this.getSum();
             localStorage.removeItem('goods');
-            localStorage.removeItem('totalNumbers');
         }
     }
 
