@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductsResolver } from './resolvers/products.resolver';
-import { ProductResolver } from './resolvers/product.resolver';
+import { ProductsResolver } from '@shared/resolvers/products.resolver';
+import { ProductResolver } from '@shared/resolvers/product.resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full' },
     {
-        path: 'products', loadChildren: () => import('./main-view/main-view.module').then(m => m.MainViewModule),
+        path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule),
         resolve: {
             products: ProductsResolver
         },
@@ -19,7 +19,7 @@ const routes: Routes = [
     },
     {
         path: 'products/:id',
-        loadChildren: () => import('./product-view/product-view.module').then(m => m.ProductViewModule),
+        loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
         resolve: {
             product: ProductResolver
         },
@@ -33,7 +33,7 @@ const routes: Routes = [
     },
     {
         path: 'checkout',
-        loadChildren: () => import('./checkout-view/checkout-view.module').then(m => m.CheckoutViewModule),
+        loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule),
         data: {
             breadcrumb: [
                 { label: 'Home', url: '' },
