@@ -7,6 +7,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { CartService } from '@shared/services/cart.service';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule
     ],
-    providers: [],
+    providers: [CartService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
