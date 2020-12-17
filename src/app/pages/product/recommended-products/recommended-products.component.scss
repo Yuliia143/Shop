@@ -1,4 +1,30 @@
+@import '~styles/styles';
+
+.recommended {
+  &__title {
+    @include flex-between;
+    margin-bottom: 32px;
+  }
+
+  &__button {
+    @include flex-between;
+    border-radius: $base-radius;
+    background: transparent;
+    padding: 6px 12px;
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    font-size: 15px;
+
+    & img {
+      width: 10px;
+      height: 10px;
+      margin-left: 12px;
+    }
+  }
+}
+
 .recommended__cards {
   display: flex;
   justify-content: space-between;
 }
+

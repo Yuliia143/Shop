@@ -6,13 +6,18 @@ import { RecommendedProductCardComponent } from './recommended-products/recommen
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { ProductsModule } from '../products/products.module';
+import { TabsComponent } from './tabs/tabs.component';
+import { TabComponent } from './tabs/tab/tab.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ProductComponent,
     ProductDetailsComponent,
     RecommendedProductsComponent,
-    RecommendedProductCardComponent
+    RecommendedProductCardComponent,
+    TabsComponent,
+    TabComponent
   ],
   exports: [
     ProductComponent,
@@ -21,7 +26,8 @@ import { ProductsModule } from '../products/products.module';
   imports: [
     CommonModule,
     ProductRoutingModule,
-    ProductsModule
+    ProductsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductModule {

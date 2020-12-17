@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductInterface } from '@shared/interfaces/product-interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-recommended-products',
-  templateUrl: './recommended-products.component.html',
-  styleUrls: ['./recommended-products.component.scss']
+    selector: 'app-recommended-products',
+    templateUrl: './recommended-products.component.html',
+    styleUrls: ['./recommended-products.component.scss']
 })
 export class RecommendedProductsComponent implements OnInit {
 
-  constructor() { }
+    public recommendedProducts: ProductInterface[] = [];
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
+
+    private getRecommendedProducts(): ProductInterface[] {
+        return [];
+    }
 
 }

@@ -39,7 +39,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         promo: new FormControl(''),
         mailing: new FormControl(false, [Validators.requiredTrue]),
         terms: new FormControl(false, [Validators.requiredTrue]),
-        goods: new FormArray([], [Validators.required])
+        goods: new FormArray([], [Validators.required]),
+        property: new FormControl('Psc')
     });
 
     constructor(private cartService: CartService) {

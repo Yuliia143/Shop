@@ -1,0 +1,7 @@
+<ul class="tabs__list">
+    <li class="tabs__item" *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active">
+        {{tab.title}}
+        <span class="tabs__count" *ngIf="tab.count">{{tab.count}}</span>
+    </li>
+</ul>
+<ng-content></ng-content>
