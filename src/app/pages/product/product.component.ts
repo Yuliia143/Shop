@@ -32,11 +32,9 @@ export class ProductComponent implements OnInit {
         });
     }
 
-    private setBreadCrumbName(): void { // TODO
+    private setBreadCrumbName(): void {
         this.route.data.subscribe(data => {
-            data.breadcrumb.forEach(item => {
-                console.log(item);
-            });
+            data.breadcrumb[data.breadcrumb.length - 1].label = this.product.title;
         });
     }
 }
