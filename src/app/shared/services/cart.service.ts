@@ -65,11 +65,8 @@ export class CartService {
         let totalNumber = 0;
         if (this.goods.length) {
             this.goods.forEach(item => totalNumber += item.count);
-            localStorage.setItem('totalNumbers', JSON.stringify(totalNumber));
         }
-        if (this.goods.length === 0) {
-            localStorage.setItem('totalNumbers', JSON.stringify(totalNumber));
-        }
+        localStorage.setItem('totalNumbers', JSON.stringify(totalNumber));
         totalNumber = +localStorage.getItem('totalNumbers');
         return totalNumber;
     }
