@@ -53,10 +53,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     private patchGoods(): void {
-        const control = this.checkoutForm.get('goods') as FormArray;
-        control.clear();
+        const goodsFormArray = this.checkoutForm.get('goods') as FormArray;
+        goodsFormArray.clear();
         this.goods.forEach(item => {
-            control.push(new FormControl({
+            goodsFormArray.push(new FormControl({
                 count: item.count,
                 good: item.good
             }));
@@ -86,8 +86,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     public applyPromo(): void {
-        const control = this.checkoutForm.get('promo') as FormArray;
-        if (control.value) {
+        const promo = this.checkoutForm.get('promo') as FormArray;
+        if (promo.value) {
             this.totalSum = +(this.totalSum - (this.totalSum * this.promoPercentages / 100)).toFixed(2);
         }
     }
@@ -100,10 +100,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     public handleCountValue(event: Event, good: GoodInterface): void {
         const target = event.target as HTMLInputElement;
-        if (+target.value < 1) {
-            target.value = '1';
+        if (target.valueAsNumber < 1) {
+            target.valueAsNumber = 1;
         }
-        this.cartService.changeCount(+target.value, good);
+        this.cartService.changeCount(target.valueAsNumber, good);
         this.patchGoods();
         this.getSum();
     }
