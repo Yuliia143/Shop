@@ -35,7 +35,7 @@ export class ProductDetailsComponent implements OnInit {
 
     public handleChangeValue(event: Event): void {
         const target = event.target as HTMLInputElement;
-        if (+target.value < 1) {
+        if (target.valueAsNumber < 1) {
             this.detailsForm.get('count').setValue(1);
         }
     }
