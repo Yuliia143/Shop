@@ -15,11 +15,20 @@ export class ProductComponent implements OnInit {
 
     ngOnInit(): void {
         this.initializeProduct();
+        this.setBreadCrumbName();
     }
 
     private initializeProduct(): void {
         this.route.data.subscribe(data => {
             this.product = data.product;
+        });
+    }
+
+    private setBreadCrumbName(): void { // TODO
+        this.route.data.subscribe(data => {
+            data.breadcrumb.forEach(item => {
+                console.log(item);
+            });
         });
     }
 }

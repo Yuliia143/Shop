@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '@shared/services/cart.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-product-details',
@@ -37,6 +37,7 @@ export class ProductDetailsComponent implements OnInit {
         }
         this.cartService.addToCart(product, count);
         window.alert('Your product has been added to the cart!');
+        this.detailsForm.get('count').setValue(1);
     }
 
     public handleChangeValue(event: Event): void {

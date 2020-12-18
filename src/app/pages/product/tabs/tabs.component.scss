@@ -20,6 +20,8 @@
     width: 168px;
     padding-bottom: 16px;
     cursor: pointer;
+    box-sizing: border-box;
+    line-height: 1;
 
     &.active {
       border-bottom: 1px solid $base-black;

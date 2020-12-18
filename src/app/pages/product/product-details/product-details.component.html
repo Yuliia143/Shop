@@ -57,7 +57,7 @@
             </div>
             <form [formGroup]="detailsForm" class="product__amount">
                 <div class="product__amount-number">
-                    <input type="number" min="1" value="1" formControlName="count" (change)="handleChangeValue($event)">
+                    <input type="number" min="1" formControlName="count" (change)="handleChangeValue($event)">
                     <label>{{this.detailsForm.get('property').value | lowercase}}</label>
                 </div>
                 <hr>
