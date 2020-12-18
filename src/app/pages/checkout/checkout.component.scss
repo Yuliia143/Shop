@@ -1,4 +1,312 @@
+@import '~styles/styles';
+
 .checkout {
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 70px;
+
+  &-form {
+    @include flex-between;
+    align-items: flex-start;
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      & input[type='text'], textarea {
+        border: 1px solid $base-border-grey;
+        border-radius: $base-radius;
+        background: $base-snow;
+        padding: 12px 20px;
+        color: $base-light-grey;
+        font-size: 14px;
+
+        &.ng-invalid.ng-touched {
+          border: 1px solid red;
+        }
+
+        &.ng-valid.ng-touched {
+          border: 1px solid green;
+        }
+      }
+    }
+
+    &__button {
+      color: $base-white;
+      padding: 16px 48px;
+      font-family: $base-font-secondary;
+      font-size: 15px;
+      font-weight: $font-weight-bold;
+      max-width: 220px;
+    }
+
+    &__sidebar {
+      width: 470px;
+      margin-left: 32px;
+      border: 1px solid $base-border-grey;
+      border-radius: $base-radius;
+      padding: 32px 16px;
+      box-sizing: border-box;
+
+      .checkout__label {
+        margin: 0;
+      }
+    }
+  }
+
+  &__block {
+    border: none;
+    padding: 0;
+    margin-bottom: 64px;
+  }
+
+  &__label {
+    font-size: 22px;
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    color: $base-black;
+  }
+
+  &__description {
+    color: $base-light-grey;
+    margin-top: 4px;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: wrap column;
+    align-content: space-between;
+    max-height: 400px;
+    margin-top: 32px;
+  }
+
+  &__item {
+    @include flex-column;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    width: 100%;
+    max-width: 320px;
+
+    &:nth-child(4n) {
+      margin-bottom: 0;
+    }
+
+    & label {
+      font-family: $base-font-secondary;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &__note {
+    @include flex-column;
+    margin-top: 32px;
+    max-height: 115px;
+
+    & label {
+      font-family: $base-font-secondary;
+      font-weight: $font-weight-bold;
+    }
+
+    & textarea {
+      height: 100%;
+    }
+  }
+
+  &__confirmation {
+    @include flex-column;
+
+    &-list {
+      margin-top: 32px;
+    }
+
+    &-item {
+      display: flex;
+      border: 1px solid $base-border-grey;
+      border-radius: $base-radius;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      width: fit-content;
+      background: $base-snow;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      & label {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  &__cards-list {
+    @include flex-column;
+    margin: 40px 0 60px;
+  }
+
+  &__cards-item {
+    &:not(:last-child) {
+      margin-bottom: 50px;
+    }
+
+    &--empty {
+      font-family: $base-font-secondary;
+      font-size: 20px;
+    }
+  }
+
+  .card {
+    display: flex;
+
+    &__actions, &__description {
+      @include flex-column;
+      margin-right: 16px;
+    }
+
+    &__description {
+      flex: 0.9;
+    }
+
+    &__image {
+      width: 100px;
+      height: 67px;
+      border-radius: $base-radius;
+      margin-bottom: 5px;
+      overflow: hidden;
+
+      & img {
+        object-fit: cover;
+      }
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+
+      & img {
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+      }
+    }
+
+    &__title {
+      font-family: $base-font-secondary;
+      font-size: 15px;
+      margin: 0 0 4px;
+    }
+
+    &__item {
+      @include flex-between;
+
+      &__label {
+        color: $base-light-grey;
+      }
+    }
+
+    &__rating {
+      margin: 15px 0;
+
+      & img {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+      }
+    }
+
+    &__price {
+      font-family: $base-font-secondary;
+      font-size: 18px;
+      font-weight: $font-weight-bold;
+      color: $base-light-green;
+    }
+
+    &__amount {
+      display: inline-flex;
+      align-self: flex-end;
+      align-items: center;
+      border: 1px solid $base-border-grey;
+      border-radius: $base-radius;
+      padding: 6px;
+      background: $base-snow;
+
+      &-number {
+        @include flex-between;
+
+        & input {
+          width: 30px;
+        }
+
+        & label {
+          color: $base-light-grey;
+          font-size: 14px;
+        }
+      }
+
+      & hr {
+        border: none;
+        border-left: 1px solid $base-border-grey;
+        height: 20px;
+        width: 1px;
+        margin: 0 6px;
+      }
+    }
+  }
+
+  &__calculation {
+    @include flex-between;
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__promo {
+    @include flex-between;
+    background: $base-snow;
+    border: 1px solid $base-light-grey;
+    border-radius: $base-radius;
+    padding: 11px 15px;
+    margin-top: 20px;
+
+    & input {
+      width: 100%;
+      background: $base-snow;
+      font-size: 14px;
+    }
+
+    & button {
+      font-family: $base-font-secondary;
+      font-weight: $font-weight-bold;
+      font-size: 15px;
+      min-width: 120px;
+    }
+  }
+
+  &__total {
+    @include flex-between;
+    margin-top: 42px;
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-label {
+      font-family: $base-font-secondary;
+      font-weight: $font-weight-bold;
+    }
+
+    &-delivery {
+      color: $base-light-green;
+    }
+
+    &-sum {
+      font-family: $base-font-secondary;
+      font-weight: $font-weight-bold;
+      font-size: 26px;
+      color: $base-light-green;
+    }
+  }
 }

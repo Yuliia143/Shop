@@ -2,6 +2,10 @@
 @import 'variables';
 @import 'mixins.scss';
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: $base-white;
   font-family: $base-font-primary;
@@ -38,7 +42,7 @@ button {
 
 img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 input, select {
@@ -48,6 +52,11 @@ input, select {
 
 select {
   cursor: pointer;
+}
+
+textarea {
+  resize: none;
+  outline: none;
 }
 
 .container {
