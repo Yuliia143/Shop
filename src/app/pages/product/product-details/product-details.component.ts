@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '@shared/services/cart.service';
@@ -10,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-    public product: ProductInterface;
+    @Input() product: ProductInterface;
     public stars: number[] = [1, 2, 3, 4, 5];
     public detailsForm: FormGroup = new FormGroup({
         count: new FormControl(1),
@@ -21,13 +21,6 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.initializeProduct();
-    }
-
-    private initializeProduct(): void {
-        this.route.data.subscribe(data => {
-            this.product = data.product;
-        });
     }
 
     public handleAddToCart(product): void {

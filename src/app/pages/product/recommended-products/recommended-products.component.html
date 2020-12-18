@@ -1,12 +1,18 @@
 <div class="recommended">
     <div class="recommended__title">
         <h2>You will maybe love</h2>
-      <button class="recommended__button">
-        <a>More products</a>
-        <img src="assets/images/svg/ic-arrow-right-green.svg" alt="arrow">
-      </button>
+        <button class="recommended__button" (click)="getNextRecommended()"
+                [disabled]="this.endIndex >= this.productsFromCategory.length">
+            <span>More products</span>
+            <img src="assets/images/svg/ic-arrow-right-green.svg" alt="arrow">
+        </button>
     </div>
-    <ul class="recommended__cards">
-        <app-recommended-product-card></app-recommended-product-card>
+    <ul class="recommended__list">
+        <li class="recommended__item-empty" *ngIf="!this.productsFromCategory.length">
+            We have no products in this category
+        </li>
+        <li class="recommended__item" *ngFor="let recommendedProduct of recommendedProducts">
+            <app-recommended-product-card [recommendedProduct]="recommendedProduct"></app-recommended-product-card>
+        </li>
     </ul>
 </div>

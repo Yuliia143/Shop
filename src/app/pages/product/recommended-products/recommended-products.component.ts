@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-recommended-products',
@@ -8,17 +7,38 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./recommended-products.component.scss']
 })
 export class RecommendedProductsComponent implements OnInit {
-
-    public recommendedProducts: ProductInterface[] = [];
+    @Input() products: ProductInterface[];
+    @Input() product: ProductInterface;
+    public productsFromCategory;
+    public recommendedProducts: ProductInterface[];
+    private startIndex = 0;
+    public endIndex = 4;
 
     constructor() {
     }
 
     ngOnInit(): void {
+        this.productsFromCategory = this.getFromCurrentCategory();
+        this.recommendedProducts = this.getRecommendedProducts();
+    }
+
+    private getFromCurrentCategory(): ProductInterface[] {
+        return this.products.filter(product => {
+            if (product.id !== this.product.id && product.category === this.product.category) {
+                return product;
+            }
+        });
     }
 
     private getRecommendedProducts(): ProductInterface[] {
-        return [];
+        return this.productsFromCategory.slice(this.startIndex, this.endIndex);
+    }
+
+    public getNextRecommended(): ProductInterface[] {
+        this.startIndex += 4;
+        this.endIndex += 4;
+        this.recommendedProducts = this.productsFromCategory.slice(this.startIndex, this.endIndex);
+        return this.recommendedProducts;
     }
 
 }

@@ -1,0 +1,47 @@
+@import '~styles/styles';
+
+.recommended-product {
+  @include flex-column;
+  min-height: 100%;
+
+  &__image {
+    height: 180px;
+    max-height: 180px;
+    border-radius: $base-radius;
+    object-fit: cover;
+  }
+
+  &__info {
+    margin: 16px 0;
+    flex: 1;
+  }
+
+  &__title {
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-medium;
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+
+  &__footer {
+    @include flex-between;
+  }
+
+  &__price {
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    font-size: 18px;
+  }
+
+  .green-button {
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    font-size: 15px;
+    margin-bottom: 0;
+    padding: 6.5px 12px;
+
+    & a {
+      color: $base-white;
+    }
+  }
+}

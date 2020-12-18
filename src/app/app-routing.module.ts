@@ -21,7 +21,8 @@ const routes: Routes = [
         path: 'products/:id',
         loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
         resolve: {
-            product: ProductResolver
+            product: ProductResolver,
+            products: ProductsResolver
         },
         data: {
             breadcrumb: [
