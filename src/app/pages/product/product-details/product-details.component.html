@@ -58,10 +58,10 @@
             <form [formGroup]="detailsForm" class="product__amount">
                 <div class="product__amount-number">
                     <input type="number" min="1" formControlName="count" (change)="handleChangeValue($event)">
-                    <label>{{this.detailsForm.get('property').value | lowercase}}</label>
+                    <label>{{this.detailsForm.get('measurementUnit').value | lowercase}}</label>
                 </div>
                 <hr>
-                <select class="select" formControlName="property">
+                <select class="select" formControlName="measurementUnit">
                     <option selected>Psc</option>
                     <option>Sdc</option>
                 </select>

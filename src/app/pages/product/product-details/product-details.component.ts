@@ -12,9 +12,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ProductDetailsComponent implements OnInit {
     @Input() product: ProductInterface;
     public stars: number[] = [1, 2, 3, 4, 5];
+    private defaultMeasurementUnit = 'Psc';
     public detailsForm: FormGroup = new FormGroup({
         count: new FormControl(1),
-        property: new FormControl('Psc')
+        measurementUnit: new FormControl(this.defaultMeasurementUnit)
     });
 
     constructor(private route: ActivatedRoute, private cartService: CartService) {
