@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
 
     public handleAddToCart(product): void {
         let count = 1;
-        if (+this.detailsForm.get('count').value > 1){
+        if (+this.detailsForm.get('count').value > 1) {
             count = +this.detailsForm.get('count').value;
         }
         this.cartService.addToCart(product, count);

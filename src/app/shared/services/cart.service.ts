@@ -26,7 +26,7 @@ export class CartService {
     public addToCart(good: ProductInterface, count: number = 1): GoodInterface[] {
         const existedGood = this.isExistGoodInCart(good);
         if (!existedGood) {
-            this.goods.unshift({ good, count });
+            this.goods.push({ good, count });
             localStorage.setItem('goods', JSON.stringify(this.goods));
             return this.goods;
         }

@@ -140,11 +140,12 @@
 
   &__cards-list {
     @include flex-column;
+    flex-direction: column-reverse;
     margin: 40px 0 60px;
   }
 
   &__cards-item {
-    &:not(:last-child) {
+    &:not(:first-child) {
       margin-bottom: 50px;
     }
 

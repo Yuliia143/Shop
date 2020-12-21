@@ -155,10 +155,10 @@
                             <div class="card__amount-number">
                                 <input type="number" min="1" [value]="item.count"
                                        (change)="handleCountValue($event, item)">
-                                <label>{{this.checkoutForm.get('property').value | lowercase}}</label>
+                                <label>{{this.checkoutForm.get('measurementUnit').value | lowercase}}</label>
                             </div>
                             <hr>
-                            <select class="select" formControlName="property">
+                            <select class="select" formControlName="measurementUnit">
                                 <option selected>Psc</option>
                                 <option>Sdc</option>
                             </select>
