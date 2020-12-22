@@ -8,7 +8,7 @@
         </button>
     </div>
     <ul class="recommended__list">
-        <li class="recommended__item-empty" *ngIf="!this.productsFromCategory.length">
+        <li class="recommended__item-empty" *ngIf="!this.productsFromCategory?.length">
             We have no products in this category
         </li>
         <li class="recommended__item" *ngFor="let recommendedProduct of recommendedProducts">

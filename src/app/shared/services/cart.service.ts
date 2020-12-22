@@ -30,7 +30,7 @@ export class CartService {
             localStorage.setItem('goods', JSON.stringify(this.goods));
             return this.goods;
         }
-        count > 1 ? existedGood.count += count : existedGood.count += 1;
+        existedGood.count += count > 1 ? count : 1;
         localStorage.setItem('goods', JSON.stringify(this.goods));
     }
 
