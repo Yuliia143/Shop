@@ -50,7 +50,7 @@
                         <a class="list__link" routerLink="/checkout">
                             <img src="assets/images/svg/ic-ecommerce-basket.svg" alt="Basket">
                         </a>
-                        <span class="list__amount" *ngIf="totalNumberOfGoods">{{totalNumberOfGoods}}</span>
+                        <span class="list__amount" *ngIf="totalNumberOfGoods && user">{{totalNumberOfGoods}}</span>
                     </li>
                     <li class="list__item" *ngIf="user">
                         <button class="list__link" (click)="signOut()">
