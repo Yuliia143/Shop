@@ -9,7 +9,7 @@ import { ProductInterface } from '@shared/interfaces/product-interface';
 export class RecommendedProductsComponent implements OnInit {
     @Input() products: ProductInterface[];
     @Input() product: ProductInterface;
-    public productsFromCategory;
+    public productsFromCategory: ProductInterface[];
     public recommendedProducts: ProductInterface[];
     private startIndex = 0;
     public endIndex = 4;
@@ -23,11 +23,9 @@ export class RecommendedProductsComponent implements OnInit {
     }
 
     private getFromCurrentCategory(): ProductInterface[] {
-        return this.products.filter(product => {
-            if (product.id !== this.product.id && product.category === this.product.category) {
-                return product;
-            }
-        });
+        return this.products.filter(product =>
+            product.id !== this.product.id && product.category === this.product.category
+        );
     }
 
     private getRecommendedProducts(): ProductInterface[] {

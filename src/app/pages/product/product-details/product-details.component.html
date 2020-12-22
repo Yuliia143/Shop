@@ -12,13 +12,13 @@
             <img *ngFor="let i of stars"
                  [src]="i <= product.rating? 'assets/images/svg/ic-star-black.svg' : 'assets/images/svg/ic-star-empty.svg'"
                  alt="star">
-            <span class="product__reviews" *ngIf="product.reviews.length">({{product.reviews.length}}
-                customer review)</span>
+            <span class="product__reviews" *ngIf="product.reviews.length">
+                ({{product.reviews.length}} customer review)</span>
         </div>
         <div class="product__description">{{product.description.main}}</div>
         <ul class="product__list">
             <li class="product__item">
-                <span class="product__item__label">County:</span>
+                <span class="product__item__label">Country:</span>
                 <span>{{product.country | titlecase}}</span>
             </li>
             <li class="product__item">
@@ -87,7 +87,7 @@
                         <p class="tab__content">{{product.description.howToCook}}</p>
                     </div>
                 </app-tab>
-                <app-tab title="Reviews" [count]="product.reviews.length">
+                <app-tab title="Reviews" [count]="product.reviews?.length">
                     <ul class="tab__list">
                         <li class="tab__block" *ngFor="let review of product.reviews">
                             <div class="tab__review">
@@ -98,7 +98,7 @@
                         </li>
                     </ul>
                 </app-tab>
-                <app-tab title="Questions" [count]="product.reviews.length">
+                <app-tab title="Questions" [count]="product.questions?.length">
                     <ul class="tab__list">
                         <li class="tab__block" *ngFor="let question of product.questions">
                             <div class="tab__review">
