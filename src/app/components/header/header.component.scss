@@ -26,6 +26,21 @@
       }
     }
 
+    &__link {
+      & img {
+        width: 25px;
+        height: 24px;
+      }
+
+      &-user {
+        & img {
+          width: 40px;
+          height: 100%;
+          border-radius: 12px;
+        }
+      }
+    }
+
     &__amount {
       position: absolute;
       bottom: -3px;

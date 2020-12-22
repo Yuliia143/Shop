@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
-import { ActivatedRoute } from '@angular/router';
 import { CartService } from '@shared/services/cart.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '@shared/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SignInComponent } from '../../../components/sign-in/sign-in.component';
 
 @Component({
     selector: 'app-product-details',
@@ -18,10 +20,20 @@ export class ProductDetailsComponent implements OnInit {
         measurementUnit: new FormControl(this.defaultMeasurementUnit)
     });
 
-    constructor(private route: ActivatedRoute, private cartService: CartService) {
+    constructor(private cartService: CartService,
+                public authService: AuthService,
+                public dialog: MatDialog) {
     }
 
     ngOnInit(): void {
+    }
+
+    get user(): any {
+        return this.authService.getUser();
+    }
+
+    public openDialog(): void {
+        this.dialog.open(SignInComponent);
     }
 
     public handleAddToCart(product): void {
