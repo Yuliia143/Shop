@@ -19,6 +19,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     public subTotalSum: number;
     public totalSum: number;
     public promoPercentages = 5;
+    private defaultMeasurementUnit = 'Psc';
 
     public stars: number[] = [1, 2, 3, 4, 5];
     private unsubscribeAll = new Subject();
@@ -39,7 +40,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         promo: new FormControl(''),
         mailing: new FormControl(false, [Validators.requiredTrue]),
         terms: new FormControl(false, [Validators.requiredTrue]),
-        goods: new FormArray([], [Validators.required])
+        goods: new FormArray([], [Validators.required]),
+        measurementUnit: new FormControl(this.defaultMeasurementUnit)
     });
 
     constructor(private cartService: CartService) {
@@ -125,5 +127,4 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.unsubscribeAll.next();
         this.unsubscribeAll.complete();
     }
-
 }

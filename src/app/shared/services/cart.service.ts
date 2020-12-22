@@ -23,14 +23,14 @@ export class CartService {
         return this.goods.find(item => item.good.id === good.id);
     }
 
-    public addToCart(good: ProductInterface): GoodInterface[] {
+    public addToCart(good: ProductInterface, count: number = 1): GoodInterface[] {
         const existedGood = this.isExistGoodInCart(good);
         if (!existedGood) {
-            this.goods.push({ good, count: 1 });
+            this.goods.push({ good, count });
             localStorage.setItem('goods', JSON.stringify(this.goods));
             return this.goods;
         }
-        existedGood.count += 1;
+        existedGood.count += count > 1 ? count : 1;
         localStorage.setItem('goods', JSON.stringify(this.goods));
     }
 

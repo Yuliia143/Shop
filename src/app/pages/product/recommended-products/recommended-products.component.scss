@@ -1,4 +1,42 @@
-.recommended__cards {
-  display: flex;
-  justify-content: space-between;
+@import '~styles/styles';
+
+.recommended {
+  margin-bottom: 90px;
+
+  &__title {
+    @include flex-between;
+    margin-bottom: 32px;
+  }
+
+  &__button {
+    @include flex-between;
+    border-radius: $base-radius;
+    background: transparent;
+    padding: 6px 12px;
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    font-size: 15px;
+
+    & img {
+      width: 10px;
+      height: 10px;
+      margin-left: 12px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__item {
+    width: 251px;
+    max-width: 251px;
+
+    &-empty {
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+    }
+  }
 }

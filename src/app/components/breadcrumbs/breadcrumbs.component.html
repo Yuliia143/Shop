@@ -3,7 +3,7 @@
         <ul class="breadcrumbs__list">
             <li class="breadcrumbs__item" *ngFor="let breadcrumb of breadcrumbs">
                 <a class="breadcrumbs__link" [routerLink]="breadcrumb.url">
-                    {{ breadcrumb.label }}
+                    {{ breadcrumb.label | titlecase}}
                 </a>
             </li>
         </ul>

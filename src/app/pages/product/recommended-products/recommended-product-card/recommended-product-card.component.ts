@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ProductInterface } from '@shared/interfaces/product-interface';
 
 @Component({
   selector: 'app-recommended-product-card',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recommended-product-card.component.scss']
 })
 export class RecommendedProductCardComponent implements OnInit {
+  @Input() recommendedProduct: ProductInterface;
 
   constructor() { }
 

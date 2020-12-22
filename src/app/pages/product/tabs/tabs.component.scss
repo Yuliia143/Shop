@@ -1,0 +1,47 @@
+@import '~styles/styles';
+
+.tab-close {
+  color: gray;
+  text-align: right;
+  cursor: pointer;
+}
+
+.tabs {
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    font-size: 18px;
+    width: 168px;
+    padding-bottom: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 1;
+
+    &.active {
+      border-bottom: 1px solid $base-black;
+    }
+
+    &:not(:last-child) {
+      margin-right: 32px;
+    }
+  }
+
+  &__count {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $base-light-green;
+    background: $base-saltpan;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+}
