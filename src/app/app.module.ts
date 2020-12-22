@@ -12,7 +12,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthService } from '@shared/services/auth.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthGuard } from "@shared/guards/auth.guard";
+import { AuthGuard } from '@shared/guards/auth.guard';
 
 
 @NgModule({
