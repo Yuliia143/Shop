@@ -4,6 +4,7 @@ import { CartService } from '@shared/services/cart.service';
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { AuthService } from '@shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
+import { UserInterface } from '@shared/interfaces/user-interface';
 
 @Component({
     selector: 'app-header',
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
         return this.cartService.getTotalNumberOfGoods();
     }
 
-    get user(): any {
+    get user(): UserInterface {
         return this.authService.getUser();
     }
 
@@ -33,8 +34,8 @@ export class HeaderComponent implements OnInit {
         this.dialog.open(SignInComponent);
     }
 
-    public signOut(): any {
-        return this.authService.signOut();
+    public signOut(): void {
+        this.authService.signOut();
     }
 
 }

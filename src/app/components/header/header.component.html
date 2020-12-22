@@ -42,7 +42,8 @@
                 <ul class="header__list list">
                     <li class="list__item" (click)="!!user || openDialog()">
                         <a [class]="user? 'list__link-user' : 'list__link'">
-                            <img [src]="user ? user.photoURL : 'assets/images/svg/ic-actions-user.svg'" alt="User">
+                            <img [src]="user?.photoURL ? user.photoURL : 'assets/images/svg/ic-actions-user.svg'"
+                                 alt="User">
                         </a>
                     </li>
                     <li class="list__item">

@@ -5,6 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '@shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SignInComponent } from '../../../components/sign-in/sign-in.component';
+import { UserInterface } from '@shared/interfaces/user-interface';
 
 @Component({
     selector: 'app-product-details',
@@ -28,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    get user(): any {
+    get user(): UserInterface {
         return this.authService.getUser();
     }
 
