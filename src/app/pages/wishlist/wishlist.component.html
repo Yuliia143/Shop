@@ -5,9 +5,14 @@
         </div>
         <div class="wish__body">
             <ul class="wish__list">
-                <li class="wish__item--empty" *ngIf="!wishProducts.length">Your wishlist is empty. Please, choose products.</li>
+                <li class="wish__item--empty" *ngIf="!wishProducts.length">
+                    Your wishlist is empty. Please,
+                    <a routerLink="/products">choose products.</a>
+                </li>
                 <li class="wish__item" *ngFor="let wishProduct of wishProducts">
-                    {{wishProduct | json}}
+                    <app-wish-card [wishProduct]="wishProduct"
+                                   (removeWishProduct)="removeWishProduct($event)">
+                    </app-wish-card>
                 </li>
             </ul>
         </div>

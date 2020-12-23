@@ -5,6 +5,8 @@ import { GoodInterface } from '@shared/interfaces/good-interface';
 import { CITIES } from '@mocks/mock-cities';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ProductInterface } from '@shared/interfaces/product-interface';
+import { WishlistService } from '@shared/services/wishlist.service';
 
 @Component({
     selector: 'app-checkout-view',
@@ -44,7 +46,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         measurementUnit: new FormControl(this.defaultMeasurementUnit)
     });
 
-    constructor(private cartService: CartService) {
+    constructor(private cartService: CartService, private wishlistService: WishlistService) {
     }
 
     ngOnInit(): void {
@@ -52,6 +54,20 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.getSum();
         this.getFilteredOptions();
         this.patchGoods();
+    }
+
+    public existInWishlist(product: ProductInterface): ProductInterface {
+        return this.wishlistService.isExistInWishlist(product);
+    }
+
+    public addToWishList(product: ProductInterface): void {
+        this.wishlistService.addToWishlist(product);
+        window.alert('Your product has been added to the wishlist!');
+    }
+
+    public removeFromWishList(product: ProductInterface): void {
+        this.wishlistService.removeWishProduct(product.id);
+        window.alert('Your product has been deleted from the wishlist!');
     }
 
     private patchGoods(): void {

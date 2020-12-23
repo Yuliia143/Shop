@@ -114,8 +114,9 @@
                 <p class="checkout__description">Price can change depending on shipping method and taxes of your
                     state</p>
                 <ul class="checkout__cards-list">
-                    <li class="checkout__cards-item--empty" *ngIf="!goods.length">Your cart is empty. Please, choose
-                        products.
+                    <li class="checkout__cards-item--empty" *ngIf="!goods.length">
+                        Your cart is empty. Please,
+                        <a routerLink="/products">choose products.</a>
                     </li>
                     <li class="checkout__cards-item checkout__card card" *ngFor="let item of goods">
                         <div class="card__actions">
@@ -123,8 +124,16 @@
                                 <img [src]=" item.good.imgUrl ? item.good.imgUrl : 'assets/images/small%20r.png'"
                                      alt="Good">
                             </div>
-                            <button class="card__button">
-                                <img src="assets/images/svg/ic-heart-red.svg" alt="heart">
+                            <button class="card__button" *ngIf="!existInWishlist(item.good)"
+                                    (click)="addToWishList(item.good)">
+                                <img src="assets/images/svg/ic-heart-red.svg"
+                                     alt="heart">
+                                <span>Wishlist</span>
+                            </button>
+                            <button class="card__button" *ngIf="existInWishlist(item.good)"
+                                    (click)="removeFromWishList(item.good)">
+                                <img src="assets/images/svg/ic-heart-red-full.svg"
+                                     alt="heart">
                                 <span>Wishlist</span>
                             </button>
                             <button class="card__button" (click)="removeGood(item.good.id)">

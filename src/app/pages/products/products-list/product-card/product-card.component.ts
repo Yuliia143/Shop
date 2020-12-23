@@ -18,8 +18,18 @@ export class ProductCardComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    get existInWishlist(): ProductInterface {
+        return this.wishlistService.isExistInWishlist(this.product);
+    }
+
     public addToWishList(product: ProductInterface): void {
         this.wishlistService.addToWishlist(product);
+        window.alert('Your product has been added to the wishlist!');
+    }
+
+    public removeFromWishList(id: number): void {
+        this.wishlistService.removeWishProduct(id);
+        window.alert('Your product has been deleted from the wishlist!');
     }
 
 }

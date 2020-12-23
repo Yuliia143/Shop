@@ -14,11 +14,15 @@ export class WishlistComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.getWishProducts();
+        this.getWishProducts();
     }
 
     public getWishProducts(): void {
         this.wishlistService.getWishProducts().subscribe(products => this.wishProducts = products);
+    }
+
+    public removeWishProduct(id: number): void {
+        this.wishlistService.removeWishProduct(id).subscribe(products => this.wishProducts = products);
     }
 
 }

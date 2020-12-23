@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { Observable, of } from 'rxjs';
+import { GoodInterface } from '@shared/interfaces/good-interface';
 
 @Injectable()
 export class WishlistService {
@@ -18,7 +19,7 @@ export class WishlistService {
         return this.wishProducts;
     }
 
-    private isExistInWishlist(product: ProductInterface): ProductInterface {
+    isExistInWishlist(product: ProductInterface): ProductInterface {
         return this.wishProducts.find(item => item.id === product.id);
     }
 
@@ -29,6 +30,12 @@ export class WishlistService {
             localStorage.setItem('wishlist', JSON.stringify(this.wishProducts));
             return this.wishProducts;
         }
+    }
+
+    public removeWishProduct(id: number): Observable<ProductInterface[]> {
+        this.wishProducts = this.wishProducts.filter(item => item.id !== id);
+        localStorage.setItem('wishlist', JSON.stringify(this.wishProducts));
+        return of(this.wishProducts);
     }
 
     public getWishProducts(): Observable<ProductInterface[]> {

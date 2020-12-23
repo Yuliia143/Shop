@@ -6,6 +6,7 @@ import { AuthService } from '@shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SignInComponent } from '../../../components/sign-in/sign-in.component';
 import { UserInterface } from '@shared/interfaces/user-interface';
+import { WishlistService } from '@shared/services/wishlist.service';
 
 @Component({
     selector: 'app-product-details',
@@ -24,6 +25,7 @@ export class ProductDetailsComponent implements OnInit {
     constructor(
         private cartService: CartService,
         private authService: AuthService,
+        private wishlistService: WishlistService,
         private dialog: MatDialog) {
     }
 
@@ -32,6 +34,20 @@ export class ProductDetailsComponent implements OnInit {
 
     get user(): UserInterface {
         return this.authService.getUser();
+    }
+
+    get existInWishlist(): ProductInterface {
+        return this.wishlistService.isExistInWishlist(this.product);
+    }
+
+    public addToWishList(product: ProductInterface): void {
+        this.wishlistService.addToWishlist(product);
+        window.alert('Your product has been added to the wishlist!');
+    }
+
+    public removeFromWishList(id: number): void {
+        this.wishlistService.removeWishProduct(id);
+        window.alert('Your product has been deleted from the wishlist!');
     }
 
     public openDialog(): void {
