@@ -13,6 +13,7 @@ import { AuthService } from '@shared/services/auth.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from '@shared/guards/auth.guard';
+import { WishlistService } from '@shared/services/wishlist.service';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { AuthGuard } from '@shared/guards/auth.guard';
         AppComponent,
         HeaderComponent,
         BreadcrumbsComponent,
-        SignInComponent,
+        SignInComponent
     ],
     imports: [
         BrowserModule,
@@ -30,7 +31,7 @@ import { AuthGuard } from '@shared/guards/auth.guard';
         MatDialogModule,
         NoopAnimationsModule
     ],
-    providers: [CartService, AuthService, AuthGuard],
+    providers: [CartService, AuthService, AuthGuard, WishlistService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

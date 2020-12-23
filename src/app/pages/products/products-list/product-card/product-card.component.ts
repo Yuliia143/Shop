@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
+import { WishlistService } from '@shared/services/wishlist.service';
 
 @Component({
     selector: 'app-product-card',
@@ -11,10 +12,14 @@ export class ProductCardComponent implements OnInit {
 
     @Input() product: ProductInterface;
 
-    constructor() {
+    constructor(private wishlistService: WishlistService) {
     }
 
     ngOnInit(): void {
+    }
+
+    public addToWishList(product: ProductInterface): void {
+        this.wishlistService.addToWishlist(product);
     }
 
 }

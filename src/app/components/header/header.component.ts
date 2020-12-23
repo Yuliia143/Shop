@@ -6,6 +6,7 @@ import { AuthService } from '@shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserInterface } from '@shared/interfaces/user-interface';
 import { CategoryInterface } from '@shared/interfaces/category-interface';
+import { WishlistService } from '@shared/services/wishlist.service';
 
 @Component({
     selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
     constructor(
         private cartService: CartService,
         private authService: AuthService,
+        private wishlistService: WishlistService,
         private dialog: MatDialog) {
     }
 
@@ -30,6 +32,10 @@ export class HeaderComponent implements OnInit {
 
     get user(): UserInterface {
         return this.authService.getUser();
+    }
+
+    get totalNumberOfWishProducts(): number{
+        return this.wishlistService.getTotalNumberOfWishProducts();
     }
 
     public openDialog(): void {
