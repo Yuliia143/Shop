@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsResolver } from '@shared/resolvers/products.resolver';
 import { ProductResolver } from '@shared/resolvers/product.resolver';
+import { AuthGuard } from '@shared/guards/auth.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -41,6 +42,7 @@ const routes: Routes = [
                 { label: 'Checkout' }
             ]
         },
+        canActivate: [AuthGuard]
     },
 ];
 

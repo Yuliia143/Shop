@@ -40,16 +40,22 @@
             </div>
             <div class="header__actions">
                 <ul class="header__list list">
-                    <li class="list__item">
-                        <a class="list__link">
-                            <img src="assets/images/svg/ic-actions-user.svg" alt="User">
+                    <li class="list__item" (click)="!!user || openDialog()">
+                        <a [class]="user? 'list__link-user' : 'list__link'">
+                            <img [src]="user?.photoURL ? user.photoURL : 'assets/images/svg/ic-actions-user.svg'"
+                                 alt="User">
                         </a>
                     </li>
                     <li class="list__item">
                         <a class="list__link" routerLink="/checkout">
                             <img src="assets/images/svg/ic-ecommerce-basket.svg" alt="Basket">
                         </a>
-                        <span class="list__amount" *ngIf="totalNumberOfGoods">{{totalNumberOfGoods}}</span>
+                        <span class="list__amount" *ngIf="totalNumberOfGoods && user">{{totalNumberOfGoods}}</span>
+                    </li>
+                    <li class="list__item" *ngIf="user">
+                        <button class="list__link" (click)="signOut()">
+                            <img src="assets/images/svg/sign-in.svg" alt="Sign-out">
+                        </button>
                     </li>
                 </ul>
             </div>

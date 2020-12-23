@@ -1,12 +1,12 @@
 export const environment = {
     production: false,
     firebase: {
-        apiKey: 'AIzaSyBhHfB1u_FH5aPofp1NbWT3-WR1R9ZniD4',
-        authDomain: 'freshnesecom.firebaseapp.com',
-        databaseURL: 'https://freshnesecom.firebaseio.com',
-        projectId: 'freshnesecom',
-        storageBucket: 'freshnesecom.appspot.com',
-        messagingSenderId: '83106748447',
-        appId: '1:83106748447:web:407b9cf51585b0a690dd2a'
+        apiKey: 'AIzaSyCRzdQryCIyB9MEpdiPt399U6ln0mBuDbU',
+        authDomain: 'shop-9a5bc.firebaseapp.com',
+        databaseURL: 'https://shop-9a5bc.firebaseio.com',
+        projectId: 'shop-9a5bc',
+        storageBucket: 'shop-9a5bc.appspot.com',
+        messagingSenderId: '691732847230',
+        appId: '1:691732847230:web:6cdfdddfde0299e5f2d62f'
     }
 };

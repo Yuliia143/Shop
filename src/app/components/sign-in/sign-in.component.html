@@ -1,0 +1,21 @@
+<div class="sign-in">
+    <div class="sign-in__header">
+        <h1 mat-dialog-title class="sign-in__title">Sign in with</h1>
+        <button mat-dialog-close class="sign-in__close">
+            <img src="assets/images/svg/ic-close-white.svg" alt="Close">
+        </button>
+    </div>
+    <div mat-dialog-content class="sign-in__content">
+        <ul class="sign-in__list">
+            <li class="sign-in__item" (click)="googleAuth()">
+                <img src="assets/images/svg/google.svg" alt="Google">
+            </li>
+            <li class="sign-in__item" (click)="facebookAuth()">
+                <img src="assets/images/svg/facebook.svg" alt="Facebook">
+            </li>
+            <li class="sign-in__item" (click)="githubAuth()">
+                <img src="assets/images/svg/github.svg" alt="Github">
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CATEGORIES } from '@mocks/mock-categories';
 import { CartService } from '@shared/services/cart.service';
+import { SignInComponent } from '../sign-in/sign-in.component';
+import { AuthService } from '@shared/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UserInterface } from '@shared/interfaces/user-interface';
+import { CategoryInterface } from '@shared/interfaces/category-interface';
 
 @Component({
     selector: 'app-header',
@@ -8,10 +13,12 @@ import { CartService } from '@shared/services/cart.service';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    public categories: CategoryInterface[] = CATEGORIES;
 
-    categories: {}[] = CATEGORIES;
-
-    constructor(private cartService: CartService) {
+    constructor(
+        private cartService: CartService,
+        private authService: AuthService,
+        private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
@@ -19,6 +26,18 @@ export class HeaderComponent implements OnInit {
 
     get totalNumberOfGoods(): number {
         return this.cartService.getTotalNumberOfGoods();
+    }
+
+    get user(): UserInterface {
+        return this.authService.getUser();
+    }
+
+    public openDialog(): void {
+        this.dialog.open(SignInComponent);
+    }
+
+    public signOut(): void {
+        this.authService.signOut();
     }
 
 }
