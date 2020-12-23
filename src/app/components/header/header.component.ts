@@ -5,6 +5,7 @@ import { SignInComponent } from '../sign-in/sign-in.component';
 import { AuthService } from '@shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserInterface } from '@shared/interfaces/user-interface';
+import { CategoryInterface } from '@shared/interfaces/category-interface';
 
 @Component({
     selector: 'app-header',
@@ -12,11 +13,12 @@ import { UserInterface } from '@shared/interfaces/user-interface';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    public categories: {}[] = CATEGORIES;
+    public categories: CategoryInterface[] = CATEGORIES;
 
-    constructor(private cartService: CartService,
-                public authService: AuthService,
-                private dialog: MatDialog) {
+    constructor(
+        private cartService: CartService,
+        private authService: AuthService,
+        private dialog: MatDialog) {
     }
 
     ngOnInit(): void {

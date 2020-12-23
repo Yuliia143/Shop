@@ -21,9 +21,10 @@ export class ProductDetailsComponent implements OnInit {
         measurementUnit: new FormControl(this.defaultMeasurementUnit)
     });
 
-    constructor(private cartService: CartService,
-                public authService: AuthService,
-                public dialog: MatDialog) {
+    constructor(
+        private cartService: CartService,
+        private authService: AuthService,
+        private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
