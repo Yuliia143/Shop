@@ -5,6 +5,7 @@ import { UserInterface } from '@shared/interfaces/user-interface';
 import { AuthService } from '@shared/services/auth.service';
 import { SignInComponent } from '../../../components/sign-in/sign-in.component';
 import { MatDialog } from '@angular/material/dialog';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
     selector: 'app-wish-card',
@@ -12,21 +13,20 @@ import { MatDialog } from '@angular/material/dialog';
     styleUrls: ['./wish-card.component.scss']
 })
 export class WishCardComponent implements OnInit {
-
+    @Input() user: UserInterface;
     @Input() wishProduct: ProductInterface;
     @Output() removeWishProduct: EventEmitter<number> = new EventEmitter();
+
+    public objectKeys = Object.keys;
 
     constructor(
         private cartService: CartService,
         private authService: AuthService,
+        private notificationService: NotificationService,
         private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
-    }
-
-    get user(): UserInterface {
-        return this.authService.getUser();
     }
 
     public openDialog(): void {
@@ -35,7 +35,7 @@ export class WishCardComponent implements OnInit {
 
     public handleAddToCart(product: ProductInterface): void {
         this.cartService.addToCart(product);
-        window.alert('Your product has been added to the cart!');
+        this.notificationService.openSnackBar('Your product has been added to the cart!', 'Close');
     }
 
     public handleRemoveWishProduct(id: number): void {

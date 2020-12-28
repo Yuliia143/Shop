@@ -118,19 +118,19 @@
                         Your cart is empty. Please,
                         <a routerLink="/products">choose products.</a>
                     </li>
-                    <li class="checkout__cards-item checkout__card card" *ngFor="let item of goods">
+                    <li class="checkout__cards-item checkout__card card" *ngFor="let item of goods; let i = index">
                         <div class="card__actions">
                             <div class="card__image">
                                 <img [src]=" item.good.imgUrl ? item.good.imgUrl : 'assets/images/small%20r.png'"
                                      alt="Good">
                             </div>
-                            <button class="card__button" *ngIf="!existInWishlist(item.good)"
+                            <button class="card__button" *ngIf="!existInWishlist[i]"
                                     (click)="addToWishList(item.good)">
                                 <img src="assets/images/svg/ic-heart-red.svg"
                                      alt="heart">
                                 <span>Wishlist</span>
                             </button>
-                            <button class="card__button" *ngIf="existInWishlist(item.good)"
+                            <button class="card__button" *ngIf="existInWishlist[i]"
                                     (click)="removeFromWishList(item.good)">
                                 <img src="assets/images/svg/ic-heart-red-full.svg"
                                      alt="heart">

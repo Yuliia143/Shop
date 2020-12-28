@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
-import { Observable, of } from 'rxjs';
-import { GoodInterface } from '@shared/interfaces/good-interface';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable()
 export class WishlistService {
     public wishProducts: ProductInterface[] = [];
+    public totalNumberOfWishProducts = new BehaviorSubject(0);
 
     constructor() {
         this.initializeWishProducts();
@@ -15,12 +15,13 @@ export class WishlistService {
         const wishProductsFromLs = JSON.parse(localStorage.getItem('wishlist'));
         if (wishProductsFromLs) {
             this.wishProducts = wishProductsFromLs;
+            this.totalNumberOfWishProducts.next(wishProductsFromLs.length);
         }
         return this.wishProducts;
     }
 
-    isExistInWishlist(product: ProductInterface): ProductInterface {
-        return this.wishProducts.find(item => item.id === product.id);
+    public isExistInWishlist(product: ProductInterface): boolean {
+        return !!this.wishProducts.find(item => item.id === product.id);
     }
 
     public addToWishlist(product: ProductInterface): ProductInterface[] {
@@ -28,6 +29,7 @@ export class WishlistService {
         if (!existedProduct) {
             this.wishProducts.push(product);
             localStorage.setItem('wishlist', JSON.stringify(this.wishProducts));
+            this.totalNumberOfWishProducts.next(this.wishProducts.length);
             return this.wishProducts;
         }
     }
@@ -35,6 +37,7 @@ export class WishlistService {
     public removeWishProduct(id: number): Observable<ProductInterface[]> {
         this.wishProducts = this.wishProducts.filter(item => item.id !== id);
         localStorage.setItem('wishlist', JSON.stringify(this.wishProducts));
+        this.totalNumberOfWishProducts.next(this.wishProducts.length);
         return of(this.wishProducts);
     }
 
@@ -42,13 +45,4 @@ export class WishlistService {
         return of(this.wishProducts);
     }
 
-    public getTotalNumberOfWishProducts(): number {
-        let totalNumber = 0;
-        if (this.wishProducts.length) {
-            totalNumber = this.wishProducts.length;
-        }
-        localStorage.setItem('totalWishProducts', JSON.stringify(totalNumber));
-        totalNumber = +localStorage.getItem('totalWishProducts');
-        return totalNumber;
-    }
 }

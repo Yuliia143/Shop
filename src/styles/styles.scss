@@ -160,3 +160,14 @@ textarea {
     font-size: 15px;
   }
 }
+
+
+.mat-snack-bar-container {
+  background: $base-light-green;
+  color: $base-white;
+  border-radius: $base-radius !important;
+}
+
+.mat-simple-snackbar {
+  font-family: $base-font-secondary;
+}

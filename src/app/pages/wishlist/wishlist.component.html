@@ -10,7 +10,8 @@
                     <a routerLink="/products">choose products.</a>
                 </li>
                 <li class="wish__item" *ngFor="let wishProduct of wishProducts">
-                    <app-wish-card [wishProduct]="wishProduct"
+                    <app-wish-card [user]="user"
+                                   [wishProduct]="wishProduct"
                                    (removeWishProduct)="removeWishProduct($event)">
                     </app-wish-card>
                 </li>

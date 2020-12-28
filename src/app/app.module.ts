@@ -14,6 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { WishlistService } from '@shared/services/wishlist.service';
+import { NotificationService } from '@shared/services/notification.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -29,9 +31,10 @@ import { WishlistService } from '@shared/services/wishlist.service';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
         MatDialogModule,
+        MatSnackBarModule,
         NoopAnimationsModule
     ],
-    providers: [CartService, AuthService, AuthGuard, WishlistService],
+    providers: [CartService, AuthService, AuthGuard, WishlistService, NotificationService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

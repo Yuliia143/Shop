@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
     selector: 'app-checkout-view',
@@ -15,6 +16,7 @@ import { WishlistService } from '@shared/services/wishlist.service';
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
     public goods: GoodInterface[];
+    public existInWishlist: boolean[];
 
     public tax = 17;
     public taxSum = 0;
@@ -46,7 +48,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         measurementUnit: new FormControl(this.defaultMeasurementUnit)
     });
 
-    constructor(private cartService: CartService, private wishlistService: WishlistService) {
+    constructor(
+        private cartService: CartService,
+        private wishlistService: WishlistService,
+        private notificationService: NotificationService) {
     }
 
     ngOnInit(): void {
@@ -54,20 +59,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.getSum();
         this.getFilteredOptions();
         this.patchGoods();
+        this.existInWishlist = this.isExistInWishlist(this.goods);
     }
 
-    public existInWishlist(product: ProductInterface): ProductInterface {
-        return this.wishlistService.isExistInWishlist(product);
+    public isExistInWishlist(goods: GoodInterface[]): boolean[] {
+        const existArray: boolean[] = [];
+        goods.forEach(item => {
+            existArray.push(this.wishlistService.isExistInWishlist(item.good));
+        });
+        return existArray;
     }
 
     public addToWishList(product: ProductInterface): void {
         this.wishlistService.addToWishlist(product);
-        window.alert('Your product has been added to the wishlist!');
+        this.notificationService.openSnackBar('Your product has been added to the wishlist!', 'Close');
+        this.existInWishlist = this.isExistInWishlist(this.goods);
     }
 
     public removeFromWishList(product: ProductInterface): void {
         this.wishlistService.removeWishProduct(product.id);
-        window.alert('Your product has been deleted from the wishlist!');
+        this.notificationService.openSnackBar('Your product has been deleted from the wishlist!', 'Close');
+        this.existInWishlist = this.isExistInWishlist(this.goods);
     }
 
     private patchGoods(): void {
@@ -128,7 +140,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     public submit(): void {
         if (this.checkoutForm.valid) {
-            alert('Your order is successful');
+            this.notificationService.openSnackBar('Your order is successful', 'Close');
             this.cartService.clearGoods().subscribe(goods => this.goods = goods);
             this.checkoutForm.reset({
                 city: '',

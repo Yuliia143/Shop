@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CATEGORIES } from '@mocks/mock-categories';
 import { CartService } from '@shared/services/cart.service';
 import { SignInComponent } from '../sign-in/sign-in.component';
@@ -7,14 +7,20 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserInterface } from '@shared/interfaces/user-interface';
 import { CategoryInterface } from '@shared/interfaces/category-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+    public objectKeys = Object.keys;
     public categories: CategoryInterface[] = CATEGORIES;
+    public user: UserInterface;
+    public totalNumberOfGoods: number;
+    public totalNumberOfWishProducts: number;
+    private unsubscribeAll = new Subject();
 
     constructor(
         private cartService: CartService,
@@ -24,18 +30,21 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getUser();
+        this.getTotalNumberOfWishProducts();
+        this.getTotalNumberOfGoods();
     }
 
-    get totalNumberOfGoods(): number {
-        return this.cartService.getTotalNumberOfGoods();
+    private getUser(): void {
+        this.authService.userSubject.subscribe((user: UserInterface) => this.user = user);
     }
 
-    get user(): UserInterface {
-        return this.authService.getUser();
+    private getTotalNumberOfWishProducts(): void {
+        this.wishlistService.totalNumberOfWishProducts.subscribe((totalNumber: number) => this.totalNumberOfWishProducts = totalNumber);
     }
 
-    get totalNumberOfWishProducts(): number{
-        return this.wishlistService.getTotalNumberOfWishProducts();
+    private getTotalNumberOfGoods(): void {
+        this.cartService.totalNumberOfGoods.subscribe((totalNumber: number) => this.totalNumberOfGoods = totalNumber);
     }
 
     public openDialog(): void {
@@ -44,6 +53,11 @@ export class HeaderComponent implements OnInit {
 
     public signOut(): void {
         this.authService.signOut();
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
     }
 
 }

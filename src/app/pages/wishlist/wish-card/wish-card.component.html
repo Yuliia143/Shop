@@ -16,7 +16,10 @@
                     <img src="assets/images/svg/details.svg" alt="Details">
                 </a>
             </button>
-            <button (click)="user ? handleAddToCart(wishProduct) : openDialog()">
+            <button *ngIf="user && objectKeys(user).length" (click)="handleAddToCart(wishProduct)">
+                <img src="assets/images/svg/ic-actions-add-simple.svg" alt="Cart">
+            </button>
+            <button *ngIf="!user || !objectKeys(user).length" (click)="openDialog()">
                 <img src="assets/images/svg/ic-actions-add-simple.svg" alt="Cart">
             </button>
         </div>
