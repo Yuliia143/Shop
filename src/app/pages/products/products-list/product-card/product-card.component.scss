@@ -26,6 +26,7 @@
     padding: 32px;
     display: flex;
     width: 100%;
+    box-sizing: border-box;
   }
 
   &__description, &__info {
@@ -143,5 +144,45 @@
   & img {
     width: 13px;
     margin-right: 10px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .product__card {
+    @include flex-column;
+    max-height: initial;
+  }
+  .card {
+    &__image {
+      min-width: initial;
+      max-width: initial;
+
+      & img {
+        max-height: 200px;
+        min-height: 200px;
+      }
+    }
+
+    &__wrapper {
+      @include flex-column;
+      padding: 16px;
+    }
+
+    &__description {
+      margin-right: 0;
+    }
+  }
+  .description {
+    text-align: center;
+
+    &__rating {
+      justify-content: center;
+    }
+  }
+  .info {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 }

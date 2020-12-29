@@ -144,5 +144,9 @@
   }
 }
 
-
+@media (max-width: 576px) {
+  .sidebar {
+    display: none;
+  }
+}
 

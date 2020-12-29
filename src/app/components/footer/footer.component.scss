@@ -11,7 +11,6 @@
     margin-bottom: 48px;
   }
 
-
   .list {
     flex-direction: column;
 
@@ -54,10 +53,28 @@
     }
   }
 
-  &__bottom{
-    & p{
+  &__bottom {
+    & p {
       font-size: 14px;
       font-weight: $font-weight-regular;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    &__top {
+      flex-wrap: wrap;
+    }
+
+    &__column {
+      width: 40%;
+    }
+
+    .list {
+      &__link {
+        font-size: 12px;
+      }
     }
   }
 }
