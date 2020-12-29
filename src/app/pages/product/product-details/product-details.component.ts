@@ -9,6 +9,7 @@ import { UserInterface } from '@shared/interfaces/user-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
 import { Subject } from 'rxjs';
 import { NotificationService } from '@shared/services/notification.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-product-details',
@@ -44,7 +45,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     }
 
     private getUser(): void {
-        this.authService.userSubject.subscribe((user: UserInterface) => this.user = user);
+        this.authService.userSubject
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((user: UserInterface) => this.user = user);
     }
 
     private isExistInWishlist(): void {
