@@ -62,6 +62,7 @@
     align-items: center;
     border: 1px solid $base-border-grey;
     border-radius: $base-radius;
+    box-sizing: border-box;
     padding: 10px 16px;
     background: $base-snow;
 
@@ -133,6 +134,58 @@
           margin: 3px 0 0 5px;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    &__top {
+      @include flex-column;
+
+      &_right {
+        margin-top: 16px;
+      }
+    }
+
+    &__center {
+      @include flex-column;
+      padding-top: 0;
+    }
+
+    &__bottom {
+      padding: 5px 10px;
+
+      .list {
+        display: inline-block;
+        column-count: 2;
+
+        &__item {
+          width: 100%;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .list {
+      &__item {
+        &:not(:last-child) {
+          margin-right: 20px;
+        }
+      }
+    }
+
+    &__categories {
+      max-width: 300px;
+
+      & hr {
+        margin: 0 14px;
+      }
+    }
+
+    &__actions {
+      margin-top: 16px;
     }
   }
 }
