@@ -66,11 +66,11 @@
                     <option>Sdc</option>
                 </select>
             </form>
-            <button class="green-button" *ngIf="!user || !objectKeys(user).length" (click)="openDialog()">
+            <button class="green-button" *ngIf="!user" (click)="openDialog()">
                 <img src="assets/images/svg/ic-actions-add-simple.svg" alt="add">
                 <a>Add to cart</a>
             </button>
-            <button class="green-button" *ngIf="user && objectKeys(user).length" (click)="handleAddToCart(product)">
+            <button class="green-button" *ngIf="user" (click)="handleAddToCart(product)">
                 <img src="assets/images/svg/ic-actions-add-simple.svg" alt="add">
                 <a>Add to cart</a>
             </button>

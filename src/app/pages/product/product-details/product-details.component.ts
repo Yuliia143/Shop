@@ -24,7 +24,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     public stars: number[] = [1, 2, 3, 4, 5];
     private defaultMeasurementUnit = 'Psc';
     private unsubscribeAll = new Subject();
-    public objectKeys = Object.keys;
 
     public detailsForm: FormGroup = new FormGroup({
         count: new FormControl(1),

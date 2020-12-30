@@ -144,10 +144,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     public submit(): void {
         if (this.checkoutForm.valid) {
-            this.notificationService.openSnackBar('Your order is successful', 'Close');
             this.cartService.clearGoods()
                 .pipe(takeUntil(this.unsubscribeAll))
-                .subscribe(goods => this.goods = goods);
+                .subscribe(goods => {
+                    this.goods = goods;
+                    this.notificationService.openSnackBar('Your order is successful', 'Close');
+                });
             this.checkoutForm.reset({
                 city: '',
                 goods: this.patchGoods()

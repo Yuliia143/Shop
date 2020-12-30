@@ -16,7 +16,6 @@ import { takeUntil } from 'rxjs/operators';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-    public objectKeys = Object.keys;
     public categories: CategoryInterface[] = CATEGORIES;
     public user: UserInterface;
     public totalNumberOfGoods: number;

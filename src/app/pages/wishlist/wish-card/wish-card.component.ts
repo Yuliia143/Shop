@@ -17,8 +17,6 @@ export class WishCardComponent implements OnInit {
     @Input() wishProduct: ProductInterface;
     @Output() removeWishProduct: EventEmitter<number> = new EventEmitter();
 
-    public objectKeys = Object.keys;
-
     constructor(
         private cartService: CartService,
         private authService: AuthService,

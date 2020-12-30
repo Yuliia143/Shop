@@ -40,12 +40,12 @@
             </div>
             <div class="header__actions">
                 <ul class="header__list list">
-                    <li class="list__item" *ngIf="!user || !objectKeys(user).length" (click)="openDialog()">
+                    <li class="list__item" *ngIf="!user" (click)="openDialog()">
                         <a class="list__link">
                             <img src="assets/images/svg/ic-actions-user.svg" alt="User">
                         </a>
                     </li>
-                    <li class="list__item" *ngIf="user && objectKeys(user).length">
+                    <li class="list__item" *ngIf="user">
                         <a class="list__link-user">
                             <img [src]="user.photoURL" alt="User">
                         </a>
@@ -62,11 +62,11 @@
                         <a class="list__link" routerLink="/checkout">
                             <img src="assets/images/svg/ic-ecommerce-basket.svg" alt="Basket">
                         </a>
-                        <span class="list__amount" *ngIf="totalNumberOfGoods && user && objectKeys(user).length">
+                        <span class="list__amount" *ngIf="totalNumberOfGoods && user">
                             {{totalNumberOfGoods}}
                         </span>
                     </li>
-                    <li class="list__item" *ngIf="user && objectKeys(user).length">
+                    <li class="list__item" *ngIf="user">
                         <button class="list__link" (click)="signOut()">
                             <img src="assets/images/svg/sign-in.svg" alt="Sign-out">
                         </button>

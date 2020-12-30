@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class AuthService {
     public user: UserInterface;
-    public userSubject = new BehaviorSubject<UserInterface>({} as UserInterface);
+    public userSubject = new BehaviorSubject<UserInterface>(null);
     public redirectUrl: string;
 
     constructor(public afAuth: AngularFireAuth, private router: Router) {
