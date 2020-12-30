@@ -7,10 +7,25 @@
                 <span>Products</span>
             </div>
         </div>
-        <app-sorting (changeSortValue)="generateRange()"></app-sorting>
+        <div class="main-content__actions">
+            <app-sorting (changeSortValue)="generateRange()"></app-sorting>
+            <button mat-mini-fab color="primary" (click)="sidenav.toggle()">
+                <mat-icon> menu</mat-icon>
+            </button>
+            <!--            <div class="main-content__actions-button">-->
+            <!--                <input type="checkbox" class="sidebar__button"/>-->
+            <!--                <span></span>-->
+            <!--            </div>-->
+        </div>
         <div class="main-content__body">
-            <app-sidebar [products]="products" (changeFilter)="generateRange()"></app-sidebar>
-            <app-products-list [productsForPage]="paginatedProducts"></app-products-list>
+            <mat-sidenav-container class="example-container">
+                <mat-sidenav mode="side" #sidenav>
+                    <app-sidebar [products]="products" (changeFilter)="generateRange()"></app-sidebar>
+                </mat-sidenav>
+                <mat-sidenav-content>
+                    <app-products-list [productsForPage]="paginatedProducts"></app-products-list>
+                </mat-sidenav-content>
+            </mat-sidenav-container>
         </div>
         <app-pagination [products]="filteredAndSortedProducts" (range)="handleRange($event)"></app-pagination>
     </div>

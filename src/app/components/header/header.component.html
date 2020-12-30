@@ -77,8 +77,9 @@
         <div class="header__bottom">
             <ul class="header__menu list">
                 <li class="list__item" *ngFor="let category of categories">
-                    <span>{{category.name}}</span>
-                    <img src="assets/images/svg/ic-arrow-down.svg" alt="arrow-down">
+                    <select class="select">
+                        <option selected hidden disabled>{{category.name}}</option>
+                    </select>
                 </li>
             </ul>
         </div>

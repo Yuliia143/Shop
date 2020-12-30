@@ -121,19 +121,8 @@
     background: $base-snow;
     padding: 16px 45px;
 
-    .list {
-      &__item {
-        font-family: $base-font-secondary;
-        font-weight: $font-weight-medium;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-
-        & img {
-          width: 6px;
-          margin: 3px 0 0 5px;
-        }
-      }
+    .select {
+      font-weight: $font-weight-medium;
     }
   }
 }
@@ -157,13 +146,16 @@
       padding: 5px 10px;
 
       .list {
-        display: inline-block;
-        column-count: 2;
+        @include flex-column;
+        flex-wrap: wrap;
+        max-height: 100px;
 
         &__item {
-          width: 100%;
-          display: flex;
-          align-items: center;
+          .select {
+            max-width: 100%;
+            font-weight: $font-weight-regular;
+            font-size: 13px;
+          }
         }
       }
     }

@@ -13,6 +13,8 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from '@shared/services/pagination.service';
 import { FiltersService } from '@shared/services/filters.service';
 import { SortingService } from '@shared/services/sorting.service';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -34,6 +36,8 @@ import { SortingService } from '@shared/services/sorting.service';
         ProductsRoutingModule,
         ReactiveFormsModule,
         NgxSliderModule,
+        MatSidenavModule,
+        MatIconModule,
         FormsModule
     ],
     providers: [PaginationService, FiltersService, SortingService],

@@ -172,9 +172,20 @@
     &__description {
       margin-right: 0;
     }
+
+    &__buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
   .description {
     text-align: center;
+
+    &__title {
+      font-size: 18px;
+    }
 
     &__rating {
       justify-content: center;

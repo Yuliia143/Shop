@@ -12,11 +12,99 @@
     margin: 8px 0;
   }
 
+  &__actions {
+    @include flex-between;
+
+    &-button {
+      visibility: hidden;
+    }
+  }
+
   &__amount {
     display: flex;
   }
 
   &__body {
     display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    &__actions {
+      position: relative;
+
+      &-button {
+        visibility: visible;
+      }
+    }
+  }
+
+  .sidebar__button {
+    cursor: pointer;
+    height: 35px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    width: 35px;
+    z-index: 100;
+  }
+  .sidebar__button + span {
+    background-color: $base-light-green;
+    cursor: pointer;
+    display: block;
+    height: 3px;
+    position: absolute;
+    right: 0;
+    width: 35px;
+    z-index: 99;
+  }
+  .sidebar__button + span::before,
+  .sidebar__button + span::after {
+    background-color: $base-light-green;
+    content: '';
+    display: block;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 35px;
+  }
+  .sidebar__button + span::before {
+    top: -10px;
+  }
+  .sidebar__button + span::after {
+    bottom: -10px;
+  }
+  .sidebar__button + span::before,
+  .sidebar__button + span::after {
+    transition-delay: 0.3s, 0s;
+    transition-duration: 0.3s, 0.3s;
+  }
+  .sidebar__button + span::before {
+    transition-property: top, transform;
+  }
+  .sidebar__button + span::after {
+    transition-property: bottom, transform;
+  }
+  .sidebar__button:checked + span {
+    background: none;
+  }
+  .sidebar__button:checked + span::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  .sidebar__button:checked + span::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+  }
+  .sidebar__button:checked + span::before,
+  .sidebar__button:checked + span::after {
+    transition-delay: 0s, 0.3s;
+  }
+
+  .mat-drawer-container{
+    background: transparent;
+    color: $base-black;
   }
 }
