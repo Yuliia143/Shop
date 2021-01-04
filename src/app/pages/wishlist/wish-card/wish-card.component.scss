@@ -2,8 +2,6 @@
 
 .wish-card {
   @include flex-column;
-  width: 350px;
-  height: 100%;
   border: 2px solid $base-border-green;
   border-radius: $base-radius;
   box-sizing: border-box;
@@ -47,5 +45,11 @@
       width: 20px;
       height: 20px;
     }
+  }
+}
+
+@media (max-width: 576px) {
+  .wish-card {
+    width: 100%;
   }
 }

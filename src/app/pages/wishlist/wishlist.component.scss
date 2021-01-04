@@ -9,17 +9,15 @@
   }
 
   &__list {
-    display: flex;
+    @include flex-between;
+    align-items: flex-start;
     flex-wrap: wrap;
     padding-top: 16px;
   }
 
   &__item {
+    width: 32%;
     margin-bottom: 60px;
-
-    &:not(:nth-child(3n)) {
-      margin-right: 60px;
-    }
 
     &--empty {
       width: 100%;
@@ -32,6 +30,22 @@
         color: $base-light-green;
         text-decoration: underline;
       }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .wish {
+    &__item {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 577px) and (max-width: 1023px) {
+  .wish {
+    &__item {
+      width: 48%;
     }
   }
 }

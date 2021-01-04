@@ -45,3 +45,15 @@
     }
   }
 }
+
+@media (max-width: 767px) {
+  .recommended-product {
+    &__price {
+      font-size: 16px;
+    }
+
+    .green-button {
+      padding: 6.5px;
+    }
+  }
+}
