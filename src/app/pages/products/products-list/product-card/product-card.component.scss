@@ -1,10 +1,14 @@
 @import '~styles/styles';
 
+:host{
+  &:not(:last-child){
+    margin-bottom: 32px;
+  }
+}
 .product__card {
   display: flex;
   max-height: 280px;
   border: 1px solid $base-border-grey;
-  margin-bottom: 32px;
   border-radius: $base-radius;
 }
 
@@ -148,10 +152,11 @@
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .product__card {
     @include flex-column;
     max-height: initial;
+    height: 100%;
   }
   .card {
     &__image {
@@ -195,5 +200,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+  }
+}
+
+@media(min-width: 576px) and (max-width: 767px) {
+  :host{
+    width: 48%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .wish-button{
+    padding: 7px 6px;
   }
 }

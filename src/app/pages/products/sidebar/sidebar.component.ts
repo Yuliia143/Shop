@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     public filtersForm: FormGroup;
 
-    constructor(private filtersService: FiltersService) {
+    constructor(private filtersService: FiltersService, private sidebar: ElementRef) {
     }
 
     ngOnInit(): void {
@@ -40,6 +40,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.onChanges();
     }
 
+    public closeSidebar(): void {
+        this.sidebar.nativeElement.classList.remove('active');
+        this.sidebar.nativeElement.parentElement.classList.remove('overlay--active');
+    }
+
     private initializeForm(): FormGroup {
         return new FormGroup({
             category: new FormControl(''),
@@ -48,7 +53,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
             price: new FormControl([0, this.maxPrice])
         });
     }
-
 
     private initializeOptions(): Options {
         return {

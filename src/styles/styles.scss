@@ -172,6 +172,9 @@ textarea {
   font-family: $base-font-secondary;
 }
 
+.mat-drawer-backdrop {
+  border-radius: $base-radius;
+}
 
 @media (max-width: 576px) {
   body {
@@ -179,10 +182,20 @@ textarea {
   }
 
   .container {
-    padding: 0 10px;
+    max-width: 96%;
+    margin: 0 auto;
+    padding: 0;
   }
 
   .select {
     max-width: 102px;
+  }
+}
+
+@media (max-width: 1259px) {
+  .container {
+    max-width: 96%;
+    margin: 0 auto;
+    padding: 0;
   }
 }
