@@ -4,7 +4,7 @@ import { CartService } from '@shared/services/cart.service';
 import { GoodInterface } from '@shared/interfaces/good-interface';
 import { CITIES } from '@mocks/mock-cities';
 import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, takeUntil } from 'rxjs/operators';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
 import { NotificationService } from '@shared/services/notification.service';
@@ -106,7 +106,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     public getGoods(): void {
-        this.cartService.getGoods().subscribe(goods => this.goods = goods);
+        this.cartService.getGoods()
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe(goods => this.goods = goods);
     }
 
     public getSum(): void {
@@ -123,7 +125,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     public removeGood(id: number): void {
-        this.cartService.removeGood(id).subscribe(goods => this.goods = goods);
+        this.cartService.removeGood(id)
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe(goods => this.goods = goods);
         this.patchGoods();
         this.getSum();
     }
@@ -140,8 +144,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     public submit(): void {
         if (this.checkoutForm.valid) {
-            this.notificationService.openSnackBar('Your order is successful', 'Close');
-            this.cartService.clearGoods().subscribe(goods => this.goods = goods);
+            this.cartService.clearGoods()
+                .pipe(takeUntil(this.unsubscribeAll))
+                .subscribe(goods => {
+                    this.goods = goods;
+                    this.notificationService.openSnackBar('Your order is successful', 'Close');
+                });
             this.checkoutForm.reset({
                 city: '',
                 goods: this.patchGoods()

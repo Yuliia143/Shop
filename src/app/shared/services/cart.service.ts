@@ -77,6 +77,7 @@ export class CartService {
 
     public clearGoods(): Observable<GoodInterface[]> {
         this.goods = [];
+        this.totalNumberOfGoods.next(this.getTotalNumberOfGoods());
         return of(this.goods);
     }
 }

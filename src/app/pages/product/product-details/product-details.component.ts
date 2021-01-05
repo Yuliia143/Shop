@@ -9,6 +9,7 @@ import { UserInterface } from '@shared/interfaces/user-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
 import { Subject } from 'rxjs';
 import { NotificationService } from '@shared/services/notification.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-product-details',
@@ -23,7 +24,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     public stars: number[] = [1, 2, 3, 4, 5];
     private defaultMeasurementUnit = 'Psc';
     private unsubscribeAll = new Subject();
-    public objectKeys = Object.keys;
 
     public detailsForm: FormGroup = new FormGroup({
         count: new FormControl(1),
@@ -44,7 +44,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     }
 
     private getUser(): void {
-        this.authService.userSubject.subscribe((user: UserInterface) => this.user = user);
+        this.authService.userSubject
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((user: UserInterface) => this.user = user);
     }
 
     private isExistInWishlist(): void {

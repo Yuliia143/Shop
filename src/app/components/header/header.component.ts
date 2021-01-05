@@ -8,6 +8,7 @@ import { UserInterface } from '@shared/interfaces/user-interface';
 import { CategoryInterface } from '@shared/interfaces/category-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-header',
@@ -15,7 +16,6 @@ import { Subject } from 'rxjs';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-    public objectKeys = Object.keys;
     public categories: CategoryInterface[] = CATEGORIES;
     public user: UserInterface;
     public totalNumberOfGoods: number;
@@ -36,15 +36,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     private getUser(): void {
-        this.authService.userSubject.subscribe((user: UserInterface) => this.user = user);
+        this.authService.userSubject
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((user: UserInterface) => this.user = user);
     }
 
     private getTotalNumberOfWishProducts(): void {
-        this.wishlistService.totalNumberOfWishProducts.subscribe((totalNumber: number) => this.totalNumberOfWishProducts = totalNumber);
+        this.wishlistService.totalNumberOfWishProducts
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((totalNumber: number) => this.totalNumberOfWishProducts = totalNumber);
     }
 
     private getTotalNumberOfGoods(): void {
-        this.cartService.totalNumberOfGoods.subscribe((totalNumber: number) => this.totalNumberOfGoods = totalNumber);
+        this.cartService.totalNumberOfGoods
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((totalNumber: number) => this.totalNumberOfGoods = totalNumber);
     }
 
     public openDialog(): void {

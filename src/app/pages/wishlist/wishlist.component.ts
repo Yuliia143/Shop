@@ -4,6 +4,7 @@ import { ProductInterface } from '@shared/interfaces/product-interface';
 import { UserInterface } from '@shared/interfaces/user-interface';
 import { AuthService } from '@shared/services/auth.service';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-wishlist',
@@ -24,15 +25,21 @@ export class WishlistComponent implements OnInit, OnDestroy {
     }
 
     private getUser(): void {
-        this.authService.userSubject.subscribe((user: UserInterface) => this.user = user);
+        this.authService.userSubject
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((user: UserInterface) => this.user = user);
     }
 
     public getWishProducts(): void {
-        this.wishlistService.getWishProducts().subscribe(products => this.wishProducts = products);
+        this.wishlistService.getWishProducts()
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe(products => this.wishProducts = products);
     }
 
     public removeWishProduct(id: number): void {
-        this.wishlistService.removeWishProduct(id).subscribe(products => this.wishProducts = products);
+        this.wishlistService.removeWishProduct(id)
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe(products => this.wishProducts = products);
     }
 
     ngOnDestroy(): void {
