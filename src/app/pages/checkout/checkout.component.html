@@ -73,6 +73,7 @@
                                  class="checkout__validation">
                                 <small *ngIf="checkoutForm.get('zip').errors.required">This field is
                                     required</small>
+                                <small *ngIf="checkoutForm.get('zip').errors.minNumberOfDigits">Please, enter valid zip</small>
                             </div>
                         </li>
                     </ul>

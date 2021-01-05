@@ -8,6 +8,7 @@ import { map, startWith, takeUntil } from 'rxjs/operators';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
 import { NotificationService } from '@shared/services/notification.service';
+import { CustomValidators } from './custom.validators';
 
 @Component({
     selector: 'app-checkout-view',
@@ -39,7 +40,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         address: new FormControl(''),
         city: new FormControl(''),
         country: new FormControl(''),
-        zip: new FormControl('', [Validators.required]),
+        zip: new FormControl('', [Validators.required, CustomValidators.minNumberOfDigits]),
         additionalInfo: new FormControl(''),
         promo: new FormControl(''),
         mailing: new FormControl(false, [Validators.requiredTrue]),
