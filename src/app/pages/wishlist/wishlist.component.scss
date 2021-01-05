@@ -1,0 +1,37 @@
+@import '~styles/styles';
+
+.wish {
+  &__title {
+    font-family: $base-font-secondary;
+    font-weight: $font-weight-bold;
+    font-size: 32px;
+    margin: 8px 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 16px;
+  }
+
+  &__item {
+    margin-bottom: 60px;
+
+    &:not(:nth-child(3n)) {
+      margin-right: 60px;
+    }
+
+    &--empty {
+      width: 100%;
+      font-family: $base-font-secondary;
+      font-weight: $font-weight-medium;
+      font-size: 20px;
+      text-align: center;
+
+      & a {
+        color: $base-light-green;
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="wish">
+    <div class="container">
+        <div class="wish__header">
+            <h1 class="wish__title">Wishlist</h1>
+        </div>
+        <div class="wish__body">
+            <ul class="wish__list">
+                <li class="wish__item--empty" *ngIf="!wishProducts.length">
+                    Your wishlist is empty. Please,
+                    <a routerLink="/products">choose products.</a>
+                </li>
+                <li class="wish__item" *ngFor="let wishProduct of wishProducts">
+                    <app-wish-card [user]="user"
+                                   [wishProduct]="wishProduct"
+                                   (removeWishProduct)="removeWishProduct($event)">
+                    </app-wish-card>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

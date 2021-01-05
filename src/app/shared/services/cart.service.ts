@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { GoodInterface } from '@shared/interfaces/good-interface';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 
 @Injectable()
 export class CartService {
     public goods: GoodInterface[] = [];
+    public totalNumberOfGoods = new BehaviorSubject(0);
 
     constructor() {
         this.initializeGoods();
@@ -15,6 +16,7 @@ export class CartService {
         const goodsFromLs = JSON.parse(localStorage.getItem('goods'));
         if (goodsFromLs) {
             this.goods = goodsFromLs;
+            this.totalNumberOfGoods.next(this.getTotalNumberOfGoods());
         }
         return this.goods;
     }
@@ -28,10 +30,12 @@ export class CartService {
         if (!existedGood) {
             this.goods.push({ good, count });
             localStorage.setItem('goods', JSON.stringify(this.goods));
+            this.totalNumberOfGoods.next(this.getTotalNumberOfGoods());
             return this.goods;
         }
         existedGood.count += count > 1 ? count : 1;
         localStorage.setItem('goods', JSON.stringify(this.goods));
+        this.totalNumberOfGoods.next(this.getTotalNumberOfGoods());
     }
 
     public getGoods(): Observable<GoodInterface[]> {
@@ -41,6 +45,7 @@ export class CartService {
     public removeGood(id: number): Observable<GoodInterface[]> {
         this.goods = this.goods.filter(item => item.good.id !== id);
         localStorage.setItem('goods', JSON.stringify(this.goods));
+        this.totalNumberOfGoods.next(this.getTotalNumberOfGoods());
         return of(this.goods);
     }
 
@@ -58,21 +63,21 @@ export class CartService {
             return item;
         });
         localStorage.setItem('goods', JSON.stringify(this.goods));
+        this.totalNumberOfGoods.next(this.getTotalNumberOfGoods());
         return of(this.goods);
     }
 
-    public getTotalNumberOfGoods(): number {
+    private getTotalNumberOfGoods(): number {
         let totalNumber = 0;
         if (this.goods.length) {
             this.goods.forEach(item => totalNumber += item.count);
         }
-        localStorage.setItem('totalNumbers', JSON.stringify(totalNumber));
-        totalNumber = +localStorage.getItem('totalNumbers');
         return totalNumber;
     }
 
     public clearGoods(): Observable<GoodInterface[]> {
         this.goods = [];
+        this.totalNumberOfGoods.next(this.getTotalNumberOfGoods());
         return of(this.goods);
     }
 }

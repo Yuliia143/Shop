@@ -43,9 +43,15 @@
                 <a routerLink="/products/{{product.id}}">Product Details</a>
                 <img src="assets/images/svg/ic-arrow-right.svg" alt="arrow">
             </button>
-            <button class="card__button wish-button">
-                <img src="assets/images/svg/ic-heart.svg" alt="heart">
+            <button class="card__button wish-button" *ngIf="!existInWishlist" (click)="addToWishList(product)">
+                <img src="assets/images/svg/ic-heart.svg"
+                     alt="heart">
                 <a>Add to wish list</a>
+            </button>
+            <button class="card__button wish-button" *ngIf="existInWishlist" (click)="removeFromWishList(product.id)">
+                <img src="assets/images/svg/ic-heart-full.svg"
+                     alt="heart">
+                <a>Remove from wish list</a>
             </button>
         </div>
     </div>

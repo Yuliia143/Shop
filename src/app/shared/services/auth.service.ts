@@ -5,13 +5,25 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
 import UserCredential = firebase.auth.UserCredential;
 import AuthProvider = firebase.auth.AuthProvider;
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
     public user: UserInterface;
+    public userSubject = new BehaviorSubject<UserInterface>(null);
     public redirectUrl: string;
 
     constructor(public afAuth: AngularFireAuth, private router: Router) {
+        this.initializeUser();
+    }
+
+    private initializeUser(): UserInterface {
+        const userFromLs = JSON.parse(localStorage.getItem('user'));
+        if (userFromLs) {
+            this.user = userFromLs;
+            this.userSubject.next(this.user);
+        }
+        return this.user;
     }
 
     public googleAuth(): Promise<void> {
@@ -35,6 +47,7 @@ export class AuthService {
                 this.user = { displayName, email, photoURL, refreshToken, accessToken };
                 localStorage.setItem('user', JSON.stringify(this.user));
                 localStorage.setItem('token', JSON.stringify(this.user.accessToken));
+                this.userSubject.next(this.getUser());
                 if (this.redirectUrl) {
                     this.router.navigate([this.redirectUrl]);
                     this.redirectUrl = null;
@@ -49,6 +62,7 @@ export class AuthService {
             this.router.navigate(['/']);
             localStorage.removeItem('user');
             localStorage.removeItem('token');
+            this.userSubject.next(this.getUser());
         }).catch((error) => {
             throw new Error(error);
         });

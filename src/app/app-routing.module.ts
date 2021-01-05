@@ -44,6 +44,16 @@ const routes: Routes = [
         },
         canActivate: [AuthGuard]
     },
+    {
+        path: 'wishlist',
+        loadChildren: () => import('./pages/wishlist/wishlist.module').then(m => m.WishlistModule),
+        data: {
+            breadcrumb: [
+                { label: 'Home', url: '' },
+                { label: 'Wishlist' }
+            ]
+        },
+    },
 ];
 
 @NgModule({

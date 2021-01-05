@@ -1,0 +1,27 @@
+<div class="wish-card">
+    <div class="wish-card__image">
+        <img [src]="wishProduct.imgUrl" alt="Product">
+    </div>
+    <div class="wish-card__content">
+        <div class="wish-card__details">
+            <h1 class="wish-card__title">{{wishProduct.title | titlecase}}</h1>
+            <span class="wish-card__price">{{wishProduct.price}} USD</span>
+        </div>
+        <div class="wish-card__actions">
+            <button (click)="handleRemoveWishProduct(wishProduct.id)">
+                <img src="assets/images/svg/ic-actions-close-simple.svg" alt="Remove">
+            </button>
+            <button>
+                <a routerLink="/products/{{wishProduct.id}}">
+                    <img src="assets/images/svg/details.svg" alt="Details">
+                </a>
+            </button>
+            <button *ngIf="user" (click)="handleAddToCart(wishProduct)">
+                <img src="assets/images/svg/ic-actions-add-simple.svg" alt="Cart">
+            </button>
+            <button *ngIf="!user" (click)="openDialog()">
+                <img src="assets/images/svg/ic-actions-add-simple.svg" alt="Cart">
+            </button>
+        </div>
+    </div>
+</div>

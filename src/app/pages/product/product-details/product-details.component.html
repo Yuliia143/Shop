@@ -66,14 +66,22 @@
                     <option>Sdc</option>
                 </select>
             </form>
-            <button class="green-button" (click)="user ? handleAddToCart(product) : openDialog()">
+            <button class="green-button" *ngIf="!user" (click)="openDialog()">
+                <img src="assets/images/svg/ic-actions-add-simple.svg" alt="add">
+                <a>Add to cart</a>
+            </button>
+            <button class="green-button" *ngIf="user" (click)="handleAddToCart(product)">
                 <img src="assets/images/svg/ic-actions-add-simple.svg" alt="add">
                 <a>Add to cart</a>
             </button>
         </div>
-        <button class="wish-button">
-            <img src="assets/images/svg/ic-heart.svg">
-            <a>Add to my wish list</a>
+        <button class="card__button wish-button" *ngIf="!existInWishlist" (click)="addToWishList(product)">
+            <img src="assets/images/svg/ic-heart.svg" alt="heart">
+            <a>Add to wish list</a>
+        </button>
+        <button class="card__button wish-button" *ngIf="existInWishlist" (click)="removeFromWishList(product.id)">
+            <img src="assets/images/svg/ic-heart-full.svg" alt="heart">
+            <a>Remove from wish list</a>
         </button>
         <div class="product__tabs">
             <app-tabs>

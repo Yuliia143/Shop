@@ -4,7 +4,10 @@ import { CartService } from '@shared/services/cart.service';
 import { GoodInterface } from '@shared/interfaces/good-interface';
 import { CITIES } from '@mocks/mock-cities';
 import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, takeUntil } from 'rxjs/operators';
+import { ProductInterface } from '@shared/interfaces/product-interface';
+import { WishlistService } from '@shared/services/wishlist.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
     selector: 'app-checkout-view',
@@ -13,6 +16,7 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
     public goods: GoodInterface[];
+    public existInWishlist: boolean[];
 
     public tax = 17;
     public taxSum = 0;
@@ -44,7 +48,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         measurementUnit: new FormControl(this.defaultMeasurementUnit)
     });
 
-    constructor(private cartService: CartService) {
+    constructor(
+        private cartService: CartService,
+        private wishlistService: WishlistService,
+        private notificationService: NotificationService) {
     }
 
     ngOnInit(): void {
@@ -52,6 +59,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.getSum();
         this.getFilteredOptions();
         this.patchGoods();
+        this.existInWishlist = this.isExistInWishlist(this.goods);
+    }
+
+    public isExistInWishlist(goods: GoodInterface[]): boolean[] {
+        const existArray: boolean[] = [];
+        goods.forEach(item => {
+            existArray.push(this.wishlistService.isExistInWishlist(item.good));
+        });
+        return existArray;
+    }
+
+    public addToWishList(product: ProductInterface): void {
+        this.wishlistService.addToWishlist(product);
+        this.notificationService.openSnackBar('Your product has been added to the wishlist!', 'Close');
+        this.existInWishlist = this.isExistInWishlist(this.goods);
+    }
+
+    public removeFromWishList(product: ProductInterface): void {
+        this.wishlistService.removeWishProduct(product.id);
+        this.notificationService.openSnackBar('Your product has been deleted from the wishlist!', 'Close');
+        this.existInWishlist = this.isExistInWishlist(this.goods);
     }
 
     private patchGoods(): void {
@@ -78,7 +106,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     public getGoods(): void {
-        this.cartService.getGoods().subscribe(goods => this.goods = goods);
+        this.cartService.getGoods()
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe(goods => this.goods = goods);
     }
 
     public getSum(): void {
@@ -95,7 +125,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     public removeGood(id: number): void {
-        this.cartService.removeGood(id).subscribe(goods => this.goods = goods);
+        this.cartService.removeGood(id)
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe(goods => this.goods = goods);
         this.patchGoods();
         this.getSum();
     }
@@ -112,8 +144,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     public submit(): void {
         if (this.checkoutForm.valid) {
-            alert('Your order is successful');
-            this.cartService.clearGoods().subscribe(goods => this.goods = goods);
+            this.cartService.clearGoods()
+                .pipe(takeUntil(this.unsubscribeAll))
+                .subscribe(goods => {
+                    this.goods = goods;
+                    this.notificationService.openSnackBar('Your order is successful', 'Close');
+                });
             this.checkoutForm.reset({
                 city: '',
                 goods: this.patchGoods()
