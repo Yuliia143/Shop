@@ -10,7 +10,7 @@
 
   &__list {
     @include flex-between;
-    align-items: flex-start;
+    align-items: initial;
     flex-wrap: wrap;
     padding-top: 16px;
   }
@@ -18,6 +18,12 @@
   &__item {
     width: 32%;
     margin-bottom: 60px;
+    @media (max-width: 576px) {
+      width: 100%;
+    }
+    @media (min-width: 577px) and (max-width: 1023px) {
+      width: 48%;
+    }
 
     &--empty {
       width: 100%;
@@ -30,22 +36,6 @@
         color: $base-light-green;
         text-decoration: underline;
       }
-    }
-  }
-}
-
-@media (max-width: 576px) {
-  .wish {
-    &__item {
-      width: 100%;
-    }
-  }
-}
-
-@media (min-width: 577px) and (max-width: 1023px) {
-  .wish {
-    &__item {
-      width: 48%;
     }
   }
 }

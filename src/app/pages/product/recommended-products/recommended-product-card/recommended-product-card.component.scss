@@ -9,6 +9,7 @@
     max-height: 180px;
     border-radius: $base-radius;
     object-fit: cover;
+    cursor: pointer;
   }
 
   &__info {
@@ -31,6 +32,10 @@
     font-family: $base-font-secondary;
     font-weight: $font-weight-bold;
     font-size: 18px;
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
   }
 
   .green-button {
@@ -40,20 +45,12 @@
     margin-bottom: 0;
     padding: 6.5px 12px;
 
+    @media (max-width: 767px) {
+      padding: 6.5px;
+    }
+
     & a {
       color: $base-white;
-    }
-  }
-}
-
-@media (max-width: 767px) {
-  .recommended-product {
-    &__price {
-      font-size: 16px;
-    }
-
-    .green-button {
-      padding: 6.5px;
     }
   }
 }

@@ -65,6 +65,9 @@
     box-sizing: border-box;
     padding: 10px 16px;
     background: $base-snow;
+    @media (min-width: 576px) and (max-width: 767px) {
+      max-width: initial;
+    }
 
     & hr {
       border: none;
@@ -137,29 +140,6 @@
       }
     }
 
-    &__center {
-      @include flex-column;
-      padding-top: 0;
-    }
-
-    &__bottom {
-      padding: 5px 10px;
-
-      .list {
-        @include flex-column;
-        flex-wrap: wrap;
-        max-height: 100px;
-
-        &__item {
-          .select {
-            max-width: 100%;
-            font-weight: $font-weight-regular;
-            font-size: 13px;
-          }
-        }
-      }
-    }
-
     .list {
       &__item {
         &:not(:last-child) {
@@ -175,20 +155,10 @@
         margin: 0 14px;
       }
     }
-
-    &__actions {
-      margin-top: 16px;
-    }
   }
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
-  .header__categories {
-    max-width: initial;
-  }
-}
-
-@media (min-width: 767px) and (max-width: 1259px) {
+@media (max-width: 1259px) {
   .header {
     &__center {
       @include flex-column;

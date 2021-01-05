@@ -3,6 +3,9 @@
 .pagination {
   @include flex-between;
   margin-top: 32px;
+  @media (max-width: 1259px) {
+    @include flex-column;
+  }
 
   &__pages {
     display: flex;
@@ -34,21 +37,15 @@
       margin-right: 8px;
     }
   }
-}
 
-.green-button {
-  & img {
-    width: 10px;
-    margin-left: 10px;
-  }
-}
-
-@media (max-width: 1259px) {
-  .pagination {
-    @include flex-column;
-
-    .green-button {
+  .green-button {
+    @media (max-width: 1259px) {
       margin-top: 12px;
+    }
+
+    & img {
+      width: 10px;
+      margin-left: 10px;
     }
   }
 }

@@ -9,6 +9,10 @@
     max-width: 569px;
     min-width: 569px;
     margin-right: 35px;
+    @media (min-width: 1024px) and (max-width: 1259px) {
+      max-width: 45%;
+      min-width: 40%;
+    }
 
     & img {
       border-radius: $base-radius;
@@ -203,29 +207,23 @@
       @include flex-between;
     }
   }
+
 }
 
 @media (max-width: 767px) {
   .product {
-    @include flex-column;
-
     &__description {
       font-size: 15px;
     }
 
     &__images {
       min-width: 100%;
-      max-width: 100%;
-      margin-right: 0;
-      margin-bottom: 16px;
 
       & img {
         height: 300px;
       }
 
       &-additional {
-        @include flex-between;
-
         & img {
           height: 100px;
         }
@@ -250,7 +248,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (max-width: 1023px) {
   .product {
     @include flex-column;
 
@@ -261,20 +259,7 @@
 
       &-additional {
         @include flex-between;
-
-        & img {
-          height: 200px;
-        }
       }
-    }
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1259px) {
-  .product {
-    &__images {
-      max-width: 45%;
-      min-width: 40%;
     }
   }
 }
