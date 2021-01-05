@@ -32,10 +32,10 @@
 
   &__body {
     display: flex;
-  }
 
-  .active {
-    opacity: 100%;
-    visibility: visible;
+    .active {
+      opacity: 100%;
+      visibility: visible;
+    }
   }
 }
