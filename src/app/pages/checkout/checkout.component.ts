@@ -4,7 +4,7 @@ import { CartService } from '@shared/services/cart.service';
 import { GoodInterface } from '@shared/interfaces/good-interface';
 import { CITIES } from '@mocks/mock-cities';
 import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, pairwise, startWith, takeUntil } from 'rxjs/operators';
+import { debounceTime, map, startWith, takeUntil } from 'rxjs/operators';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
 import { NotificationService } from '@shared/services/notification.service';
