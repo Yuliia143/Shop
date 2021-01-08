@@ -9,20 +9,29 @@
   }
 
   &__list {
-    @include flex-between;
+    display: flex;
     align-items: initial;
     flex-wrap: wrap;
     padding-top: 16px;
+    @media (min-width: 577px) and (max-width: 1023px) {
+      justify-content: space-between;
+    }
   }
 
   &__item {
-    width: 32%;
+    width: 31%;
     margin-bottom: 60px;
     @media (max-width: 576px) {
       width: 100%;
     }
     @media (min-width: 577px) and (max-width: 1023px) {
       width: 48%;
+    }
+    &:not(:nth-child(3n)){
+      margin-right: 32px;
+      @media (max-width: 1023px) {
+        margin-right: 0;
+      }
     }
 
     &--empty {
