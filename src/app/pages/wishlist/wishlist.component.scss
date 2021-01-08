@@ -9,16 +9,20 @@
   }
 
   &__list {
-    display: flex;
+    @include flex-between;
+    align-items: initial;
     flex-wrap: wrap;
     padding-top: 16px;
   }
 
   &__item {
+    width: 32%;
     margin-bottom: 60px;
-
-    &:not(:nth-child(3n)) {
-      margin-right: 60px;
+    @media (max-width: 576px) {
+      width: 100%;
+    }
+    @media (min-width: 577px) and (max-width: 1023px) {
+      width: 48%;
     }
 
     &--empty {

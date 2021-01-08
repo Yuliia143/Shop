@@ -17,7 +17,6 @@ import { WishlistService } from '@shared/services/wishlist.service';
 import { NotificationService } from '@shared/services/notification.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 @NgModule({
     declarations: [
         AppComponent,

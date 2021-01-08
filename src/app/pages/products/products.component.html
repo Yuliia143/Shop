@@ -7,9 +7,14 @@
                 <span>Products</span>
             </div>
         </div>
-        <app-sorting (changeSortValue)="generateRange()"></app-sorting>
+        <div class="main-content__actions">
+            <app-sorting (changeSortValue)="generateRange()"></app-sorting>
+            <button class="main-content__actions-button" (click)="openSidebar()">
+                <img src="assets/images/svg/ic-filters.svg" alt="Filters"/>
+            </button>
+        </div>
         <div class="main-content__body">
-            <app-sidebar [products]="products" (changeFilter)="generateRange()"></app-sidebar>
+            <app-sidebar [products]="products" (changeFilter)="generateRange()" #sidebar></app-sidebar>
             <app-products-list [productsForPage]="paginatedProducts"></app-products-list>
         </div>
         <app-pagination [products]="filteredAndSortedProducts" (range)="handleRange($event)"></app-pagination>

@@ -13,3 +13,11 @@
     font-family: $base-font-secondary;
   }
 }
+
+@media(min-width: 576px) and (max-width: 767px){
+  .products{
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}

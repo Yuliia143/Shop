@@ -1,11 +1,13 @@
 <div class="recommended-product">
-    <img class="recommended-product__image" [src]="recommendedProduct.imgUrl" alt="image">
+    <a routerLink="/products/{{recommendedProduct.id}}">
+        <img class="recommended-product__image" [src]="recommendedProduct.imgUrl" alt="image">
+    </a>
     <div class="recommended-product__info">
         <h3 class="recommended-product__title">{{recommendedProduct.title | titlecase}}</h3>
         <span class="recommended-product__description">{{recommendedProduct.description.small}}</span>
     </div>
     <div class="recommended-product__footer">
-        <p class="recommended-product__price">3.26USD</p>
+        <p class="recommended-product__price">{{recommendedProduct.price}} USD</p>
         <button class="green-button">
             <a routerLink="/products/{{recommendedProduct.id}}">Buy now</a>
         </button>

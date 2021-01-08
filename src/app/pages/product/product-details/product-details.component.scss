@@ -9,6 +9,10 @@
     max-width: 569px;
     min-width: 569px;
     margin-right: 35px;
+    @media (min-width: 1024px) and (max-width: 1259px) {
+      max-width: 45%;
+      min-width: 40%;
+    }
 
     & img {
       border-radius: $base-radius;
@@ -25,7 +29,7 @@
       @include flex-between;
 
       & img {
-        width: 265px;
+        width: 48%;
         height: 220px;
       }
     }
@@ -204,4 +208,58 @@
     }
   }
 
+}
+
+@media (max-width: 767px) {
+  .product {
+    &__description {
+      font-size: 15px;
+    }
+
+    &__images {
+      min-width: 100%;
+
+      & img {
+        height: 300px;
+      }
+
+      &-additional {
+        & img {
+          height: 100px;
+        }
+      }
+    }
+
+    &__list {
+      flex-direction: column;
+      height: initial;
+      margin-bottom: 20px;
+    }
+
+    &__actions {
+      flex-wrap: wrap;
+    }
+
+    .green-button {
+      margin: 16px auto 0;
+      width: 80%;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .product {
+    @include flex-column;
+
+    &__images {
+      max-width: 100%;
+      margin-right: 0;
+      margin-bottom: 16px;
+
+      &-additional {
+        @include flex-between;
+      }
+    }
+  }
 }

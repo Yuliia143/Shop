@@ -22,6 +22,9 @@
     cursor: pointer;
     box-sizing: border-box;
     line-height: 1;
+    @media (max-width: 767px) {
+      font-size: 15px;
+    }
 
     &.active {
       border-bottom: 1px solid $base-black;
@@ -29,6 +32,9 @@
 
     &:not(:last-child) {
       margin-right: 32px;
+      @media (max-width: 767px) {
+        margin-right: 16px;
+      }
     }
   }
 

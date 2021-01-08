@@ -12,11 +12,30 @@
     margin: 8px 0;
   }
 
+  &__actions {
+    @include flex-between;
+    margin: 16px 0;
+
+    &-button {
+      width: 50px;
+      height: 35px;
+      display: none;
+      @media (max-width: 1023px) {
+        display: block;
+      }
+    }
+  }
+
   &__amount {
     display: flex;
   }
 
   &__body {
     display: flex;
+
+    .active {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }

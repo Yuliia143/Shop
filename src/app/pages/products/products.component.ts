@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { ActivatedRoute } from '@angular/router';
 import { FiltersService } from '@shared/services/filters.service';
@@ -12,6 +12,7 @@ import { SortingService } from '@shared/services/sorting.service';
     styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+    @ViewChild('sidebar', { read: ElementRef }) sidebar: ElementRef;
     public products: ProductInterface[] = [];
     public productsForPage: ProductInterface[] = [];
     private range: RangeInterface = {
@@ -28,6 +29,10 @@ export class ProductsComponent implements OnInit {
 
     ngOnInit(): void {
         this.initializeProducts();
+    }
+
+    public openSidebar(): void {
+        this.sidebar.nativeElement.classList.add('active');
     }
 
     private initializeProducts(): void {

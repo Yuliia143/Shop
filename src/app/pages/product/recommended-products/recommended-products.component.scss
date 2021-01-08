@@ -40,3 +40,28 @@
     }
   }
 }
+
+
+@media (max-width: 767px) {
+  .recommended {
+    &__list {
+      overflow: scroll;
+    }
+
+    &__item {
+      width: 150px;
+      max-width: 150px;
+      min-width: 150px;
+    }
+  }
+}
+
+@media (max-width: 1259px) {
+  .recommended {
+    margin-bottom: 40px;
+
+    &__item {
+      margin-right: 20px;
+    }
+  }
+}

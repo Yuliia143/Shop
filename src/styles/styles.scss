@@ -15,6 +15,9 @@ body {
   line-height: 1.4;
   margin: 0;
   padding: 0;
+  @media (max-width: 576px) {
+    font-size: 10px;
+  }
 }
 
 ul {
@@ -66,6 +69,11 @@ textarea {
   margin: 0 auto;
   padding: 0 45px;
   box-sizing: border-box;
+  @media (max-width: 1259px) {
+    max-width: 96%;
+    margin: 0 auto;
+    padding: 0;
+  }
 }
 
 .flex-between {
@@ -144,6 +152,9 @@ textarea {
   color: $base-black;
   text-overflow: ellipsis;
   background: $base-snow;
+  @media (max-width: 576px) {
+    max-width: 102px;
+  }
 }
 
 .green-button {
@@ -170,4 +181,8 @@ textarea {
 
 .mat-simple-snackbar {
   font-family: $base-font-secondary;
+}
+
+.mat-drawer-backdrop {
+  border-radius: $base-radius;
 }

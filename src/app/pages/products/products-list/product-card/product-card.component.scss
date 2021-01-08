@@ -1,10 +1,19 @@
 @import '~styles/styles';
 
+:host {
+  &:not(:last-child) {
+    margin-bottom: 32px;
+  }
+
+  @media(min-width: 576px) and (max-width: 767px) {
+    width: 48%;
+  }
+}
+
 .product__card {
   display: flex;
   max-height: 280px;
   border: 1px solid $base-border-grey;
-  margin-bottom: 32px;
   border-radius: $base-radius;
 }
 
@@ -26,6 +35,7 @@
     padding: 32px;
     display: flex;
     width: 100%;
+    box-sizing: border-box;
   }
 
   &__description, &__info {
@@ -118,6 +128,9 @@
   &__delivery {
     color: $base-light-grey;
     margin-bottom: 26px;
+    @media (min-width: 1024px) and (max-width: 1139px) {
+      margin-bottom: 18px;
+    }
 
     &-shipping {
       font-weight: $font-weight-bold;
@@ -143,5 +156,64 @@
   & img {
     width: 13px;
     margin-right: 10px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 7px 6px;
+  }
+  @media (min-width: 1024px) and (max-width: 1139px) {
+    padding: 5px 12px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .product__card {
+    @include flex-column;
+    max-height: initial;
+    height: 100%;
+  }
+  .card {
+    &__image {
+      min-width: initial;
+      max-width: initial;
+
+      & img {
+        max-height: 200px;
+        min-height: 200px;
+      }
+    }
+
+    &__wrapper {
+      @include flex-column;
+      padding: 16px;
+    }
+
+    &__description {
+      margin-right: 0;
+    }
+
+    &__buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .description {
+    text-align: center;
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__rating {
+      justify-content: center;
+    }
+  }
+  .info {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 }
