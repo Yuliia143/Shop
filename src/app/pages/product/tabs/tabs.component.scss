@@ -22,7 +22,7 @@
     cursor: pointer;
     box-sizing: border-box;
     line-height: 1;
-    @media (max-width: 767px) {
+    @include phone {
       font-size: 15px;
     }
 
@@ -32,7 +32,7 @@
 
     &:not(:last-child) {
       margin-right: 32px;
-      @media (max-width: 767px) {
+      @include phone {
         margin-right: 16px;
       }
     }

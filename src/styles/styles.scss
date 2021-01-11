@@ -15,7 +15,7 @@ body {
   line-height: 1.4;
   margin: 0;
   padding: 0;
-  @media (max-width: 576px) {
+  @include small-phone {
     font-size: 10px;
   }
 }
@@ -29,6 +29,7 @@ ul {
 a {
   text-decoration: none;
   cursor: pointer;
+  color: $base-black;
 }
 
 button {
@@ -69,7 +70,7 @@ textarea {
   margin: 0 auto;
   padding: 0 45px;
   box-sizing: border-box;
-  @media (max-width: 1259px) {
+  @include desktop {
     max-width: 96%;
     margin: 0 auto;
     padding: 0;
@@ -152,7 +153,7 @@ textarea {
   color: $base-black;
   text-overflow: ellipsis;
   background: $base-snow;
-  @media (max-width: 576px) {
+  @include small-phone {
     max-width: 102px;
   }
 }

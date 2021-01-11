@@ -150,7 +150,7 @@
   background-color: transparent;
 }
 
-@media (max-width: 1023px) {
+@include tablet {
   :host {
     opacity: 0;
     visibility: hidden;

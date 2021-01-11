@@ -86,7 +86,7 @@
     margin-bottom: 32px;
     width: 100%;
     max-width: 320px;
-    @media (min-width: 577px) and (max-width: 1259px) {
+    @include small-to-desktop {
       max-width: 48%;
     }
 
@@ -182,7 +182,7 @@
       border-radius: $base-radius;
       margin-bottom: 5px;
       overflow: hidden;
-      @media (min-width: 1024px) and (max-width: 1259px) {
+      @include tablet-to-desktop {
         width: 200px;
         height: 134px;
       }
@@ -242,7 +242,7 @@
       border-radius: $base-radius;
       padding: 6px;
       background: $base-snow;
-      @media (min-width: 577px) and (max-width: 1259px) {
+      @include small-to-desktop {
         width: initial;
       }
 
@@ -329,7 +329,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@include small-phone {
   .checkout {
     &__list {
       @include flex-column;
@@ -365,7 +365,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1259px) {
+@include tablet-to-desktop {
   .checkout {
     .card {
       &__image {
@@ -376,7 +376,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1259px) {
+@include phone-to-desktop {
   .checkout {
     &__cards-list {
       flex-direction: row;
@@ -405,7 +405,7 @@
   }
 }
 
-@media (max-width: 1259px) {
+@include desktop {
   .checkout {
     &-form {
       @include flex-column;

@@ -8,3 +8,84 @@
   display: flex;
   flex-direction: column;
 }
+
+@mixin small-phone {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin small-to-phone {
+  @media (min-width: 577px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin small-phone-up {
+  @media (min-width: 577px) {
+    @content;
+  }
+}
+@mixin small-to-tablet {
+  @media(min-width: 577px) and (max-width: 1023px) {
+    @content
+  }
+}
+
+@mixin small-to-desktop {
+  @media(min-width: 577px) and (max-width: 1259px) {
+    @content
+  }
+}
+
+@mixin phone {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin phone-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin phone-to-tablet{
+  @media (min-width: 768px) and (max-width: 1023px){
+    @content;
+  }
+}
+@mixin phone-to-desktop {
+  @media (min-width: 768px) and (max-width: 1259px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tablet-to-small-desktop{
+  @media (min-width: 1024px) and (max-width: 1139px) {
+    @content;
+  }
+}
+
+@mixin tablet-to-desktop {
+  @media(min-width: 1024px) and (max-width: 1259px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: 1259px) {
+    @content;
+  }
+}

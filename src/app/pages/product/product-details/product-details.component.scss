@@ -9,7 +9,7 @@
     max-width: 569px;
     min-width: 569px;
     margin-right: 35px;
-    @media (min-width: 1024px) and (max-width: 1259px) {
+    @include tablet-to-desktop {
       max-width: 45%;
       min-width: 40%;
     }
@@ -210,7 +210,7 @@
 
 }
 
-@media (max-width: 767px) {
+@include phone {
   .product {
     &__description {
       font-size: 15px;
@@ -248,7 +248,7 @@
   }
 }
 
-@media (max-width: 1023px) {
+@include tablet {
   .product {
     @include flex-column;
 
