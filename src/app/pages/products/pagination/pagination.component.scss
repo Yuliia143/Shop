@@ -3,7 +3,7 @@
 .pagination {
   @include flex-between;
   margin-top: 32px;
-  @media (max-width: 1259px) {
+  @include desktop {
     @include flex-column;
   }
 
@@ -39,7 +39,7 @@
   }
 
   .green-button {
-    @media (max-width: 1259px) {
+    @include desktop {
       margin-top: 12px;
     }
 

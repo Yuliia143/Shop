@@ -14,8 +14,8 @@
   }
 }
 
-@media(min-width: 576px) and (max-width: 767px){
-  .products{
+@include small-to-phone {
+  .products {
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;

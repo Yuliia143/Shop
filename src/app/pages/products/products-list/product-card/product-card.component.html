@@ -1,10 +1,14 @@
 <div class="product__card card">
     <div class="card__image">
-        <img [src]="product.imgUrl ? product.imgUrl : 'assets/images/Rectangle%2026.png'" alt="Product">
+        <a routerLink="/products/{{product.id}}">
+            <img [src]="product.imgUrl ? product.imgUrl : 'assets/images/Rectangle%2026.png'" alt="Product">
+        </a>
     </div>
     <div class="card__wrapper">
         <div class="card__description description">
-            <h2 class="description__title">{{product.title | titlecase}}</h2>
+            <a class="description__title" routerLink="/products/{{product.id}}">
+                {{product.title | titlecase}}
+            </a>
             <p class="description__small">{{product.description.small}}</p>
             <div class="description__rating">
                 <img *ngFor="let i of stars"
@@ -39,20 +43,23 @@
                 <span class="info__delivery-shipping">Free Shipping</span>
                 <span class="info__delivery-day">Delivery in {{product.deliveryTime}} day</span>
             </div>
-            <button class="card__button green-button">
-                <a routerLink="/products/{{product.id}}">Product Details</a>
-                <img src="assets/images/svg/ic-arrow-right.svg" alt="arrow">
-            </button>
-            <button class="card__button wish-button" *ngIf="!existInWishlist" (click)="addToWishList(product)">
-                <img src="assets/images/svg/ic-heart.svg"
-                     alt="heart">
-                <a>Add to wish list</a>
-            </button>
-            <button class="card__button wish-button" *ngIf="existInWishlist" (click)="removeFromWishList(product.id)">
-                <img src="assets/images/svg/ic-heart-full.svg"
-                     alt="heart">
-                <a>Remove from wish list</a>
-            </button>
+            <div class="card__actions">
+                <button class="card__button green-button">
+                    <a routerLink="/products/{{product.id}}">Product Details</a>
+                    <img src="assets/images/svg/ic-arrow-right.svg" alt="arrow">
+                </button>
+                <button class="card__button wish-button" *ngIf="!existInWishlist" (click)="addToWishList(product)">
+                    <img src="assets/images/svg/ic-heart.svg"
+                         alt="heart">
+                    <a>Add to wish list</a>
+                </button>
+                <button class="card__button wish-button" *ngIf="existInWishlist"
+                        (click)="removeFromWishList(product.id)">
+                    <img src="assets/images/svg/ic-heart-full.svg"
+                         alt="heart">
+                    <a>Remove from wish list</a>
+                </button>
+            </div>
         </div>
     </div>
 </div>

@@ -43,4 +43,8 @@ export class FiltersService {
             product.price >= min && product.price <= max : !!product;
     }
 
+    public resetFilters(): void{
+        this.filters = null;
+    }
+
 }

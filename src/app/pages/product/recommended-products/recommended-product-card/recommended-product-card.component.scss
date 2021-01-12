@@ -22,6 +22,7 @@
     font-weight: $font-weight-medium;
     font-size: 15px;
     margin: 0 0 4px;
+    display: block;
   }
 
   &__footer {
@@ -33,7 +34,7 @@
     font-weight: $font-weight-bold;
     font-size: 18px;
 
-    @media (max-width: 767px) {
+    @include phone {
       font-size: 16px;
     }
   }
@@ -45,7 +46,7 @@
     margin-bottom: 0;
     padding: 6.5px 12px;
 
-    @media (max-width: 767px) {
+    @include phone {
       padding: 6.5px;
     }
 

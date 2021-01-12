@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { ActivatedRoute } from '@angular/router';
 import { FiltersService } from '@shared/services/filters.service';
@@ -11,7 +11,7 @@ import { SortingService } from '@shared/services/sorting.service';
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
     @ViewChild('sidebar', { read: ElementRef }) sidebar: ElementRef;
     public products: ProductInterface[] = [];
     public productsForPage: ProductInterface[] = [];
@@ -59,6 +59,10 @@ export class ProductsComponent implements OnInit {
 
     get paginatedProducts(): ProductInterface[] {
         return this.filteredAndSortedProducts.slice(this.range.start, this.range.end + 1);
+    }
+
+    ngOnDestroy(): void{
+        this.filtersService.resetFilters();
     }
 
 }

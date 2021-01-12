@@ -5,7 +5,11 @@
     margin-bottom: 32px;
   }
 
-  @media(min-width: 576px) and (max-width: 767px) {
+  @include small-to-phone {
+    margin-bottom: 32px;
+  }
+
+  @include small-to-phone {
     width: 48%;
   }
 }
@@ -52,6 +56,13 @@
     flex: 0.6;
   }
 
+  &__actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__button {
     display: flex;
     max-width: 170px;
@@ -73,6 +84,7 @@
     font-family: $base-font-secondary;
     font-weight: $font-weight-bold;
     margin: 0;
+    font-size: 18px;
   }
 
   &__small {
@@ -81,7 +93,7 @@
 
   &__rating {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     & img {
       width: 20px;
@@ -93,8 +105,20 @@
   &__item {
     font-size: 14px;
     color: $base-light-grey;
-    @include flex-between;
+    display: flex;
     margin-bottom: 12px;
+    @include desktop {
+      @include flex-between;
+    }
+  }
+
+  &__label {
+    width: 74px;
+    margin-right: 32px;
+    @include desktop {
+      width: initial;
+      margin-right: 0;
+    }
   }
 
   &__value {
@@ -128,7 +152,7 @@
   &__delivery {
     color: $base-light-grey;
     margin-bottom: 26px;
-    @media (min-width: 1024px) and (max-width: 1139px) {
+    @include tablet-to-small-desktop {
       margin-bottom: 18px;
     }
 
@@ -158,16 +182,16 @@
     margin-right: 10px;
   }
 
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @include phone-to-tablet {
     padding: 7px 6px;
   }
-  @media (min-width: 1024px) and (max-width: 1139px) {
+  @include tablet-to-small-desktop {
     padding: 5px 12px;
   }
 }
 
 
-@media (max-width: 767px) {
+@include phone {
   .product__card {
     @include flex-column;
     max-height: initial;

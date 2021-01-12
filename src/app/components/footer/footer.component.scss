@@ -61,7 +61,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@include phone {
   .footer {
     &__top {
       flex-wrap: wrap;

@@ -9,20 +9,30 @@
   }
 
   &__list {
-    @include flex-between;
+    display: flex;
     align-items: initial;
     flex-wrap: wrap;
     padding-top: 16px;
+    @include small-to-tablet {
+      justify-content: space-between;
+    }
   }
 
   &__item {
-    width: 32%;
+    width: 31%;
     margin-bottom: 60px;
-    @media (max-width: 576px) {
+    @include small-phone {
       width: 100%;
     }
-    @media (min-width: 577px) and (max-width: 1023px) {
+    @include small-to-tablet {
       width: 48%;
+    }
+
+    &:not(:nth-child(3n)) {
+      margin-right: 32px;
+      @include tablet {
+        margin-right: 0;
+      }
     }
 
     &--empty {

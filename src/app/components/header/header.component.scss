@@ -65,7 +65,7 @@
     box-sizing: border-box;
     padding: 10px 16px;
     background: $base-snow;
-    @media (min-width: 576px) and (max-width: 767px) {
+    @include small-to-phone {
       max-width: initial;
     }
 
@@ -130,7 +130,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@include phone {
   .header {
     &__top {
       @include flex-column;
@@ -158,7 +158,7 @@
   }
 }
 
-@media (max-width: 1259px) {
+@include desktop {
   .header {
     &__center {
       @include flex-column;
@@ -171,7 +171,7 @@
   }
 }
 
-@media (max-width: 1023px) {
+@include tablet {
   .header {
     &__bottom {
       padding: 5px 10px;
@@ -192,4 +192,3 @@
     }
   }
 }
-

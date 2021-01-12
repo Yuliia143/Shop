@@ -4,10 +4,13 @@ import { CartService } from '@shared/services/cart.service';
 import { GoodInterface } from '@shared/interfaces/good-interface';
 import { CITIES } from '@mocks/mock-cities';
 import { Observable, Subject } from 'rxjs';
-import { map, startWith, takeUntil } from 'rxjs/operators';
+import { debounceTime, map, startWith, takeUntil } from 'rxjs/operators';
 import { ProductInterface } from '@shared/interfaces/product-interface';
 import { WishlistService } from '@shared/services/wishlist.service';
 import { NotificationService } from '@shared/services/notification.service';
+import { CustomValidators } from './custom.validators';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @Component({
     selector: 'app-checkout-view',
@@ -24,6 +27,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     public totalSum: number;
     public promoPercentages = 5;
     private defaultMeasurementUnit = 'Psc';
+    private defaultAddress = 'Boykivska 1';
 
     public stars: number[] = [1, 2, 3, 4, 5];
     private unsubscribeAll = new Subject();
@@ -36,10 +40,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         lastName: new FormControl(''),
         email: new FormControl('', [Validators.required, Validators.email]),
         phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
-        address: new FormControl(''),
+        address: new FormControl(this.defaultAddress),
         city: new FormControl(''),
         country: new FormControl(''),
-        zip: new FormControl('', [Validators.required]),
+        zip: new FormControl('', [Validators.required, CustomValidators.minNumberOfDigits]),
         additionalInfo: new FormControl(''),
         promo: new FormControl(''),
         mailing: new FormControl(false, [Validators.requiredTrue]),
@@ -51,7 +55,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     constructor(
         private cartService: CartService,
         private wishlistService: WishlistService,
-        private notificationService: NotificationService) {
+        private notificationService: NotificationService,
+        public dialog: MatDialog) {
     }
 
     ngOnInit(): void {
@@ -60,6 +65,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.getFilteredOptions();
         this.patchGoods();
         this.existInWishlist = this.isExistInWishlist(this.goods);
+        this.onChanges();
+    }
+
+    public hasUnsavedData(): boolean {
+        return this.checkoutForm.dirty;
+    }
+
+    private onChanges(): void {
+        this.checkoutForm.get('address').valueChanges
+            .pipe(debounceTime(400), takeUntil(this.unsubscribeAll))
+            .subscribe(selectedValue => {
+                const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+                dialogRef.componentInstance.confirmMessage = 'Are you sure you want to change address?';
+                dialogRef.afterClosed().subscribe(result => {
+                    if (!result) {
+                        this.checkoutForm.get('address').setValue(this.defaultAddress, { emitEvent: false });
+                    } else {
+                        this.defaultAddress = selectedValue;
+                    }
+                });
+            });
     }
 
     public isExistInWishlist(goods: GoodInterface[]): boolean[] {
@@ -130,6 +156,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             .subscribe(goods => this.goods = goods);
         this.patchGoods();
         this.getSum();
+        this.existInWishlist = this.isExistInWishlist(this.goods);
     }
 
     public handleCountValue(event: Event, good: GoodInterface): void {

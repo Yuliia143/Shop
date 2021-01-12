@@ -20,7 +20,7 @@
       width: 50px;
       height: 35px;
       display: none;
-      @media (max-width: 1023px) {
+      @include tablet {
         display: block;
       }
     }

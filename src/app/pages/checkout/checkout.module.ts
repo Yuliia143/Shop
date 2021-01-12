@@ -5,12 +5,16 @@ import { CheckoutComponent } from './checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeactivateGuard } from '@shared/guards/deactivate.guard';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
     declarations: [
-        CheckoutComponent
+        CheckoutComponent,
+        ConfirmationDialogComponent
     ],
     exports: [],
     imports: [
@@ -20,7 +24,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
         NgxMaskModule.forRoot(options),
         FormsModule,
         MatAutocompleteModule,
+        MatDialogModule
     ],
+    providers: [DeactivateGuard]
 })
 export class CheckoutModule {
 }

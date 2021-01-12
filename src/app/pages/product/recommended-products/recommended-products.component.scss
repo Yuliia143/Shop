@@ -42,7 +42,7 @@
 }
 
 
-@media (max-width: 767px) {
+@include phone {
   .recommended {
     &__list {
       overflow: scroll;
@@ -56,7 +56,7 @@
   }
 }
 
-@media (max-width: 1259px) {
+@include desktop {
   .recommended {
     margin-bottom: 40px;
 
