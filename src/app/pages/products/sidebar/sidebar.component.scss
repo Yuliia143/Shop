@@ -52,6 +52,10 @@
     padding: 6px 12px;
     margin-top: 38px;
   }
+
+  &__close {
+    display: none;
+  }
 }
 
 .filters {
@@ -98,7 +102,8 @@
 
   &__stars {
     display: flex;
-    & img{
+
+    & img {
       margin-right: 4px;
     }
   }
@@ -170,6 +175,7 @@
     overflow-y: auto;
 
     &__close {
+      display: block;
       position: sticky;
       bottom: 0;
       padding: 15px 0;
