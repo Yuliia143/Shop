@@ -56,7 +56,7 @@
     flex: 0.6;
   }
 
-  &__actions{
+  &__actions {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -93,7 +93,7 @@
 
   &__rating {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     & img {
       width: 20px;
@@ -105,8 +105,20 @@
   &__item {
     font-size: 14px;
     color: $base-light-grey;
-    @include flex-between;
+    display: flex;
     margin-bottom: 12px;
+    @include desktop {
+      @include flex-between;
+    }
+  }
+
+  &__label {
+    width: 74px;
+    margin-right: 32px;
+    @include desktop {
+      width: initial;
+      margin-right: 0;
+    }
   }
 
   &__value {
@@ -179,7 +191,7 @@
 }
 
 
-@include phone{
+@include phone {
   .product__card {
     @include flex-column;
     max-height: initial;

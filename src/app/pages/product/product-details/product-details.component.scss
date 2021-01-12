@@ -4,6 +4,26 @@
   display: flex;
   margin-bottom: 82px;
 
+  &__tags {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  &__tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    background: $base-saltpan;
+    border-radius: $base-radius;
+    color: $base-light-green;
+    font-weight: $font-weight-bold;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
   &__images {
     @include flex-column;
     max-width: 569px;
@@ -158,6 +178,10 @@
       width: 16px;
       height: 16px;
       margin-right: 6px;
+    }
+
+    & a {
+      color: $base-white;
     }
   }
 
