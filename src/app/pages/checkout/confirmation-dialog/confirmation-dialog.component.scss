@@ -1,0 +1,11 @@
+@import '~styles/styles';
+
+.mat-dialog-title {
+  margin: 0 0 20px;
+}
+
+.mat-dialog-actions {
+  & button {
+    color: $base-white;
+  }
+}

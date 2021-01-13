@@ -157,6 +157,7 @@
     }
 
     &-shipping {
+      font-family: $base-font-secondary;
       font-weight: $font-weight-bold;
     }
   }
@@ -175,7 +176,8 @@
 
 .wish-button {
   background: $base-white-smoke;
-  padding: 7px 12px;
+  padding: 7px 14px;
+  line-height: 22px;
 
   & img {
     width: 13px;
@@ -184,6 +186,7 @@
 
   @include phone-to-tablet {
     padding: 7px 6px;
+    line-height: 18px;
   }
   @include tablet-to-small-desktop {
     padding: 5px 12px;

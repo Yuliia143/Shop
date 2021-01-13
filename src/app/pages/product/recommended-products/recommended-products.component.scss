@@ -2,6 +2,7 @@
 
 .recommended {
   margin-bottom: 90px;
+  padding: 0 45px;
 
   &__title {
     @include flex-between;
@@ -49,9 +50,9 @@
     }
 
     &__item {
-      width: 150px;
-      max-width: 150px;
-      min-width: 150px;
+      width: 170px;
+      max-width: 170px;
+      min-width: 170px;
     }
   }
 }
@@ -59,9 +60,12 @@
 @include desktop {
   .recommended {
     margin-bottom: 40px;
+    padding: 0;
 
     &__item {
-      margin-right: 20px;
+      &:not(:last-child){
+        margin-right: 20px;
+      }
     }
   }
 }
