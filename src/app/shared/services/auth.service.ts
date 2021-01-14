@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import UserCredential = firebase.auth.UserCredential;
 import AuthProvider = firebase.auth.AuthProvider;
 import { BehaviorSubject } from 'rxjs';
-
+declare let chat;
 @Injectable()
 export class AuthService {
     public user: UserInterface;
@@ -52,6 +52,7 @@ export class AuthService {
                     this.router.navigate([this.redirectUrl]);
                     this.redirectUrl = null;
                 }
+                chat.init({name: this.user.displayName});
             }).catch((error) => {
                 throw new Error(error);
             });
@@ -63,6 +64,7 @@ export class AuthService {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
             this.userSubject.next(this.getUser());
+            chat.destroy();
         }).catch((error) => {
             throw new Error(error);
         });
