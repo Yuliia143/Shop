@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { takeUntil } from "rxjs/operators";
-import { UserInterface } from "@shared/interfaces/user-interface";
 
 @Component({
     selector: 'app-sign-in',

@@ -54,6 +54,19 @@ const routes: Routes = [
             ]
         },
     },
+    {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+        data: {
+            breadcrumb: [
+                { label: 'Home', url: '' },
+                { label: 'Admin' }
+            ]
+        },
+        resolve: {
+            products: ProductsResolver
+        },
+    },
 ];
 
 @NgModule({

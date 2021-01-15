@@ -1,0 +1,53 @@
+<div class="mat-elevation-z8 table__wrapper">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let element" class="product__title">
+                <div class="product__image">
+                    <a routerLink="/products/{{element.id}}">
+                        <img [src]="element.imgUrl ? element.imgUrl : 'assets/images/Rectangle%2026.png'" alt="Product">
+                    </a>
+                </div>
+                <a routerLink="/products/{{element.id}}">
+                    {{element.title | titlecase}}
+                </a></td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Category</th>
+            <td mat-cell *matCellDef="let element" class="product__category">{{element.category | titlecase}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="farm">
+            <th mat-header-cell *matHeaderCellDef>Farm</th>
+            <td mat-cell *matCellDef="let element" class="product__farm">{{element.farm | titlecase}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+            <td mat-cell *matCellDef="let element" class="product__price">{{element.price}} USD</td>
+        </ng-container>
+
+        <ng-container matColumnDef="rating">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Rating</th>
+            <td mat-cell *matCellDef="let element">
+                <div class="product__rating">
+                    <img *ngFor="let i of stars"
+                         [src]="i <= element.rating? 'assets/images/svg/star.svg' : 'assets/images/svg/ic-star-empty.svg'"
+                         alt="star">
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+</div>
