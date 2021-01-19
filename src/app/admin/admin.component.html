@@ -1,0 +1,5 @@
+<div class="admin">
+    <app-header></app-header>
+    <app-navbar (changeSearchValue)="handleSearchValue()" (newProduct)="addNewProduct($event)"></app-navbar>
+    <app-products-table [products]="searchedProducts"></app-products-table>
+</div>

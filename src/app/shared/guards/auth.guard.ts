@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '@shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { SignInComponent } from '../../components/sign-in/sign-in.component';
+import { SignInComponent } from '../../client/components/sign-in/sign-in.component';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserInterface } from '@shared/interfaces/user-interface';
+import { UserInterface } from '../interfaces/user-interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
 import UserCredential = firebase.auth.UserCredential;

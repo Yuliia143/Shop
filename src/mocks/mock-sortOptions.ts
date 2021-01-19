@@ -1,4 +1,4 @@
-import { SortOptionInterface } from '@shared/interfaces/sorting-interfaces';
+import { SortOptionInterface } from '../app/client/shared/interfaces/sorting-interfaces';
 
 export enum SortTypeEnum {
     asc = 'asc',

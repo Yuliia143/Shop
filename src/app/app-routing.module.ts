@@ -7,7 +7,8 @@ import { AuthGuard } from '@shared/guards/auth.guard';
 const routes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full' },
     {
-        path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule),
+        path: 'products',
+        loadChildren: () => import('./client/pages/products/products.module').then(m => m.ProductsModule),
         resolve: {
             products: ProductsResolver
         },
@@ -20,7 +21,7 @@ const routes: Routes = [
     },
     {
         path: 'products/:id',
-        loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
+        loadChildren: () => import('./client/pages/product/product.module').then(m => m.ProductModule),
         resolve: {
             product: ProductResolver,
             products: ProductsResolver
@@ -35,7 +36,7 @@ const routes: Routes = [
     },
     {
         path: 'checkout',
-        loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule),
+        loadChildren: () => import('./client/pages/checkout/checkout.module').then(m => m.CheckoutModule),
         data: {
             breadcrumb: [
                 { label: 'Home', url: '' },
@@ -46,7 +47,7 @@ const routes: Routes = [
     },
     {
         path: 'wishlist',
-        loadChildren: () => import('./pages/wishlist/wishlist.module').then(m => m.WishlistModule),
+        loadChildren: () => import('./client/pages/wishlist/wishlist.module').then(m => m.WishlistModule),
         data: {
             breadcrumb: [
                 { label: 'Home', url: '' },
@@ -56,16 +57,18 @@ const routes: Routes = [
     },
     {
         path: 'admin',
-        loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
         data: {
             breadcrumb: [
                 { label: 'Home', url: '' },
                 { label: 'Admin' }
-            ]
+            ],
+            isAdmin: true,
         },
         resolve: {
             products: ProductsResolver
         },
+        canActivate: [AuthGuard]
     },
 ];
 

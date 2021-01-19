@@ -1,0 +1,127 @@
+<div class="product">
+    <div class="product__images">
+        <div class="product__tags">
+            <span class="product__tag">-36%</span>
+            <span class="product__tag">Free shipping</span>
+        </div>
+        <img class="product__images-main" [src]="product.imgUrl" alt="Product">
+        <div class="product__images-additional">
+            <img [src]="product.imgUrl" alt="Product">
+            <img [src]="product.imgUrl" alt="Product">
+        </div>
+    </div>
+    <div class="product__details">
+        <h1 class="product__label">{{product.title | titlecase}}</h1>
+        <div class="product__rating">
+            <img *ngFor="let i of stars"
+                 [src]="i <= product.rating? 'assets/images/svg/ic-star-black.svg' : 'assets/images/svg/ic-star-empty.svg'"
+                 alt="star">
+            <span class="product__reviews" *ngIf="product.reviews?.length">
+                ({{product.reviews.length}} customer review)</span>
+        </div>
+        <div class="product__description">{{product.description.main}}</div>
+        <ul class="product__list">
+            <li class="product__item">
+                <span class="product__item__label">Country:</span>
+                <span>{{product.country | titlecase}}</span>
+            </li>
+            <li class="product__item">
+                <span class="product__item__label">Category:</span>
+                <span>{{product.category | titlecase}}</span>
+            </li>
+            <li class="product__item">
+                <span class="product__item__label">Stock:</span>
+                <span>{{product.stock}}</span>
+            </li>
+            <li class="product__item">
+                <span class="product__item__label">Color:</span>
+                <span>{{product.color | titlecase}}</span>
+            </li>
+            <li class="product__item">
+                <span class="product__item__label">Size:</span>
+                <span>{{product.sizes | titlecase}}</span>
+            </li>
+            <li class="product__item">
+                <span class="product__item__label">Buy by:</span>
+                <span>{{product.buyProperties}}</span>
+            </li>
+            <li class="product__item">
+                <span class="product__item__label">Delivery:</span>
+                <span>in {{product.deliveryTime}} days</span>
+            </li>
+            <li class="product__item">
+                <span class="product__item__label">Delivery area:</span>
+                <span>{{product.deliveryArea | titlecase}}</span>
+            </li>
+        </ul>
+        <div class="product__actions">
+            <div class="product__price">
+                <span class="product__price-current">{{product.price}} USD</span>
+                <span class="product__price-previous">{{product.previousPrice}} USD</span>
+            </div>
+            <form [formGroup]="detailsForm" class="product__amount">
+                <div class="product__amount-number">
+                    <input type="number" min="1" formControlName="count" (change)="handleChangeValue($event)">
+                    <label>{{this.detailsForm.get('measurementUnit').value | lowercase}}</label>
+                </div>
+                <hr>
+                <select class="select" formControlName="measurementUnit">
+                    <option selected>Psc</option>
+                    <option>Sdc</option>
+                </select>
+            </form>
+            <button class="green-button" *ngIf="!user" (click)="openDialog()">
+                <img src="assets/images/svg/ic-actions-add-simple.svg" alt="add">
+                <a>Add to cart</a>
+            </button>
+            <button class="green-button" *ngIf="user" (click)="handleAddToCart(product)">
+                <img src="assets/images/svg/ic-actions-add-simple.svg" alt="add">
+                <a>Add to cart</a>
+            </button>
+        </div>
+        <button class="card__button wish-button" *ngIf="!existInWishlist" (click)="addToWishList(product)">
+            <img src="assets/images/svg/ic-heart.svg" alt="heart">
+            <a>Add to wish list</a>
+        </button>
+        <button class="card__button wish-button" *ngIf="existInWishlist" (click)="removeFromWishList(product.id)">
+            <img src="assets/images/svg/ic-heart-full.svg" alt="heart">
+            <a>Remove from wish list</a>
+        </button>
+        <div class="product__tabs">
+            <app-tabs>
+                <app-tab title="Description">
+                    <div class="tab__block">
+                        <h3 class="tab__title">Origins</h3>
+                        <p class="tab__content">{{product.description.origins}}</p>
+                    </div>
+                    <div class="tab__block">
+                        <h3 class="tab__title">How to cook</h3>
+                        <p class="tab__content">{{product.description.howToCook}}</p>
+                    </div>
+                </app-tab>
+                <app-tab title="Reviews" [count]="product.reviews?.length">
+                    <ul class="tab__list">
+                        <li class="tab__block" *ngFor="let review of product.reviews">
+                            <div class="tab__review">
+                                <span class="tab__author">{{review.author | titlecase}}</span>
+                                <span class="tab__date">{{review.date | date}}</span>
+                            </div>
+                            <p class="tab__content">{{review.body}}</p>
+                        </li>
+                    </ul>
+                </app-tab>
+                <app-tab title="Questions" [count]="product.questions?.length">
+                    <ul class="tab__list">
+                        <li class="tab__block" *ngFor="let question of product.questions">
+                            <div class="tab__review">
+                                <span class="tab__author">{{question.author | titlecase}}</span>
+                                <span class="tab__date">{{question.date | date}}</span>
+                            </div>
+                            <p class="tab__content">{{question.body}}</p>
+                        </li>
+                    </ul>
+                </app-tab>
+            </app-tabs>
+        </div>
+    </div>
+</div>

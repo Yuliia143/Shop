@@ -1,6 +1,6 @@
 import { Resolve } from '@angular/router';
-import { ProductInterface } from '../interfaces/product-interface';
-import { ProductsService } from '../services/products.service';
+import { ProductInterface } from '@shared/interfaces/product-interface';
+import { ProductsService } from '@shared/services/products.service';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 

@@ -1,0 +1,13 @@
+<div class="navbar">
+    <div class="navbar__title">
+        <img src="assets/images/svg/ic-ecommerce-basket-white.svg" alt="Cart">
+        <h1>Products</h1>
+    </div>
+    <form [formGroup]="searchForm" class="search__form">
+        <div class="search__input">
+            <img src="assets/images/svg/loupe.svg" alt="Search">
+            <input placeholder="Search for a product" formControlName="searchBy">
+        </div>
+    </form>
+    <button class="green-button" (click)="openCreationModal()">Add new product</button>
+</div>
