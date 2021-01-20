@@ -12,32 +12,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class NewProductComponent implements OnInit {
     public imageSrc = '';
-    public newProductForm = new FormGroup({
-        id: new FormControl(),
-        imgUrl: new FormControl(this.imageSrc, Validators.required),
-        title: new FormControl('', Validators.required),
-        category: new FormControl('', Validators.required),
-        farm: new FormControl('', Validators.required),
-        price: new FormControl('', Validators.required),
-        rating: new FormControl('', [Validators.max(5), Validators.required]),
-        country: new FormControl(''),
-        freshness: new FormControl(''),
-        deliveryArea: new FormControl(''),
-        deliveryTime: new FormControl(''),
-        stock: new FormControl(''),
-
-        buyProperties: new FormControl(''),
-        color: new FormControl(''),
-        description: new FormGroup({
-            howToCook: new FormControl(''),
-            main: new FormControl(''),
-            origins: new FormControl(''),
-            small: new FormControl(''),
-        }),
-        previousPrice: new FormControl(''),
-        sizes: new FormControl(''),
-        tags: new FormControl('')
-    });
+    public newProductForm: FormGroup;
 
     constructor(
         private productsService: ProductsService,
@@ -46,6 +21,36 @@ export class NewProductComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.newProductForm = this.initializeForm();
+    }
+
+    private initializeForm(): FormGroup {
+        return new FormGroup({
+            id: new FormControl(),
+            imgUrl: new FormControl(this.imageSrc, Validators.required),
+            title: new FormControl('', Validators.required),
+            category: new FormControl('', Validators.required),
+            farm: new FormControl('', Validators.required),
+            price: new FormControl('', Validators.required),
+            rating: new FormControl('', [Validators.max(5), Validators.required]),
+            country: new FormControl(''),
+            freshness: new FormControl(''),
+            deliveryArea: new FormControl(''),
+            deliveryTime: new FormControl(''),
+            stock: new FormControl(''),
+
+            buyProperties: new FormControl(''),
+            color: new FormControl(''),
+            description: new FormGroup({
+                howToCook: new FormControl(''),
+                main: new FormControl(''),
+                origins: new FormControl(''),
+                small: new FormControl(''),
+            }),
+            previousPrice: new FormControl(''),
+            sizes: new FormControl(''),
+            tags: new FormControl('')
+        });
     }
 
     public onFileChange(event: Event): void {

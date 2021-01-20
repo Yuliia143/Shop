@@ -1,21 +1,23 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { SearchService } from '../shared/services/search.service';
 import { NewProductComponent } from '../new-product/new-product.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
     @Output() changeSearchValue = new EventEmitter();
     @Output() newProduct = new EventEmitter();
     public searchForm: FormGroup = new FormGroup({
         searchBy: new FormControl('')
     });
+    private unsubscribeAll = new Subject();
 
     constructor(private searchService: SearchService, public dialog: MatDialog) {
     }
@@ -26,6 +28,7 @@ export class NavbarComponent implements OnInit {
 
     private subscribeToTheFormValueChanges(): void {
         this.searchForm.get('searchBy').valueChanges.pipe(
+            takeUntil(this.unsubscribeAll),
             distinctUntilChanged()
         ).subscribe(val => {
             this.searchService.handleSearchValue(val);
@@ -42,4 +45,8 @@ export class NavbarComponent implements OnInit {
         });
     }
 
+    ngOnDestroy(): void {
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
+    }
 }
