@@ -1,0 +1,64 @@
+@import '~styles/styles';
+
+.navbar {
+  @include flex-between;
+  background: $base-light-green;
+  padding: 20px 20px 70px;
+
+  &__title {
+    @include flex-between;
+
+    & img {
+      margin-right: 10px;
+    }
+
+    & h1 {
+      color: $base-white;
+      font-family: $base-font-secondary;
+    }
+  }
+
+  .search {
+    &__input {
+      @include flex-between;
+      width: 300px;
+      background: $base-white;
+      border-radius: $base-radius;
+      padding: 10px;
+
+      & img {
+        width: 20px;
+        height: 20px;
+      }
+
+      & input {
+        width: 100%;
+        padding-left: 10px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .green-button {
+    background: $base-white;
+    border: none;
+    margin-bottom: 0;
+  }
+}
+
+@include phone {
+  .navbar {
+    flex-direction: column;
+
+    .search {
+      &__input {
+        width: 200px;
+      }
+    }
+
+    .green-button {
+      margin-top: 15px;
+      padding: 7px 12px;
+    }
+  }
+}

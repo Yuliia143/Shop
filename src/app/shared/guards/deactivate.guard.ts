@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, CanDeactivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CheckoutComponent } from '../../pages/checkout/checkout.component';
+import { CheckoutComponent } from '../../client/pages/checkout/checkout.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '../../pages/checkout/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../client/pages/checkout/confirmation-dialog/confirmation-dialog.component';
 import { map } from 'rxjs/operators';
 
 @Injectable()

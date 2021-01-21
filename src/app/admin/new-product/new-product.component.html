@@ -1,0 +1,114 @@
+<div class="creation">
+    <form [formGroup]="newProductForm" class="creation-form" autocomplete="off">
+        <div class="creation-form__left">
+            <div class="img__wrapper">
+                <img [src]="imageSrc ? imageSrc : 'assets/images/svg/picture.svg'" alt="Add file">
+            </div>
+            <label class="green-button">Upload image
+                <input type="file" (change)="onFileChange($event)">
+            </label>
+        </div>
+        <div class="creation-form__right">
+            <fieldset class="creation-form__group">
+                <legend>Main info</legend>
+                <mat-form-field>
+                    <input matInput placeholder="Product name" formControlName="title">
+                    <div *ngIf="newProductForm.get('title').invalid && newProductForm.get('title').touched"
+                         class="creation-form__validation">
+                        <small *ngIf="newProductForm.get('title').errors.required">This field is
+                            required</small>
+                    </div>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Product category" formControlName="category">
+                    <div *ngIf="newProductForm.get('category').invalid && newProductForm.get('category').touched"
+                         class="creation-form__validation">
+                        <small *ngIf="newProductForm.get('category').errors.required">This field is
+                            required</small>
+                    </div>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Product farm" formControlName="farm">
+                    <div *ngIf="newProductForm.get('farm').invalid && newProductForm.get('farm').touched"
+                         class="creation-form__validation">
+                        <small *ngIf="newProductForm.get('farm').errors.required">This field is
+                            required</small>
+                    </div>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Product price" formControlName="price">
+                    <div *ngIf="newProductForm.get('price').invalid && newProductForm.get('price').touched"
+                         class="creation-form__validation">
+                        <small *ngIf="newProductForm.get('price').errors.required">This field is
+                            required</small>
+                    </div>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Product rating" formControlName="rating">
+                    <div *ngIf="newProductForm.get('rating').invalid && newProductForm.get('rating').touched"
+                         class="creation-form__validation">
+                        <small *ngIf="newProductForm.get('rating').errors.required">This field is
+                            required</small>
+                        <small *ngIf="newProductForm.get('rating').errors.max">Max value is 5</small>
+                    </div>
+                </mat-form-field>
+            </fieldset>
+        </div>
+        <div class="creation-form__additional">
+            <fieldset class="creation-form__group">
+                <legend>Additional info</legend>
+                <mat-form-field>
+                    <input matInput placeholder="Country" formControlName="country">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Freshness" formControlName="freshness">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Delivery area" formControlName="deliveryArea">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Delivery time" formControlName="deliveryTime">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Stock" formControlName="stock">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Buy properties" formControlName="buyProperties">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Color" formControlName="color">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Sizes" formControlName="sizes">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Tags" formControlName="tags">
+                </mat-form-field>
+            </fieldset>
+        </div>
+        <div class="creation-form__description" formGroupName="description">
+            <fieldset class="creation-form__group">
+                <legend>Description</legend>
+                <mat-form-field>
+                    <input matInput placeholder="Small description" formControlName="small">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Main description" formControlName="main">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Origins" formControlName="origins">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="How to cook" formControlName="howToCook">
+                </mat-form-field>
+            </fieldset>
+        </div>
+        <div class="creation-form__actions">
+            <button class="green-button cancel-button" mat-dialog-close>Cancel</button>
+            <button class="green-button" type="submit"
+                    (click)="addNewProduct()"
+                    [disabled]="newProductForm.invalid"
+            >Add</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,24 @@
+@import '~styles/styles';
+
+.header {
+  padding: 5px 20px;
+
+  &__user {
+    width: fit-content;
+    @include flex-between;
+    margin-left: auto;
+    cursor: pointer;
+
+    .img__wrapper {
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+
+      & img {
+        display: block;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
